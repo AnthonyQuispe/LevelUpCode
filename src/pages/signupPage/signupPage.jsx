@@ -11,7 +11,7 @@ function SignUpPage() {
       <div className="signup-page__left-container">
         <img className="signup-page__logo" src={Logo} alt="Logo" />
         <p className="signup-page__subtitle">
-          Welcome to the beginning of your Coding Journey
+          Welcome to the beginning of your coding journey
         </p>
         <p className="signup-page__text">
           Whether you're a novice or a seasoned enthusiast, our app provides an
@@ -27,7 +27,9 @@ function SignUpPage() {
         <Button text={"Sign Up"} />
         <div className="signup-page__link-container">
           <p className="signup-page__link-text">Already have an account?</p>
-          <Link className="signup-page__link">Sign in</Link>
+          <Link to="/signin" className="signup-page__link">
+            Sign in
+          </Link>
           <GoogleButton />
         </div>
       </form>
