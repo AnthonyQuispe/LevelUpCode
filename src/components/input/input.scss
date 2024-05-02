@@ -1,0 +1,27 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.input {
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  border: solid 3px White;
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  @include Body;
+
+  @include Tablet {
+    height: 60px;
+  }
+
+  &::placeholder {
+    color: white;
+    @include Body;
+  }
+
+  &:focus {
+    outline-color: $Green;
+  }
+}

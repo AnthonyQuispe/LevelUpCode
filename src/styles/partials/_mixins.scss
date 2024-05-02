@@ -1,13 +1,46 @@
 @use "./variables" as *;
+@use "./typography" as *;
 
-@mixin tablet {
+@mixin Tablet {
   @media screen and (min-width: 768px) {
     @content;
   }
 }
 
-@mixin desktop {
-  @media screen and (min-width: 1024) {
+@mixin Desktop {
+  @media screen and (min-width: 1024px) {
     @content;
+  }
+}
+
+@mixin Body {
+  font-family: "Abaddon";
+  font-size: 0.875rem;
+
+  @include Tablet {
+    font-size: 1.25rem;
+  }
+}
+
+@mixin Sub-Title {
+  font-family: "Laconic";
+  font-size: 1rem;
+  line-height: 130%;
+
+  @include Tablet {
+    font-size: 1.5rem;
+  }
+}
+
+@mixin Heading {
+  font-family: "Laconic";
+  font-size: 1rem;
+  line-height: 130%;
+
+  @include Tablet {
+    font-size: 1.5rem;
+  }
+  @include Desktop() {
+    font-size: 2rem;
   }
 }

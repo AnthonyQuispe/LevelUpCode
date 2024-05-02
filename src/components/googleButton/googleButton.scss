@@ -1,0 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.google-button {
+  background-color: White;
+  color: #757575;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  height: 50px;
+  border: none;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  @include Sub-Title;
+  font-weight: 600;
+
+  @include Tablet {
+    height: 60px;
+  }
+}

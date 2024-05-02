@@ -17,7 +17,12 @@
 }
 
 @font-face {
-  font-family: "WhiteRabbit";
-  src: url(../../assets/fonts/WhiteRabbit.ttf) format("truetype");
+  font-family: "Laconic";
+  src: url(../../assets/fonts/Laconic_Regular.otf) format("truetype");
   font-weight: 400;
+}
+@font-face {
+  font-family: "Laconic";
+  src: url(../../assets/fonts/Laconic_Bold.otf) format("truetype");
+  font-weight: 600;
 }

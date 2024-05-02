@@ -1,0 +1,124 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.signup-page {
+  background-image: url("../../assets/background/SignUpMobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100dvh;
+  padding: 40px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  @include Tablet {
+    gap: 40px;
+    background-image: url("../../assets/background/SignUpTablet.svg");
+  }
+
+  @include Desktop {
+    background-image: url("../../assets/background/SignUpDesktop.svg");
+
+    flex-direction: row;
+    padding: 60px 40px;
+    justify-content: space-evenly;
+  }
+
+  &__left-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    @include Tablet {
+      gap: 20px;
+    }
+
+    @include Desktop {
+      align-items: flex-start;
+      width: 43%;
+      gap: 40px;
+      max-width: 420px;
+      height: 600px;
+    }
+  }
+  &__logo {
+    width: 60%;
+
+    @include Desktop {
+      width: 80%;
+    }
+  }
+
+  &__subtitle {
+    @include Heading;
+    color: white;
+    text-align: center;
+
+    @include Desktop {
+      text-align: left;
+    }
+  }
+
+  &__text {
+    display: none;
+    color: white;
+    @include Body;
+
+    @include Desktop {
+      display: block;
+    }
+  }
+
+  &__learn-button {
+    display: none;
+
+    @include Desktop {
+      display: block;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 350px;
+
+    @include Tablet {
+      max-width: 530px;
+    }
+
+    @include Desktop {
+      width: 43%;
+      max-width: 420px;
+      height: 600px;
+      padding: 20px;
+      background-color: $Purple;
+      border-radius: 25px;
+      border: white 2px solid;
+    }
+  }
+
+  &__link {
+    color: $Pink;
+    @include Body;
+    margin-bottom: 20px;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    &-text {
+      color: white;
+      @include Body;
+    }
+  }
+}
