@@ -37,8 +37,13 @@ function TermConditionsPage() {
         <p className="termsconditions-page__text">
           To use LevelUp Code, users are required to sign in using Google Single
           Sign-On (SSO). By signing in, users consent to LevelUp Code collecting
-          and storing the following information: Username, Full Name, Date of
-          Birth, Email Address
+          and storing the following information:
+          <ul className="termsconditions-page__list">
+            <li className="termsconditions-page__list-item">Username</li>
+            <li className="termsconditions-page__list-item">Full Name</li>
+            <li className="termsconditions-page__list-item">Date of Birth</li>
+            <li className="termsconditions-page__list-item">Email Address</li>
+          </ul>
         </p>
       </section>
       <section className="termsconditions-page__section">
@@ -48,6 +53,19 @@ function TermConditionsPage() {
           user experience Improve our services and content Analyze user behavior
           and preferences Send relevant notifications and updates Ensure the
           security of our platform
+          <ul className="termsconditions-page__list">
+            <li className="termsconditions-page__list-item">
+              Personalize user experience
+            </li>
+            <li className="termsconditions-page__list-item">
+              Improve our services and content Analyze user behavior and
+              preferences
+            </li>
+            <li className="termsconditions-page__list-item">
+              Send relevant notifications and updates Ensure the security of our
+              platform
+            </li>
+          </ul>
         </p>
       </section>
       <section className="termsconditions-page__section">
@@ -126,6 +144,10 @@ function TermConditionsPage() {
         >
           LevelUpSupport@gmail.com
         </a>
+      </p>
+      <p className="termsconditions-page__text">
+        By using LevelUp Code, you agree to abide by these terms and conditions.
+        Enjoy learning to code and leveling up your skills with us!
       </p>
     </main>
   );

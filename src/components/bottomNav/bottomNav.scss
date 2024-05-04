@@ -1,0 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.bottom-nav {
+  width: 100%;
+  height: 90px;
+  background-color: $Light-Purple;
+  border-top: 3px solid $Lightest-purple;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0;
+
+  &__button {
+    background-color: $Lightest-purple;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+  }
+}
