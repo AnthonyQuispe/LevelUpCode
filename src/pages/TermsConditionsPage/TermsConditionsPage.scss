@@ -1,0 +1,63 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.termsconditions-page {
+  background-image: url("../../assets/background/SignUpMobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100dvh;
+  padding: 40px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  @include Tablet {
+    gap: 40px;
+    background-image: url("../../assets/background/Terms-Condition-Tablet.svg");
+  }
+
+  @include Desktop {
+    background-image: url("../../assets/background/Terms-Condition-Desktop.svg");
+    padding: 60px 40px;
+    justify-content: space-evenly;
+  }
+
+  &__link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__logo {
+    width: 60%;
+    @include Tablet {
+      max-width: 315px;
+    }
+  }
+
+  &__section {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  &__title {
+    @include Heading;
+    color: White;
+    text-align: left;
+  }
+  &__sub-title {
+    @include Sub-Title;
+    color: White;
+    text-align: left;
+  }
+  &__text {
+    @include Body;
+    color: White;
+  }
+  &__mail {
+    @include Body;
+    color: $Pink;
+  }
+}

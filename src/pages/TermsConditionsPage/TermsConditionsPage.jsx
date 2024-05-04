@@ -1,0 +1,134 @@
+import "./TermsConditionsPage.scss";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo/LevelUp.svg";
+
+function TermConditionsPage() {
+  return (
+    <main className="termsconditions-page">
+      <Link className="termsconditions-page__link" to="/">
+        <img className="termsconditions-page__logo" src={Logo} alt="Logo" />
+      </Link>
+      <h1 className="termsconditions-page__title">
+        Terms and Conditions of Service
+      </h1>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          1. Acceptance of Terms
+        </h2>
+        <p className="termsconditions-page__text">
+          By accessing or using the LevelUp Code web application, you agree to
+          be bound by these terms and conditions. If you do not agree to these
+          terms, please do not use the application.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          2. Use of the Application
+        </h2>
+        <p className="termsconditions-page__text">
+          LevelUp Code provides a platform for users to learn how to code. All
+          content and features provided by LevelUp Code are free of charge.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          3. User Information:
+        </h2>
+        <p className="termsconditions-page__text">
+          To use LevelUp Code, users are required to sign in using Google Single
+          Sign-On (SSO). By signing in, users consent to LevelUp Code collecting
+          and storing the following information: Username, Full Name, Date of
+          Birth, Email Address
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">4. Data Usage:</h2>
+        <p className="termsconditions-page__text">
+          LevelUp Code may use the collected user information to: Personalize
+          user experience Improve our services and content Analyze user behavior
+          and preferences Send relevant notifications and updates Ensure the
+          security of our platform
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">5. Privacy</h2>
+        <p className="termsconditions-page__text">
+          Protecting user privacy is a top priority for LevelUp Code. We will
+          not sell, rent, or disclose user information to third parties without
+          explicit consent, except as required by law.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">6. Security</h2>
+        <p className="termsconditions-page__text">
+          LevelUp Code implements industry-standard security measures to protect
+          user data against unauthorized access, alteration, disclosure, or
+          destruction.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          7. User Responsibilities:
+        </h2>
+        <p className="termsconditions-page__text">
+          Users are responsible for maintaining the confidentiality of their
+          account credentials and for any activity that occurs under their
+          account. Users must notify LevelUp Code immediately of any
+          unauthorized use of their account or any other breach of security.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">8. Content Usage:</h2>
+        <p className="termsconditions-page__text">
+          All content provided by LevelUp Code, including but not limited to
+          tutorials, exercises, and resources, is for educational purposes only.
+          Users may not reproduce, distribute, modify, or sell any content
+          without prior written permission from LevelUp Code.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          9. Limitation of Liability:
+        </h2>
+        <p className="termsconditions-page__text">
+          LevelUp Code shall not be liable for any direct, indirect, incidental,
+          special, or consequential damages arising out of or in any way
+          connected with the use of the application.
+        </p>
+      </section>
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">
+          10. Changes to Terms:
+        </h2>
+        <p className="termsconditions-page__text">
+          LevelUp Code reserves the right to modify or revise these terms and
+          conditions at any time. Users will be notified of any changes, and
+          continued use of the application after such modifications constitutes
+          acceptance of the revised terms.
+        </p>
+      </section>
+
+      <section className="termsconditions-page__section">
+        <h2 className="termsconditions-page__sub-title">11. Governing Law</h2>
+        <p className="termsconditions-page__text">
+          These terms and conditions shall be governed by and construed in
+          accordance with the laws of the State of Florida, without regard to
+          its conflict of law provisions.
+        </p>
+      </section>
+
+      <p className="termsconditions-page__text">
+        If you have any questions or concerns about these terms and conditions,
+        please contact us at{" "}
+        <a
+          className="termsconditions-page__mail"
+          href="mailto:LevelUpSupport@gmail.com"
+        >
+          LevelUpSupport@gmail.com
+        </a>
+      </p>
+    </main>
+  );
+}
+
+export default TermConditionsPage;
