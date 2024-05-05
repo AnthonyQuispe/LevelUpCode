@@ -22,7 +22,7 @@
   }
 
   &__title {
-    @include Heading;
+    @include Title;
     color: white;
     margin: 0 auto;
   }

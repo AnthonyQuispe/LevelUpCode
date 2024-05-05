@@ -15,7 +15,7 @@
 
 @mixin Body {
   font-family: "Abaddon";
-  font-size: 0.875rem;
+  font-size: 1rem;
 
   @include Tablet {
     font-size: 1.25rem;
@@ -24,22 +24,24 @@
 
 @mixin Sub-Title {
   font-family: "Laconic";
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 130%;
+  font-weight: 400;
 
   @include Tablet {
     font-size: 1.5rem;
   }
 }
 
-@mixin Heading {
+@mixin Title {
   font-family: "Heavitas";
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 130%;
 
   @include Tablet {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
+
   @include Desktop() {
     font-size: 2rem;
   }

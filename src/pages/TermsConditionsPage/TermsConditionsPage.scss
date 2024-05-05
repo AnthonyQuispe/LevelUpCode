@@ -43,7 +43,7 @@
   }
 
   &__title {
-    @include Heading;
+    @include Title;
     color: White;
     text-align: left;
   }

@@ -39,49 +39,48 @@ function SettingPage() {
       <>
         <main className="setting-page">
           <section className="setting-page__top-container">
-            <Link className="setting-page__link-back">
-              <img
-                src={LeftArrowIcon}
-                alt="left arrow icon"
-                className="setting-page__link-img"
-              />
-            </Link>
             <h1 className="setting-page__title">Settings</h1>
           </section>
-          <section className="setting-page__container">
-            <h2 className="setting-page__subtitle">Account</h2>
-            <div className="setting-page__button-container">
-              <Link to="/setting/preferences" className="setting-page__button">
-                Preferences <img src={RightArrowIcon} alt="right arrow icon" />
-              </Link>
-              <Link to="/setting/profile" className="setting-page__button">
-                Profile <img src={RightArrowIcon} alt="right arrow icon" />
-              </Link>
-              <Link
-                to="/setting/notifications"
-                className="setting-page__button"
-              >
-                Notifications
-                <img src={RightArrowIcon} alt="right arrow icon" />
-              </Link>
-              <Link
-                to="/setting/courses"
-                className="setting-page__button setting-page__button--last"
-              >
-                Courses <img src={RightArrowIcon} alt="right arrow icon" />
-              </Link>
+          <section className="setting-page__bottom-container">
+            <div className="setting-page__container">
+              <h2 className="setting-page__subtitle">Account</h2>
+              <div className="setting-page__button-container">
+                <Link
+                  to="/setting/preferences"
+                  className="setting-page__button"
+                >
+                  Preferences{" "}
+                  <img src={RightArrowIcon} alt="right arrow icon" />
+                </Link>
+                <Link to="/setting/profile" className="setting-page__button">
+                  Profile <img src={RightArrowIcon} alt="right arrow icon" />
+                </Link>
+                <Link
+                  to="/setting/notifications"
+                  className="setting-page__button"
+                >
+                  Notifications
+                  <img src={RightArrowIcon} alt="right arrow icon" />
+                </Link>
+                <Link
+                  to="/setting/courses"
+                  className="setting-page__button setting-page__button--last"
+                >
+                  Courses <img src={RightArrowIcon} alt="right arrow icon" />
+                </Link>
+              </div>
             </div>
-          </section>
-          <section className="setting-page__container">
-            <h2 className="setting-page__subtitle">Other</h2>
-            <div className="setting-page__button-container">
-              <button className="setting-page__button">
-                Terms <img src={RightArrowIcon} alt="right arrow icon" />
-              </button>
-              <button className="setting-page__button setting-page__button--last">
-                Privacy Policy
-                <img src={RightArrowIcon} alt="right arrow icon" />
-              </button>
+            <div className="setting-page__container">
+              <h2 className="setting-page__subtitle">Other</h2>
+              <div className="setting-page__button-container">
+                <button className="setting-page__button">
+                  Terms <img src={RightArrowIcon} alt="right arrow icon" />
+                </button>
+                <button className="setting-page__button setting-page__button--last">
+                  Privacy Policy
+                  <img src={RightArrowIcon} alt="right arrow icon" />
+                </button>
+              </div>
             </div>
           </section>
           <Button text="Log Out" className="button-green" />

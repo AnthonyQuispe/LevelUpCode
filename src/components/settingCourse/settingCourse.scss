@@ -19,17 +19,18 @@
   &__top-container {
     width: 100%;
     display: flex;
+    align-items: center;
   }
 
   &__title {
-    @include Heading;
+    @include Title;
     color: white;
     margin: 0 auto;
   }
 
   &__container {
     width: 100%;
-    max-width: 600px;
+    max-width: 620px;
   }
   &__button {
     width: 100%;
@@ -44,7 +45,7 @@
     height: 50px;
     padding: 5px 10px;
 
-    @include Body;
+    @include Sub-Title;
     color: white;
 
     @include Tablet {
