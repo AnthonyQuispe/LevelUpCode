@@ -16,9 +16,8 @@
     height: 60px;
   }
 
-  &-google {
-    background-color: White;
-    color: #757575;
-    padding: 0 10px;
+  &-green {
+    background-color: transparent;
+    border: 3px solid $Green;
   }
 }
