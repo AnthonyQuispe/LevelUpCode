@@ -41,7 +41,7 @@
       width: 43%;
       gap: 40px;
       max-width: 420px;
-      height: 500px;
+      height: 590px;
     }
   }
   &__logo {
@@ -53,7 +53,7 @@
   }
 
   &__subtitle {
-    @include Title;
+    @include Sub-Title;
     color: white;
     text-align: center;
 
@@ -89,17 +89,17 @@
     max-width: 350px;
 
     @include Tablet {
-      max-width: 400px;
+      max-width: 368px;
     }
 
     @include Desktop {
       width: 43%;
       max-width: 420px;
-      height: 500px;
+      height: 590px;
       padding: 20px;
       background-color: $Purple;
       border-radius: 25px;
-      border: white 2px solid;
+      border: white 3px solid;
     }
   }
 

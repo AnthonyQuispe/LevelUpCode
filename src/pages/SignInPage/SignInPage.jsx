@@ -10,7 +10,7 @@ function SignInPage() {
     <main className="signin-page">
       <div className="signin-page__left-container">
         <img className="signin-page__logo" src={Logo} alt="Logo" />
-        <p className="signin-page__subtitle">Begin your coding journey!</p>
+        <p className="signin-page__subtitle">Begin Your Coding Journey!</p>
         <p className="signin-page__text">
           Whether you're a novice or a seasoned enthusiast, our app provides an
           immersive learning experience designed to demystify coding languages

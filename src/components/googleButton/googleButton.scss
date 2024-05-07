@@ -16,10 +16,11 @@
   justify-content: center;
   gap: 10px;
 
-  @include Sub-Title;
+  @include Body;
   font-weight: 600;
 
   @include Tablet {
-    height: 60px;
+    height: 80px;
+    max-width: 368px;
   }
 }

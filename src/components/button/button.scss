@@ -10,10 +10,11 @@
   border-radius: 10px;
   height: 50px;
   border: none;
-  @include Sub-Title;
+  @include Body;
 
   @include Tablet {
-    height: 60px;
+    height: 80px;
+    max-width: 368px;
   }
 
   &-green {
