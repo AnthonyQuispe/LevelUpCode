@@ -3,12 +3,6 @@
 @use "../../styles/partials/variables" as *;
 
 .setting-profile {
-  background-image: url("../../assets/background/GamingMobile.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100dvh;
-  padding: 40px 20px 110px 20px;
-
   display: flex;
   flex-direction: column;
   align-items: center;

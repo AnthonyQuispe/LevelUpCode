@@ -26,7 +26,8 @@
 
     flex-direction: row;
     padding: 60px 40px;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 60px;
   }
 
   &__left-container {

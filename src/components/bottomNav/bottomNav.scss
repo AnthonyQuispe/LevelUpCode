@@ -13,6 +13,13 @@
   position: fixed;
   bottom: 0;
 
+  @include Tablet {
+    max-width: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0px 0px;
+  }
+
   &__button {
     background-color: $Lightest-purple;
     height: 50px;
