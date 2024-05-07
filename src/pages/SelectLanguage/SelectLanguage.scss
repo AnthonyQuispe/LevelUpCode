@@ -1,0 +1,73 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.select-language {
+  background-image: url("../../assets/background/GamingMobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100dvh;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  &__title {
+    @include Title;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @include Sub-Title;
+    text-align: center;
+  }
+
+  &__form {
+    width: 320px;
+    max-width: 368px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    @include Tablet {
+      width: 368px;
+      gap: 40px;
+    }
+  }
+
+  &__courses {
+    &-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 3px solid white;
+      border-radius: 10px;
+    }
+    &-button {
+      @include Body;
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 3px solid white;
+      background-color: transparent;
+      height: 50px;
+      padding: 0px 20px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      @include Tablet {
+        height: 80px;
+      }
+    }
+  }
+}

@@ -54,7 +54,6 @@
 
   &__subtitle {
     @include Sub-Title;
-    color: white;
     text-align: center;
 
     @include Desktop {
@@ -64,7 +63,6 @@
 
   &__text {
     display: none;
-    color: white;
     @include Body;
 
     @include Desktop {
@@ -104,8 +102,8 @@
   }
 
   &__link {
-    color: $Pink;
     @include Body;
+    color: $Pink;
     margin-bottom: 20px;
 
     &-container {
@@ -116,7 +114,6 @@
     }
 
     &-text {
-      color: white;
       @include Body;
     }
   }

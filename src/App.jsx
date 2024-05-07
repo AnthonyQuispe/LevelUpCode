@@ -6,6 +6,7 @@ import SignInPage from "./pages/SignInPage/SignInPage";
 import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
+import SelectLanguage from "./pages/SelectLanguage/SelectLanguage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
+          <Route path="/select/language" element={<SelectLanguage />} />
         </Routes>
       </main>
     </>

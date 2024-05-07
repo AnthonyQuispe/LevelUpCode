@@ -68,7 +68,6 @@
 
   &__text {
     display: none;
-    color: white;
     @include Body;
 
     @include Desktop {
@@ -108,8 +107,8 @@
   }
 
   &__link {
-    color: $Pink;
     @include Body;
+    color: $Pink;
     margin-bottom: 20px;
 
     &-container {
@@ -120,7 +119,6 @@
     }
 
     &-text {
-      color: white;
       @include Body;
     }
   }

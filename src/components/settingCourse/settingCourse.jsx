@@ -34,7 +34,7 @@ export default function settingCourse() {
           {courses.map((course, index) => (
             <button key={index} className="setting-courses__button">
               <img src={DeleteIcon} alt="Delete Icon" />
-              <img src={course.icon} alt="right arrow icon" />
+              <img src={course.icon} alt={`Icon for ${course.text} course`} />
               {course.text}
             </button>
           ))}
