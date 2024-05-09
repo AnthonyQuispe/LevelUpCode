@@ -1,44 +1,36 @@
 import "./settingPreferences.scss";
-import { Link } from "react-router-dom";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
-import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
-import HtmlIcon from "../../assets/icons/HtmlIcon.svg";
-import ReactIcon from "../../assets/icons/ReactIcon.svg";
-import Javascript from "../../assets/icons/JavascriptIcon.svg";
-import CssIcon from "../../assets/icons/CssIcon.svg";
-
-const courses = [
-  { icon: HtmlIcon, text: "Html" },
-  { icon: CssIcon, text: "CSS" },
-  { icon: ReactIcon, text: "React" },
-  { icon: Javascript, text: "Javascript" },
-];
+import { Link } from "react-router-dom";
+import Button from "../button/button";
+import Checkbox from "../checkbox/checkbox";
 
 export default function settingPreferences() {
   return (
-    <div className="setting-courses">
-      {/* <section className="setting-courses__top-container">
-        <Link className="setting-courses__link-back">
+    <div className="setting-preferences">
+      <section className="setting-preferences__top-container">
+        <Link to="/setting" className="setting-preferences__link-back">
           <img
             src={LeftArrowIcon}
             alt="left arrow icon"
-            className="setting-courses__link-img"
+            className="setting-preferences__link-img"
           />
         </Link>
-        <h1 className="setting-courses__title">setting Courses</h1>
+        <h1 className="setting-preferences__title">Preferences</h1>
+        <h2 className="setting-preferences__sub-title">Preferences </h2>
       </section>
-
-      <section className="setting-courses__container">
-        <div className="setting-courses__button-container">
-          {courses.map((course) => (
-            <button className="setting-courses__button">
-              <img src={DeleteIcon} alt="Delete Icon" />
-              <img src={course.icon} alt="right arrow icon" />
-              {course.text}
-            </button>
-          ))}
+      <section className="setting-preferences__container">
+        <div className="setting-preferences__button-container">
+          <div className="setting-preferences__button">
+            Appearance
+            <Checkbox id="appearance" />
+          </div>
+          <div className="setting-preferences__button">
+            Sound Effect
+            <Checkbox id="sound" />
+          </div>
         </div>
-      </section> */}
+        <Button text="Save" className="button-pink" />
+      </section>
     </div>
   );
 }

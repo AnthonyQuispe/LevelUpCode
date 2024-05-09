@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   overflow-y: scroll;
 
   &__top-container {
@@ -18,6 +17,10 @@
     @include Tablet {
       height: 80px;
     }
+
+    @include Desktop {
+      height: auto;
+    }
   }
 
   &__link-back {
@@ -26,8 +29,20 @@
 
   &__title {
     @include Title;
-    color: white;
     margin: 0 auto;
+
+    @include Desktop {
+      display: none;
+    }
+  }
+
+  &__subtitle {
+    display: none;
+
+    @include Desktop {
+      display: block;
+      @include Sub-Title;
+    }
   }
 
   &__bottom-container {
@@ -41,14 +56,16 @@
   &__avatar {
     border: 3px solid $Green;
     border-radius: 100%;
-
     width: 25%;
     height: auto;
-
     max-width: 100px;
 
+    @include Tablet {
+      max-width: 150px;
+    }
+
     &-button {
-      @include Body;
+      @include Label;
       background-color: transparent;
       color: $Pink;
       border: none;
@@ -69,11 +86,14 @@
     width: 100%;
     max-width: 320px;
     gap: 20px;
+
+    @include Tablet {
+      max-width: 368px;
+    }
   }
 
   &__label {
-    @include Sub-Title;
-    color: White;
+    @include Label;
   }
 
   &__input {
@@ -83,8 +103,7 @@
     border-radius: 10px;
     height: 50px;
     width: 100%;
-    color: white;
-    padding: 5px 10px;
+    padding: 0px 10px;
 
     &:focus {
       outline: none;
@@ -93,6 +112,11 @@
     &-container {
       width: 100%;
     }
+
+    @include Tablet {
+      height: 80px;
+      padding: 0px 20px;
+    }
   }
 
   &__button {
@@ -100,8 +124,19 @@
     background-color: transparent;
     color: $Pink;
     border: none;
-    width: 100%;
     display: flex;
-    max-width: 320px;
+  }
+
+  &__link-back {
+    width: 40px;
+    height: auto;
+
+    @include Desktop {
+      display: none;
+    }
+  }
+
+  &__link-img {
+    width: 100%;
   }
 }

@@ -9,15 +9,13 @@
   border-top: 3px solid $Lightest-purple;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  gap: 20px;
+  justify-content: center;
   position: fixed;
   bottom: 0;
 
   @include Tablet {
-    max-width: 320px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px 10px 0px 0px;
+    gap: 40px;
   }
 
   &__button {

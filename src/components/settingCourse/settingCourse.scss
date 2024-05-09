@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   overflow-y: scroll;
 
   @include Desktop {
@@ -24,7 +23,6 @@
 
   &__title {
     @include Title;
-    color: white;
     margin: 0 auto;
 
     @include Desktop {
@@ -38,7 +36,6 @@
     @include Desktop {
       display: block;
       @include Sub-Title;
-      color: white;
     }
   }
 
@@ -48,6 +45,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @include Tablet {
+      max-width: 368px;
+    }
   }
   &__button {
     width: 100%;
@@ -61,16 +62,15 @@
     background-color: transparent;
     height: 50px;
     padding: 5px 10px;
+    @include Body;
 
     &:last-child {
       border-bottom: none;
     }
 
-    @include Sub-Title;
-    color: white;
-
     @include Tablet {
-      height: 60px;
+      height: 80px;
+      gap: 20px;
     }
     &-container {
       width: 100%;
@@ -86,8 +86,20 @@
   }
 
   &__link-back {
+    height: 24px;
+    width: auto;
+
+    @include Tablet {
+      height: 40px;
+      width: auto;
+    }
     @include Desktop {
       display: none;
     }
+  }
+
+  &__link-img {
+    height: 100%;
+    width: auto;
   }
 }

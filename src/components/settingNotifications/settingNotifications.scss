@@ -3,37 +3,57 @@
 @use "../../styles/partials/variables" as *;
 
 .setting-notifications {
-  background-image: url("../../assets/background/GamingMobile.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100dvh;
-  padding: 40px 20px 110px 20px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   overflow-y: scroll;
+
+  @include Desktop {
+    gap: unset;
+    width: 320px;
+    align-items: unset;
+  }
 
   &__top-container {
     width: 100%;
     display: flex;
+    align-items: center;
   }
 
   &__title {
     @include Title;
-    color: white;
     margin: 0 auto;
+
+    @include Desktop {
+      display: none;
+    }
+  }
+
+  &__sub-title {
+    display: none;
+
+    @include Desktop {
+      display: block;
+      @include Sub-Title;
+    }
   }
 
   &__container {
     width: 100%;
-    max-width: 600px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include Tablet {
+      max-width: 368px;
+    }
   }
   &__button {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     align-items: center;
     border-top: none;
@@ -43,12 +63,15 @@
     background-color: transparent;
     height: 50px;
     padding: 5px 10px;
-
     @include Body;
-    color: white;
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     @include Tablet {
-      height: 60px;
+      height: 80px;
+      gap: 20px;
     }
     &-container {
       width: 100%;
@@ -61,5 +84,23 @@
     &--last {
       border-bottom: none;
     }
+  }
+
+  &__link-back {
+    height: 24px;
+    width: auto;
+
+    @include Tablet {
+      height: 40px;
+      width: auto;
+    }
+    @include Desktop {
+      display: none;
+    }
+  }
+
+  &__link-img {
+    height: 100%;
+    width: auto;
   }
 }

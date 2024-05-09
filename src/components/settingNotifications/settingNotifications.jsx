@@ -1,44 +1,44 @@
 import "./settingNotifications.scss";
 import { Link } from "react-router-dom";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
-import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
-import HtmlIcon from "../../assets/icons/HtmlIcon.svg";
-import ReactIcon from "../../assets/icons/ReactIcon.svg";
-import Javascript from "../../assets/icons/JavascriptIcon.svg";
-import CssIcon from "../../assets/icons/CssIcon.svg";
-
-const courses = [
-  { icon: HtmlIcon, text: "Html" },
-  { icon: CssIcon, text: "CSS" },
-  { icon: ReactIcon, text: "React" },
-  { icon: Javascript, text: "Javascript" },
-];
+import Button from "../button/button";
+import Checkbox from "../checkbox/checkbox";
 
 export default function settingCourse() {
   return (
-    <div className="setting-courses">
-      {/* <section className="setting-courses__top-container">
-        <Link className="setting-courses__link-back">
+    <div className="setting-notifications">
+      <section className="setting-notifications__top-container">
+        <Link to="/setting" className="setting-notifications__link-back">
           <img
             src={LeftArrowIcon}
             alt="left arrow icon"
-            className="setting-courses__link-img"
+            className="setting-notifications__link-img"
           />
         </Link>
-        <h1 className="setting-courses__title">setting Courses</h1>
+        <h1 className="setting-notifications__title">Notifications</h1>
+        <h2 className="setting-notifications__sub-title">Notifications </h2>
       </section>
-
-      <section className="setting-courses__container">
-        <div className="setting-courses__button-container">
-          {courses.map((course) => (
-            <button className="setting-courses__button">
-              <img src={DeleteIcon} alt="Delete Icon" />
-              <img src={course.icon} alt="right arrow icon" />
-              {course.text}
-            </button>
-          ))}
+      <section className="setting-notifications__container">
+        <div className="setting-notifications__button-container">
+          <div className="setting-notifications__button">
+            Reminders
+            <Checkbox id="reminders" />
+          </div>
+          <div className="setting-notifications__button">
+            Friends
+            <Checkbox id="friends" />
+          </div>
+          <div className="setting-notifications__button">
+            Leaderboards
+            <Checkbox id="leaderboards" />
+          </div>
+          <div className="setting-notifications__button">
+            Announcements
+            <Checkbox id="announcements" />
+          </div>
         </div>
-      </section> */}
+        <Button text="Save" className="button-pink" />
+      </section>
     </div>
   );
 }

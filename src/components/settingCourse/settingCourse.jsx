@@ -9,7 +9,7 @@ import CssIcon from "../../assets/icons/CssIcon.svg";
 import Button from "../button/button";
 
 const courses = [
-  { icon: HtmlIcon, text: "Html" },
+  { icon: HtmlIcon, text: "HTML" },
   { icon: CssIcon, text: "CSS" },
   { icon: ReactIcon, text: "React" },
   { icon: Javascript, text: "Javascript" },

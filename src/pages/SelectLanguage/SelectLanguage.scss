@@ -26,14 +26,15 @@
   }
 
   &__form {
-    width: 320px;
-    max-width: 368px;
+    width: 100%;
+    max-width: 320px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
 
     @include Tablet {
+      max-width: unset;
       width: 368px;
       gap: 40px;
     }

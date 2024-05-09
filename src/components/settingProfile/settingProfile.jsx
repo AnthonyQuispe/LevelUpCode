@@ -26,6 +26,7 @@ export default function settingProfile() {
           />
         </Link>
         <h1 className="setting-profile__title">Profile</h1>
+        <h2 className="setting-profile__subtitle">Profile</h2>
       </section>
 
       <section className="setting-profile__bottom-container">
@@ -45,6 +46,7 @@ export default function settingProfile() {
             <input
               className="setting-profile__input"
               defaultValue={profileInfo[0].name}
+              type="text"
             />
           </div>
           <div className="setting-profile__input-container">
@@ -52,6 +54,7 @@ export default function settingProfile() {
             <input
               className="setting-profile__input"
               defaultValue={profileInfo[0].username}
+              type="text"
             />
           </div>
           <div className="setting-profile__input-container">
@@ -59,15 +62,16 @@ export default function settingProfile() {
             <input
               className="setting-profile__input"
               defaultValue={profileInfo[0].email}
+              type="email"
             />
           </div>
           <div className="setting-profile__input-container">
             <label className="setting-profile__label">Current Passowrd</label>
-            <input className="setting-profile__input" />
+            <input className="setting-profile__input" type="password" />
           </div>
           <div className="setting-profile__input-container">
             <label className="setting-profile__label">New Password</label>
-            <input className="setting-profile__input" />
+            <input className="setting-profile__input" type="password" />
           </div>
           <Button text="Save" className="button-pink" />
         </form>

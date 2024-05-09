@@ -5,7 +5,7 @@ import Logo from "../../assets/logo/LevelUp.svg";
 function TermConditionsPage() {
   return (
     <main className="termsconditions-page">
-      <Link className="termsconditions-page__link" to="/">
+      <Link className="termsconditions-page__link" href="/">
         <img className="termsconditions-page__logo" src={Logo} alt="Logo" />
       </Link>
       <h1 className="termsconditions-page__title">

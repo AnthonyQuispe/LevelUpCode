@@ -74,13 +74,12 @@
     align-items: center;
 
     @include Tablet {
-      max-width: 320px;
+      max-width: 368px;
+      gap: 40px;
     }
 
     @include Desktop {
       flex-direction: column;
-      width: 40%;
-      max-width: unset;
     }
 
     &--alt {
@@ -89,7 +88,7 @@
         display: block;
         gap: 40px;
         display: flex;
-        max-width: 400px;
+        width: 368px;
       }
     }
   }
@@ -111,10 +110,10 @@
     padding: 5px 10px;
 
     @include Body;
-    color: white;
 
     @include Tablet {
-      height: 60px;
+      padding: 5px 20px;
+      height: 80px;
     }
     &-container {
       width: 100%;

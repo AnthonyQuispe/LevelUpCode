@@ -1,7 +1,6 @@
 import "./SettingPage.scss";
 import BottomNav from "../../components/bottomNav/bottomNav";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
-import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
 import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
 import Courses from "../../components/settingCourse/settingCourse";
@@ -18,6 +17,21 @@ function SettingPage() {
     const path = location.pathname.split("/").pop();
     setActiveComponent(path);
   }, [location]);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 1024) {
+        setActiveComponent("preferences");
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Call handleResize initially to set default if screen width <= 1024px
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const renderActiveComponent = () => {
     switch (activeComponent) {
@@ -73,16 +87,19 @@ function SettingPage() {
             <div className="setting-page__container">
               <h2 className="setting-page__subtitle">Other</h2>
               <div className="setting-page__button-container">
-                <button className="setting-page__button">
+                <Link to="/terms" className="setting-page__button">
                   Terms <img src={RightArrowIcon} alt="right arrow icon" />
-                </button>
-                <button className="setting-page__button setting-page__button--last">
+                </Link>
+                <Link
+                  to="/terms"
+                  className="setting-page__button setting-page__button--last"
+                >
                   Privacy Policy
                   <img src={RightArrowIcon} alt="right arrow icon" />
-                </button>
+                </Link>
               </div>
             </div>
-            <Button text="Log Out" className="button-green" />
+            <Button text="Log Out" className="button-pink" />
           </section>
         </main>
         <BottomNav />
@@ -129,16 +146,24 @@ function SettingPage() {
             <div className="setting-page__container">
               <h2 className="setting-page__subtitle">Other</h2>
               <div className="setting-page__button-container">
-                <button className="setting-page__button">
+                <a
+                  className="setting-page__button"
+                  href="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Terms <img src={RightArrowIcon} alt="right arrow icon" />
-                </button>
-                <button className="setting-page__button setting-page__button--last">
+                </a>
+                <Link
+                  to="/terms"
+                  className="setting-page__button setting-page__button--last"
+                >
                   Privacy Policy
                   <img src={RightArrowIcon} alt="right arrow icon" />
-                </button>
+                </Link>
               </div>
             </div>
-            <Button text="Log Out" className="button-green" />
+            <Button text="Log Out" className="button-pink" />
           </div>
           {renderActiveComponent()}
         </section>
