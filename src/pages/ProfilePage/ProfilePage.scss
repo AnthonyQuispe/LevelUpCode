@@ -1,0 +1,113 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.profile-page {
+  background-image: url("../../assets/background/GamingMobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100dvh;
+  padding: 20px 20px 110px 20px;
+
+  &__image-profile {
+    border-radius: 100%;
+    border: 3px solid $Green;
+    height: 100px;
+    width: auto;
+  }
+
+  &__top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__name {
+    @include Label;
+  }
+  &__username {
+    @include Label;
+  }
+  &__date {
+    @include Label;
+  }
+
+  &__image-gear {
+    position: absolute;
+    right: 10%;
+  }
+
+  &__count {
+    display: flex;
+
+    &-courses {
+      @include Label;
+      border-right: 3px solid $Green;
+      padding: 0 10px 0 0px;
+      gap: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+    &-course {
+      border: 1px solid $Green;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
+    }
+    &-following {
+      @include Label;
+      border-right: 3px solid $Green;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0 10px;
+    }
+    &-follower {
+      @include Label;
+      gap: 5px;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__friends {
+    border: 3px solid $Green;
+    border-radius: 10px;
+    &-section {
+      width: 100%;
+    }
+    &-title {
+      @include Label;
+    }
+
+    &-button {
+      width: 50%;
+      background-color: transparent;
+      height: 100%;
+      border: none;
+      border-right: 3px solid $Green;
+      @include Label;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    &-buttons {
+      width: 100%;
+      height: 30px;
+      border-bottom: 3px solid $Green;
+    }
+
+    &-text {
+      @include Body;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
