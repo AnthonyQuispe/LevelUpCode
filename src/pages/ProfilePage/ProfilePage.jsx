@@ -1,9 +1,11 @@
 import "./ProfilePage.scss";
-import { Link } from "react-router-dom";
 import settingIcon from "../../assets/icons/SettingIcon.svg";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
-import uploadIcon from "../../assets/icons/UploadIcon.svg";
-import addFriendIcon from "../../assets/icons/AddFriendIcon.svg";
+import AddFriends from "../../components/addFriends/addFriends";
+import Achievement from "../../components/achievement/achievement";
+import FriendList from "../../components/friendList/friendList";
+import Overview from "../../components/overview/overview";
+import BottomNav from "../../components/bottomNav/bottomNav";
 
 let userData = {
   picture: "",
@@ -14,14 +16,6 @@ let userData = {
   follower: 2,
   joinDate: "April 2024",
 };
-
-let achievements = [
-  {
-    picture: "",
-    name: "SteadyPace",
-    descriptions: "Reach a 7 day streak",
-  },
-];
 
 function ProfilePage() {
   return (
@@ -59,59 +53,13 @@ function ProfilePage() {
               <p>Followers </p>
             </div>
           </div>
-          <div className="profile-page__buttons">
-            <button className="profile-page__add-friend-button">
-              <img src={addFriendIcon} alt="Add Friend" /> Add Friends
-            </button>
-            <button className="profile-page__upload-button">
-              <img src={uploadIcon} alt="Upload" />
-            </button>
-          </div>
-          <div className="profile-page__overview-container"></div>
-          <div className="profile-page__achievements-container">
-            <h2 className="profile-page__title">Achievements</h2>
-            {achievements.map((achievement, index) => (
-              <div className="profile-page__achievement" key={index}>
-                <img
-                  className="profile-page__achievement-image"
-                  src={achievement.picture}
-                  alt="Achievement"
-                />
-                <div className="profile-page__achievement-details">
-                  <h3 className="profile-page__achievement-name">
-                    {achievement.name}:
-                  </h3>
-                  <p className="profile-page__achievement-description">
-                    {achievement.descriptions}
-                  </p>
-                </div>
-              </div>
-            ))}
-            <div className="profile-page__view-all">
-              <p>View All</p>
-              <Link className="profile-page__view-all-link" to="/">
-                <img src="" alt="Right Arrow" />
-              </Link>
-            </div>
-          </div>
+          <AddFriends />
+          <Overview />
+          <Achievement />
         </div>
-        <section className="profile-page__friends-section">
-          <h2 className="profile-page__friends-title">Friends</h2>
-          <div className="profile-page__friends">
-            <div className="profile-page__friends-buttons">
-              <button className="profile-page__friends-button">
-                Following
-              </button>
-              <button className="profile-page__friends-button">
-                Followers
-              </button>
-            </div>
-            <p className="profile-page__friends-text">
-              Connect with other people
-            </p>
-          </div>
-        </section>
+        <FriendList />
       </main>
+      <BottomNav />
     </>
   );
 }

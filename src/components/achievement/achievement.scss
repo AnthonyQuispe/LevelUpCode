@@ -1,0 +1,45 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.achievement {
+  &__title {
+    @include Label;
+  }
+  &__container {
+    padding: 0 10px;
+    border-bottom: 3px solid $Green;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+  }
+
+  &__containers {
+    border: 3px solid $Green;
+    border-radius: 10px;
+  }
+
+  &__image {
+    height: 35px;
+  }
+  &__name {
+    @include Label;
+  }
+
+  &__description {
+    @include Body;
+  }
+
+  &__view-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    height: 30px;
+
+    &-text {
+      @include Body;
+    }
+  }
+}

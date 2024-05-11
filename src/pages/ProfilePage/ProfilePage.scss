@@ -7,7 +7,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100dvh;
-  padding: 20px 20px 110px 20px;
+  padding: 30px 20px 110px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  overflow-y: scroll;
 
   &__image-profile {
     border-radius: 100%;
@@ -20,6 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 320px;
+    width: 100%;
   }
 
   &__name {
@@ -37,16 +45,26 @@
     right: 10%;
   }
 
+  &__bottom-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 320px;
+    width: 100%;
+  }
   &__count {
     display: flex;
 
     &-courses {
       @include Label;
-      border-right: 3px solid $Green;
+      border-right: 2px solid $Green;
       padding: 0 10px 0 0px;
-      gap: 5px;
+
+      height: 40px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      gap: 5px;
     }
     &-course {
       border: 1px solid $Green;
@@ -61,8 +79,10 @@
       border-right: 3px solid $Green;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 5px;
       padding: 0 10px;
+      height: 40px;
     }
     &-follower {
       @include Label;
@@ -70,44 +90,12 @@
       padding: 0 10px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      height: 40px;
     }
   }
 
-  &__friends {
-    border: 3px solid $Green;
-    border-radius: 10px;
-    &-section {
-      width: 100%;
-    }
-    &-title {
-      @include Label;
-    }
-
-    &-button {
-      width: 50%;
-      background-color: transparent;
-      height: 100%;
-      border: none;
-      border-right: 3px solid $Green;
-      @include Label;
-
-      &:last-child {
-        border-right: none;
-      }
-    }
-
-    &-buttons {
-      width: 100%;
-      height: 30px;
-      border-bottom: 3px solid $Green;
-    }
-
-    &-text {
-      @include Body;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  &__subtitle {
+    @include Label;
   }
 }

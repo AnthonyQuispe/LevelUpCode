@@ -1,0 +1,49 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.overview {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @include Label;
+  }
+
+  &__container {
+    border: 3px solid $Green;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+
+    &-top {
+      width: 100%;
+      display: flex;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    &-bottom {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+    }
+  }
+
+  &__text-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+
+  &__count {
+    @include Label;
+  }
+
+  &__decription {
+    @include Body;
+  }
+}

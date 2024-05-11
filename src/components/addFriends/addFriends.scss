@@ -1,0 +1,37 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.add-friends {
+  display: flex;
+  justify-content: space-between;
+
+  &__button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: 3px solid $Green;
+    border-radius: 10px;
+    height: 50px;
+    background-color: transparent;
+    padding: 0 10px;
+    width: 200px;
+    justify-content: center;
+
+    @include Sub-Title;
+    text-transform: uppercase;
+  }
+
+  &__upload-button {
+    background-color: transparent;
+    border: 3px solid $Green;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
+  }
+
+  &__img {
+    height: 20px;
+    width: 20px;
+  }
+}
