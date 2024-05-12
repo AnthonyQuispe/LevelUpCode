@@ -1,5 +1,5 @@
 import "./SettingPage.scss";
-import BottomNav from "../../components/bottomNav/bottomNav";
+import Nav from "../../components/nav/nav";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
 import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
@@ -50,8 +50,9 @@ function SettingPage() {
 
   if (renderActiveComponent() === null) {
     return (
-      <>
-        <main className="setting-page">
+      <div className="setting">
+        <Nav />
+        <div className="setting-page">
           <section className="setting-page__top-container">
             <h1 className="setting-page__title">Settings</h1>
           </section>
@@ -101,15 +102,15 @@ function SettingPage() {
             </div>
             <Button text="Log Out" className="button-pink" />
           </section>
-        </main>
-        <BottomNav />
-      </>
+        </div>
+      </div>
     );
   }
 
   return (
-    <>
-      <main className="setting-page setting-page--alt">
+    <div className="setting">
+      <Nav />
+      <div className="setting-page setting-page--alt">
         <section className="setting-page__top-container setting-page__top-container--alt">
           <h1 className="setting-page__title">Settings</h1>
         </section>
@@ -167,9 +168,8 @@ function SettingPage() {
           </div>
           {renderActiveComponent()}
         </section>
-      </main>
-      <BottomNav />
-    </>
+      </div>
+    </div>
   );
 }
 

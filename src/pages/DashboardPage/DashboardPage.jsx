@@ -1,11 +1,11 @@
 import "./DashboardPage.scss";
-import BottomNav from "../../components/bottomNav/bottomNav";
+import Nav from "../../components/nav/nav";
 
 function DashboardPage() {
   return (
-    <>
-      <BottomNav />
-    </>
+    <div className="dashboard">
+      <Nav />
+    </div>
   );
 }
 

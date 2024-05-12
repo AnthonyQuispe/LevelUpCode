@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectLanguage from "./pages/SelectLanguage/SelectLanguage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import GlossaryPage from "./pages/GlossaryPage/GlossaryPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/select/language" element={<SelectLanguage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/glossary" element={<GlossaryPage />} />
         </Routes>
       </main>
     </>

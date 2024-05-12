@@ -5,7 +5,7 @@ import AddFriends from "../../components/addFriends/addFriends";
 import Achievement from "../../components/achievement/achievement";
 import FriendList from "../../components/friendList/friendList";
 import Overview from "../../components/overview/overview";
-import BottomNav from "../../components/bottomNav/bottomNav";
+import Nav from "../../components/nav/nav";
 import HTML from "../../assets/icons/HtmlIcon.svg";
 import CSS from "../../assets/icons/CssIcon.svg";
 import Javascript from "../../assets/icons/JavascriptIcon.svg";
@@ -24,8 +24,9 @@ let userData = {
 
 function ProfilePage() {
   return (
-    <>
-      <main className="profile-page">
+    <div className="profile">
+      <Nav />
+      <div className="profile-page">
         <div className="profile-page__top-container">
           <img
             className="profile-page__image-profile"
@@ -72,9 +73,8 @@ function ProfilePage() {
           <Achievement />
         </div>
         <FriendList />
-      </main>
-      <BottomNav />
-    </>
+      </div>
+    </div>
   );
 }
 export default ProfilePage;

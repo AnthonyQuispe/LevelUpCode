@@ -2,110 +2,117 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
-.profile-page {
-  background-image: url("../../assets/background/GamingMobile.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100dvh;
-  padding: 30px 20px 110px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-
-  overflow-y: scroll;
-
-  &__image-profile {
-    border-radius: 100%;
-    border: 3px solid $Green;
-    height: 150px;
-    width: auto;
+.profile {
+  @include Desktop {
+    display: flex;
+    width: 100%;
+    height: 100dvh;
   }
-
-  &__top-container {
+  &-page {
+    background-image: url("../../assets/background/GamingMobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100dvh;
+    padding: 30px 20px 110px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 320px;
-    width: 100%;
-    gap: 10px;
-  }
-
-  &__name {
-    @include Label;
-  }
-  &__username {
-    @include Label;
-  }
-  &__date {
-    @include Label;
-  }
-
-  &__image-gear {
-    position: absolute;
-    right: 10%;
-  }
-
-  &__bottom-container {
-    display: flex;
-    flex-direction: column;
     gap: 20px;
-    max-width: 320px;
-    width: 100%;
-  }
-  &__count {
-    display: flex;
+    overflow-y: scroll;
 
-    &-courses {
-      @include Label;
-      border-right: 2px solid $Green;
-      padding: 0 10px 0 0px;
+    &__image-profile {
+      border-radius: 100%;
+      border: 3px solid $Green;
+      height: 150px;
+      width: auto;
+    }
 
-      height: 40px;
+    &__top-container {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 5px;
-
-      &-container {
-        display: flex;
-        justify-content: space-between;
-      }
-      &-img {
-        width: 18px;
-        height: 18px;
-      }
-    }
-    &-course {
-      border: 1px solid $Green;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
       align-items: center;
-      width: 20px;
+      max-width: 320px;
+      width: 100%;
+      gap: 10px;
     }
-    &-following {
-      @include Label;
-      border-right: 3px solid $Green;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 5px;
-      padding: 0 10px;
-      height: 40px;
-    }
-    &-follower {
-      @include Label;
-      gap: 5px;
-      padding: 0 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 40px;
-    }
-  }
 
-  &__subtitle {
-    @include Label;
+    &__name {
+      @include Label;
+    }
+    &__username {
+      @include Label;
+    }
+    &__date {
+      @include Label;
+    }
+
+    &__image-gear {
+      position: absolute;
+      right: 10%;
+    }
+
+    &__bottom-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 320px;
+      width: 100%;
+    }
+    &__count {
+      display: flex;
+
+      &-courses {
+        @include Label;
+        border-right: 2px solid $Green;
+        padding: 0 10px 0 0px;
+
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5px;
+
+        &-container {
+          display: flex;
+          justify-content: space-between;
+        }
+        &-img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+      &-course {
+        border: 1px solid $Green;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+      }
+      &-following {
+        @include Label;
+        border-right: 3px solid $Green;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 5px;
+        padding: 0 10px;
+        height: 40px;
+      }
+      &-follower {
+        @include Label;
+        gap: 5px;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 40px;
+      }
+    }
+
+    &__subtitle {
+      @include Label;
+    }
   }
 }
