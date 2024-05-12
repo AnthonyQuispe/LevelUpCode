@@ -18,6 +18,14 @@
     gap: 40px;
   }
 
+  @include Desktop {
+    width: 90px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+  }
+
   &__button {
     background-color: $Lightest-purple;
     height: 50px;

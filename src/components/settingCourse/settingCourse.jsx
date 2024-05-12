@@ -32,11 +32,23 @@ export default function settingCourse() {
       <section className="setting-courses__container">
         <div className="setting-courses__button-container">
           {courses.map((course, index) => (
-            <button key={index} className="setting-courses__button">
-              <img src={DeleteIcon} alt="Delete Icon" />
-              <img src={course.icon} alt={`Icon for ${course.text} course`} />
-              {course.text}
-            </button>
+            <div key={index} className="setting-courses__button">
+              <div className="setting-courses__button-left">
+                <img
+                  src={course.icon}
+                  alt={`Icon for ${course.text} course`}
+                  className="setting-courses__icons"
+                />
+                {course.text}
+              </div>
+              <button className="setting-courses__button-minus">
+                <img
+                  src={DeleteIcon}
+                  alt="Delete Icon"
+                  className="setting-courses__icons"
+                />
+              </button>
+            </div>
           ))}
         </div>
         <Button text="Save" className="button-pink" />

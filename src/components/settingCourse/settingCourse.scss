@@ -50,10 +50,16 @@
       max-width: 368px;
     }
   }
+
+  &__icons {
+    height: 30px;
+    width: 30px;
+  }
   &__button {
     width: 100%;
     display: flex;
     gap: 10px;
+    justify-content: space-between;
     align-items: center;
     border-top: none;
     border-left: none;
@@ -62,6 +68,7 @@
     background-color: transparent;
     height: 50px;
     padding: 5px 10px;
+
     @include Body;
 
     &:last-child {
@@ -71,6 +78,19 @@
     @include Tablet {
       height: 80px;
       gap: 20px;
+    }
+
+    &-minus {
+      border: none;
+      border-radius: 100%;
+      display: flex;
+      background-color: transparent;
+    }
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     &-container {
       width: 100%;

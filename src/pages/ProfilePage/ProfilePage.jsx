@@ -6,11 +6,16 @@ import Achievement from "../../components/achievement/achievement";
 import FriendList from "../../components/friendList/friendList";
 import Overview from "../../components/overview/overview";
 import BottomNav from "../../components/bottomNav/bottomNav";
+import HTML from "../../assets/icons/HtmlIcon.svg";
+import CSS from "../../assets/icons/CssIcon.svg";
+import Javascript from "../../assets/icons/JavascriptIcon.svg";
+import React from "../../assets/icons/ReactIcon.svg";
 
 let userData = {
   picture: "",
   name: "Anthony Quispe",
   username: "@ItsAnthonyQ",
+  courseImg: HTML,
   courses: 2,
   following: 1,
   follower: 2,
@@ -41,7 +46,16 @@ function ProfilePage() {
           </div>
           <div className="profile-page__count">
             <div className="profile-page__count-courses">
-              <p className="profile-page__count-course">+{userData.courses}</p>
+              <div className="profile-page__count-courses-container">
+                <img
+                  src={userData.courseImg}
+                  alt="course take icons"
+                  className="profile-page__count-courses-img"
+                />
+                <p className="profile-page__count-course">
+                  +{userData.courses}
+                </p>
+              </div>
               <p>Courses</p>
             </div>
             <div className="profile-page__count-following">
