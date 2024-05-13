@@ -20,6 +20,12 @@
 
     @include Sub-Title;
     text-transform: uppercase;
+
+    @include Tablet {
+      width: 268px;
+      height: 80px;
+      gap: 20px;
+    }
   }
 
   &__upload-button {
@@ -28,10 +34,20 @@
     border-radius: 10px;
     height: 50px;
     width: 50px;
+
+    @include Tablet {
+      height: 80px;
+      width: 80px;
+    }
   }
 
   &__img {
     height: 20px;
     width: 20px;
+
+    @include Tablet {
+      height: 35px;
+      width: 35px;
+    }
   }
 }

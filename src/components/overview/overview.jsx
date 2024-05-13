@@ -20,7 +20,7 @@ export default function Overview() {
           <img src={FireIcon} alt="Fire icon" className="overview__img" />
           <div className="overview__text-container">
             <p className="overview__count">{overviewCount.daystreak}</p>
-            <p className="overview__decription">Day Streak</p>
+            <p className="overview__decription">Streak</p>
           </div>
         </div>
         <div className="overview__container">

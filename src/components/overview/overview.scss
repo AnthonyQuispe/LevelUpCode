@@ -18,6 +18,13 @@
     height: 50px;
     display: flex;
 
+    @include Tablet {
+      height: 80px;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+    }
+
     &-top {
       width: 100%;
       display: flex;
@@ -45,5 +52,11 @@
 
   &__decription {
     @include Body;
+  }
+
+  &__img {
+    @include Tablet {
+      height: 50px;
+    }
   }
 }
