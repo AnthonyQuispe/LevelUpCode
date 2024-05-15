@@ -3,22 +3,136 @@
 @use "../../styles/partials/variables" as *;
 
 .dashboard {
+  background-image: url("../../assets/background/GamingMobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 30px 20px 110px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-y: scroll;
+
   @include Desktop {
     display: flex;
     width: 100%;
     height: 100dvh;
   }
-  &-page {
-    background-image: url("../../assets/background/GamingMobile.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
+
+  &__page {
     width: 100%;
-    min-height: 100dvh;
-    padding: 30px 20px 110px 20px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+
+    max-width: 280px;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__profile-icon {
+    width: 20px;
+    height: 20px;
+  }
+  &__username {
+    background-color: $Light-Purple;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    @include Body;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__play-button {
+    width: 50px;
+    height: 50px;
+    background-color: $Light-Purple;
+    border-radius: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__title {
+    @include Title;
+    width: 100%;
+    background-color: $Light-Purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    height: 50px;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__level-container {
+    width: 100%;
+  }
+
+  &__level-name {
+    border: 3px solid $Green;
+    background-color: transparent;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    @include Label;
+  }
+
+  &__courses {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  &__course-row {
+    display: flex;
     align-items: center;
     gap: 20px;
-    overflow-y: scroll;
+
+    &--second {
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    &--fourth {
+      margin-bottom: 20px;
+    }
+    &--sixth {
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    &--eighth {
+      margin-bottom: 20px;
+    }
   }
 }
