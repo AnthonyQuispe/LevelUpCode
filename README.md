@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# LevelUp Code
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to LevelUp Code, a web app designed to help you learn how to code through a fun and engaging platform. Whether you're on mobile or desktop, LevelUp Code offers an immersive learning experience with an 8-bit game aesthetic. This README will guide you through the features, setup, and usage of the app.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Leaderboard: Compete with other users and see where you stand.
+- Profile Page: View your profile, add friends, and track achievements such as daily streaks.
+- Review Page: Review what you got wrong and track your progress.
+- Settings Page: Customize your app experience with various settings.
+- Courses: Currently offering courses in React, HTML, CSS, and JavaScript.
+- Future Updates: AI integration to help users review and understand material better.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Frontend: React.js , Sass , Javascript
+- Backend: Firebase and Firestore
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Dependencies
 
-### `npm test`
+- Node.js and npm installed on your local machine.
+- Firebase account for backend services.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installing
 
-### `npm run build`
+- How/where to download your program
+- Any modifications needed to be made to files/folders
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Executing program
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- How to run the program
+- Step-by-step bullets
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+code blocks for commands
+```
 
-### `npm run eject`
+## Help
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For any questions or feedback, please open an issue on GitHub or contact us at anthony.s.quispe@gmail.com.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Happy coding with LevelUp Code! 🚀
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Authors
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Lead Developer. Anthony Quispe
+[@anthonyquispe](https://www.linkedin.com/in/anthonyqs/)
 
-## Learn More
+## Version History
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 0.1
+  - Initial Release
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Acknowledgments
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Inspiration, code snippets, etc.
