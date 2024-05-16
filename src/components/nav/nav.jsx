@@ -16,9 +16,9 @@ export default function Nav() {
         <img className="nav__icons" src={homeIcon} alt="Home Icon" />
         <p className="nav__text">Home </p>
       </Link>
-      <Link className="nav__button" to="/glossary">
+      <Link className="nav__button" to="/review">
         <img className="nav__icons" src={glossaryIcon} alt="Glossary Icon" />
-        <p className="nav__text">Glossary </p>
+        <p className="nav__text">Review </p>
       </Link>
       <Link className="nav__button" to="/setting">
         <img className="nav__icons" src={settingIcon} alt="Setting Icon" />

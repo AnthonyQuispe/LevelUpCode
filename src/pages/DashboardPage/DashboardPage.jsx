@@ -95,7 +95,7 @@ function DashboardPage() {
           </div>
           <div className="dashboard__courses">
             <div className="dashboard__course-row dashboard__course-row--first">
-              <Link className="dashboard__course">
+              <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
                   CourseTracker.Section1.Chapter1,
                   purpleClassIcon,
@@ -155,7 +155,7 @@ function DashboardPage() {
                   circleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
                   CourseTracker.Section2.Chapter1,
                   purpleClassIcon,
@@ -173,7 +173,7 @@ function DashboardPage() {
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--fifth">
-              <Link className="dashboard__course">
+              <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
                   CourseTracker.Section3.Chapter1,
                   purpleClassIcon,
@@ -233,7 +233,7 @@ function DashboardPage() {
                   xClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
                   CourseTracker.Section4.Chapter1,
                   purpleClassIcon,
@@ -251,7 +251,7 @@ function DashboardPage() {
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--ninth">
-              <Link className="dashboard__course">
+              <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
                   CourseTracker.Section5.FinalChapter,
                   purpleClassIcon,

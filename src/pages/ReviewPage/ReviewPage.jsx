@@ -1,11 +1,11 @@
-import "./GlossaryPage.scss";
+import "./ReviewPage.scss";
 import Nav from "../../components/nav/nav";
 
-function GlossaryPage() {
+function ReviewPage() {
   return (
     <div className="profile">
       <Nav />
     </div>
   );
 }
-export default GlossaryPage;
+export default ReviewPage;

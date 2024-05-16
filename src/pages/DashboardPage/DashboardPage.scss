@@ -3,31 +3,23 @@
 @use "../../styles/partials/variables" as *;
 
 .dashboard {
-  background-image: url("../../assets/background/GamingMobile.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  min-height: 100dvh;
-  padding: 30px 20px 110px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  overflow-y: scroll;
-
   @include Desktop {
     display: flex;
     width: 100%;
     height: 100dvh;
   }
-
   &__page {
+    background-image: url("../../assets/background/GamingMobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
+    min-height: 100dvh;
+    padding: 30px 20px 110px 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
-
-    max-width: 280px;
+    overflow-y: scroll;
   }
 
   &__top {
@@ -36,6 +28,9 @@
     flex-direction: column;
     gap: 10px;
 
+    @include Tablet {
+      max-width: 500px;
+    }
     &-container {
       width: 100%;
       display: flex;
@@ -46,6 +41,11 @@
   &__profile-icon {
     width: 20px;
     height: 20px;
+
+    @include Tablet {
+      width: 35px;
+      height: 35px;
+    }
   }
   &__username {
     background-color: $Light-Purple;
@@ -57,6 +57,11 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    @include Tablet {
+      height: 80px;
+      width: 200px;
+    }
   }
 
   &__play-button {
@@ -69,9 +74,19 @@
     align-items: center;
     justify-content: center;
 
+    @include Tablet {
+      height: 80px;
+      width: 80px;
+    }
+
     &-icon {
       width: 20px;
       height: 20px;
+
+      @include Tablet {
+        width: 35px;
+        height: 35px;
+      }
     }
   }
 
@@ -85,12 +100,20 @@
 
     border-radius: 10px;
     height: 50px;
+
+    @include Tablet {
+      height: 80px;
+    }
   }
 
   &__bottom {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @include Tablet {
+      max-width: 500px;
+    }
   }
 
   &__level-container {
@@ -104,6 +127,11 @@
     height: 50px;
     border-radius: 10px;
     @include Label;
+
+    @include Tablet {
+      height: 80px;
+      width: 250px;
+    }
   }
 
   &__courses {
@@ -112,6 +140,35 @@
     flex-direction: column;
     gap: 10px;
     padding: 0 20px;
+
+    @include Tablet {
+      padding: 0 50px;
+    }
+  }
+
+  &__course {
+    @include Tablet {
+      width: 50px;
+      height: 50px;
+    }
+    &--big {
+      @include Tablet {
+        width: 130px;
+        height: 130px;
+      }
+    }
+  }
+
+  &__course-icon {
+    @include Tablet {
+      height: 100%;
+      width: 100%;
+    }
+
+    &--small {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   &__course-row {
@@ -119,6 +176,9 @@
     align-items: center;
     gap: 20px;
 
+    @include Tablet {
+      gap: 40px;
+    }
     &--second {
       justify-content: flex-end;
       margin-bottom: 20px;
