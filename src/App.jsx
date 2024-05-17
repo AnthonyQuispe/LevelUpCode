@@ -9,6 +9,7 @@ import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectLanguage from "./pages/SelectLanguage/SelectLanguage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
+import LessonPage from "./pages/LessonPage/LessonPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/select/language" element={<SelectLanguage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/review" element={<ReviewPage />} />
+          <Route path="/lesson" element={<LessonPage />} />
         </Routes>
       </main>
     </>
