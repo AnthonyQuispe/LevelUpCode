@@ -1,0 +1,102 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.lesson-question {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__title {
+    @include Sub-Title;
+  }
+
+  &__definition {
+    @include Body;
+  }
+
+  &__list {
+    padding: 0 12px;
+
+    &-title {
+      @include Label;
+      color: $Pink;
+    }
+    &-keys {
+      @include Body;
+    }
+  }
+
+  &__example {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $Lightest-purple;
+    border-radius: 10px;
+    @include Body;
+    color: $Green;
+  }
+
+  &__question {
+    @include Body;
+
+    &--incorrect {
+      color: red;
+    }
+    &--correct {
+      color: $Green;
+    }
+  }
+
+  &__interactive {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__textarea {
+    width: 100%;
+    @include Body;
+    border-radius: 10px;
+    border: 3px solid $Green;
+    background-color: $Purple;
+    padding: 10px;
+    resize: none;
+    overflow: hidden;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px; // Optional: Set a maximum width for the modal
+    height: 100px;
+    background-color: $Purple;
+    border-radius: 10px;
+    border: 3px solid $Pink;
+    padding: 10px;
+
+    &-button {
+      border: none;
+      background-color: transparent;
+      display: flex;
+      height: 100%;
+
+      &-img {
+        height: 16px;
+      }
+    }
+  }
+}
