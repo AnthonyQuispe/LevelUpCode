@@ -5,6 +5,7 @@
 .add-friends {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 
   &__button {
     display: flex;
@@ -22,7 +23,7 @@
     text-transform: uppercase;
 
     @include Tablet {
-      width: 268px;
+      width: 100%;
       height: 80px;
       gap: 20px;
     }
