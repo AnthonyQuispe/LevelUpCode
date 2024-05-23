@@ -6,6 +6,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  max-width: 500px;
+
+  @include Tablet {
+    gap: 40px;
+  }
 
   &__title {
     @include Sub-Title;
@@ -55,6 +61,11 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+
+    @include Tablet {
+      gap: 40px;
+    }
   }
 
   &__textarea {

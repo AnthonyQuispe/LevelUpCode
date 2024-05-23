@@ -153,6 +153,10 @@
       gap: 20px;
 
       @include Tablet {
+        max-width: 500px;
+      }
+
+      @include Desktop {
         max-width: 368px;
       }
     }

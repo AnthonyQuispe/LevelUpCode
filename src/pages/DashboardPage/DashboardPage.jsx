@@ -12,9 +12,11 @@ import playButtonIcon from "../../assets/icons/PlayButtonIcon.svg";
 import profilePlaceholder from "../../assets/placeholder/Profile.png";
 
 let CourseTracker = {
+  Title: "HTML",
+  Level: "Level 1 : Beginner HTML",
   HTML: "In-Progress",
   Section1: {
-    Chapter1: "New",
+    Chapter1: "In-Progress",
     Chapter2: "New",
     Chapter3: "New",
     Chapter4: "New",
@@ -47,7 +49,7 @@ let CourseTracker = {
 };
 
 const isCompleted = (status) => {
-  return status === "Completed";
+  return status === "In-Progress";
 };
 
 function DashboardPage() {
@@ -84,13 +86,13 @@ function DashboardPage() {
             </button>
           </div>
           <div className="dashboard__title-container">
-            <h1 className="dashboard__title">HTML</h1>
+            <h1 className="dashboard__title">{CourseTracker.Title}</h1>
           </div>
         </div>
         <div className="dashboard__bottom">
           <div className="dashboard__level-container">
             <button className="dashboard__level-name">
-              Level 1 : Beginner HTML
+              {CourseTracker.Level}
             </button>
           </div>
           <div className="dashboard__courses">
