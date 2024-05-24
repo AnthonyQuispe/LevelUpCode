@@ -49,7 +49,7 @@ let CourseTracker = {
 };
 
 const isCompleted = (status) => {
-  return status === "In-Progress";
+  return status === "In-Progress" || "Completed";
 };
 
 function DashboardPage() {

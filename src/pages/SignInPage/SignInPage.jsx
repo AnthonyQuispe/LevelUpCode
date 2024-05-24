@@ -1,11 +1,39 @@
 import "./SignInPage.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/LevelUp.svg";
 import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import GoogleButton from "../../components/googleButton/googleButton";
+import { loginUser } from "../../firebase/FirebaseLogin";
 
 function SignInPage() {
+  const navigate = useNavigate();
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    const emailRegex = /\S+@\S+\.\S/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email");
+      return;
+    }
+
+    if (!password) {
+      alert("Please enter your Password.");
+      return;
+    }
+
+    try {
+      // eslint-disable-next-line
+      const user = await loginUser(email, password);
+      console.log("Login Succesfully");
+      navigate("/");
+    } catch (error) {
+      console.log("Error logging in");
+    }
+  };
+
   return (
     <main className="signin-page">
       <div className="signin-page__left-container">
@@ -18,12 +46,24 @@ function SignInPage() {
         </p>
         <Button className="signin-page__learn-button" text={"Learn More"} />
       </div>
-      <form className="signin-page__form">
-        <Input placeholder="Email" />
-        <Input placeholder="Password" />
+      <form className="signin-page__form" onSubmit={handleLoginSubmit}>
+        <Input
+          placeholder="Email"
+          type="email"
+          name="email"
+          id="email"
+          autoComplete="current-email"
+        />
+        <Input
+          placeholder="Password"
+          type="password"
+          name="password"
+          id="password"
+          autoComplete="current-password"
+        />
         <Button text={"Sign In"} />
         <Link to="/forgot" className="signin-page__link-text">
-          Forgot Password
+          Forgot Password?
         </Link>
         <div className="signin-page__link-container">
           <p className="signin-page__link-text">Don’t have an account?</p>
