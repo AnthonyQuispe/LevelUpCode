@@ -16,7 +16,7 @@ let CourseTracker = {
   Level: "Level 1 : Beginner HTML",
   HTML: "In-Progress",
   Section1: {
-    Chapter1: "In-Progress",
+    Chapter1: "Completed",
     Chapter2: "New",
     Chapter3: "New",
     Chapter4: "New",
@@ -49,7 +49,7 @@ let CourseTracker = {
 };
 
 const isCompleted = (status) => {
-  return status === "In-Progress" || "Completed";
+  return status === "Completed";
 };
 
 function DashboardPage() {
@@ -75,7 +75,7 @@ function DashboardPage() {
                 src={profilePlaceholder}
                 alt="profile Icon"
               />
-              xxianthonyxx
+              {"Username"}
             </Link>
             <button className="dashboard__play-button">
               <img

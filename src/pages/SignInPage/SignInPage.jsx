@@ -1,5 +1,7 @@
 import "./SignInPage.scss";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Logo from "../../assets/logo/LevelUp.svg";
 import Input from "../../components/input/input";
 import Button from "../../components/button/button";
@@ -8,6 +10,19 @@ import { loginUser } from "../../firebase/FirebaseLogin";
 
 function SignInPage() {
   const navigate = useNavigate();
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, navigate to home page
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth, navigate]);
+
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;

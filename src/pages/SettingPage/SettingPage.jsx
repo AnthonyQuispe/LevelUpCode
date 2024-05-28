@@ -5,13 +5,16 @@ import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
 import Courses from "../../components/settingCourse/settingCourse";
 import Preferences from "../../components/settingPreferences/settingPreferences";
-import Profile from "../../components/settingProfile/settingProfile";
+import Profile from "../../components/SettingProfile/SettingProfile";
 import Notifications from "../../components/settingNotifications/settingNotifications";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../UserContext";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 function SettingPage() {
   const location = useLocation();
   const [activeComponent, setActiveComponent] = useState(null);
+  const { userData, loading, error } = useContext(UserContext);
 
   useEffect(() => {
     const path = location.pathname.split("/").pop();
@@ -38,15 +41,18 @@ function SettingPage() {
       case "preferences":
         return <Preferences />;
       case "profile":
-        return <Profile />;
+        return <Profile userData={userData} />;
       case "notifications":
         return <Notifications />;
       case "courses":
-        return <Courses />;
+        return <Courses userData={userData} />;
       default:
         return null;
     }
   };
+
+  if (loading) return <LoadingModal />;
+  if (error) return <p>Error: {error}</p>;
 
   if (renderActiveComponent() === null) {
     return (

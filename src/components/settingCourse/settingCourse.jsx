@@ -15,7 +15,7 @@ const courses = [
   { icon: Javascript, text: "Javascript" },
 ];
 
-export default function settingCourse() {
+export default function settingCourse({ userData }) {
   return (
     <div className="setting-courses">
       <section className="setting-courses__top-container">
