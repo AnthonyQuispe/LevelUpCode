@@ -1,10 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase/FirebaseConfig";
 import { useNavigate, useLocation } from "react-router-dom";
 
-// Create the context
 export const UserContext = createContext();
 
 // Create a provider component
@@ -13,6 +12,8 @@ export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userCourses, setUserCourses] = useState(null);
+
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth();
@@ -28,6 +29,18 @@ export const UserProvider = ({ children }) => {
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
             setUserData(userDoc.data());
+            // Fetch user's courses
+            const coursesRef = collection(db, "users", user.uid, "Courses");
+            const courseSnapshot = await getDocs(coursesRef);
+            if (courseSnapshot.empty) {
+              navigate("/select/course");
+            } else {
+              const courses = {};
+              courseSnapshot.forEach((doc) => {
+                courses[doc.id] = doc.data();
+              });
+              setUserCourses(courses);
+            }
           } else {
             console.error("No such document!");
             setError("User data not found");
@@ -39,6 +52,7 @@ export const UserProvider = ({ children }) => {
       } else {
         setUser(null);
         setUserData(null);
+        setUserCourses(null);
         if (
           location.pathname !== "/signup" &&
           location.pathname !== "/signin"
@@ -66,7 +80,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, userData, loading, error, updateUserData }}
+      value={{ user, userData, loading, error, userCourses, updateUserData }}
     >
       {children}
     </UserContext.Provider>

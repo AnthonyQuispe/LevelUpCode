@@ -15,7 +15,6 @@ function SignInPage() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, navigate to home page
         navigate("/");
       }
     });

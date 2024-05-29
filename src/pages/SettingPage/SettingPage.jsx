@@ -1,14 +1,15 @@
 import "./SettingPage.scss";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../UserContext";
+import { auth } from "../../firebase/FirebaseConfig";
 import Nav from "../../components/nav/nav";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
 import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
-import Courses from "../../components/settingCourse/settingCourse";
+import Courses from "../../components/SettingCourse/SettingCourse";
 import Preferences from "../../components/settingPreferences/settingPreferences";
 import Profile from "../../components/SettingProfile/SettingProfile";
 import Notifications from "../../components/settingNotifications/settingNotifications";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../UserContext";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 function SettingPage() {
@@ -35,6 +36,14 @@ function SettingPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.error("Error signing out", error);
+    }
+  };
 
   const renderActiveComponent = () => {
     switch (activeComponent) {
@@ -106,7 +115,11 @@ function SettingPage() {
                 </Link>
               </div>
             </div>
-            <Button text="Log Out" className="button-pink" />
+            <Button
+              text="Log Out"
+              className="button-pink"
+              onClick={handleLogout}
+            />
           </section>
         </div>
       </div>
@@ -170,7 +183,11 @@ function SettingPage() {
                 </Link>
               </div>
             </div>
-            <Button text="Log Out" className="button-pink" />
+            <Button
+              text="Log Out"
+              className="button-pink"
+              onClick={handleLogout}
+            />
           </div>
           {renderActiveComponent()}
         </section>

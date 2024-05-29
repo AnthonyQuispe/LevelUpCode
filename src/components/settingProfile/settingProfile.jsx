@@ -26,7 +26,7 @@ export default function SettingProfile({ userData }) {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [avatar, setAvatar] = useState(userData?.avatar || profilePlaceholder);
-  const fileInputRef = useRef(null); // Create a ref for the file input
+  const fileInputRef = useRef(null);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -80,13 +80,10 @@ export default function SettingProfile({ userData }) {
       const currentUser = auth.currentUser;
 
       if (currentUser) {
-        // Delete the user from Firebase Authentication
         await deleteUser(currentUser);
 
-        // Delete the user document from Firestore
         await deleteDoc(doc(db, "users", user.uid));
 
-        // Redirect to a safe page (e.g., signup or homepage)
         window.location.href = "/signup";
       }
     } catch (err) {
@@ -128,20 +125,20 @@ export default function SettingProfile({ userData }) {
         <div className="setting-profile__avatar-container">
           <img
             className="setting-profile__avatar"
-            src={profilePlaceholder}
+            src={avatar}
             alt="Profile Icon"
           />
           <input
             type="file"
             accept="image/*"
             className="setting-profile__avatar-input"
-            ref={fileInputRef} // Assign the ref to the input
+            ref={fileInputRef}
             onChange={handleAvatarChange}
             style={{ display: "none" }}
           />
           <button
             className="setting-profile__avatar-button"
-            onClick={() => fileInputRef.current.click()} // Use the ref to click the input
+            onClick={() => fileInputRef.current.click()}
           >
             Change Avatar
           </button>

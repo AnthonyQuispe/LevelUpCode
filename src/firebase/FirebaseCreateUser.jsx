@@ -27,13 +27,12 @@ export const createUser = async (userName, email, password) => {
       {
         userName: userName,
         email: user.email,
-        profilePicture: user.photoURL,
+        avatar: user.photoURL,
         joinDate: serverTimestamp(),
         name: "No Name Enter",
         rank: 0,
         courseStreak: 0,
         achievements: [],
-        courses: {},
       },
 
       { merge: false }
