@@ -28,7 +28,11 @@ function App() {
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/review" element={<ReviewPage />} />
-          <Route path="/lesson" element={<LessonPage />} />
+          <Route
+            path="/course/:course/level/:level/chapter/:chapter/lesson/:lesson/question/:question"
+            element={<LessonPage />}
+            exact
+          />
         </Routes>
       </main>
     </UserProvider>

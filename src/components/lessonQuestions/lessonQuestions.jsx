@@ -2,37 +2,40 @@ import "./lessonQuestions.scss";
 import { useState, useEffect, useRef } from "react";
 import Button from "../button/button";
 import closeButton from "../../assets/icons/CloseIcon.png";
+import { db, auth } from "../../firebase/FirebaseConfig";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-const Lesson = {
-  title: "Whats an &lt;h1&gt; Element?",
-  definition: "The &lt;h1&gt; element defines the main heading of a webpage.",
-  keypoint: [
-    "Purpose: Represents the most important heading.",
-    "Syntax: &lt;h1&gt;content&lt;/h1&gt;",
-    "SEO: Helps search engines understand your page's topic.",
-    "Usage: Typically one &lt;h1&gt; per page for clear structure.",
-  ],
-  example: "&lt;h1&gt;This is a main heading&lt;/h1&gt;",
-  question: `Find the &lt;h1&gt; element in the code below:
-    Change the text from “Hello World” to “Pet Bakery”:`,
-  initialCode: `
-<html>
-  <body>
-    <h1>Hello World</h1> 
-  </body>
-</html>`,
-  correctCode: `
-<html>
-  <body>
-    <h1>Pet Bakery</h1> 
-  </body>
-</html>`,
-};
-
-export default function LessonQuestions() {
-  const [userCode, setUserCode] = useState(Lesson.initialCode.trim());
+export default function LessonQuestions({
+  course,
+  chapter,
+  lesson,
+  question,
+  level,
+}) {
+  const [lessonData, setLessonData] = useState(null);
+  const [userCode, setUserCode] = useState("");
   const [result, setResult] = useState(null);
   const textareaRef = useRef(null);
+
+  useEffect(() => {
+    const fetchLessonData = async () => {
+      const docPath = `course/${course}/level/${level}/chapter/${chapter}/lesson/${lesson}/question/${question}`;
+
+      const docRef = doc(db, docPath);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+
+        setLessonData(data);
+        setUserCode(data.initialCode.trim());
+      } else {
+        console.log("No such document!");
+      }
+    };
+
+    fetchLessonData();
+  }, [course, chapter, lesson, question, level]);
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -49,8 +52,8 @@ export default function LessonQuestions() {
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
 
-  const checkCode = () => {
-    if (userCode.trim() === Lesson.correctCode.trim()) {
+  const checkCode = async () => {
+    if (userCode.trim() === lessonData.correctCode.trim()) {
       setResult(
         <div className="lesson-question__modal">
           <p className="lesson-question__question lesson-question__question--correct">
@@ -58,12 +61,13 @@ export default function LessonQuestions() {
           </p>
         </div>
       );
+      await updateProgress("complete");
     } else {
       setResult(
         <div className="lesson-question__modal">
           <p className="lesson-question__question lesson-question__question--incorrect">
             Incorrect! <br />
-            {Lesson.question.split("\n").map((line, index) => (
+            {lessonData.question.split("\n").map((line, index) => (
               <span key={index} dangerouslySetInnerHTML={{ __html: line }} />
             ))}
           </p>
@@ -79,29 +83,45 @@ export default function LessonQuestions() {
           </button>
         </div>
       );
+      await updateProgress("in progress");
     }
   };
 
   const closeResult = () => {
-    setResult(null); // Clear the result to close it
+    setResult(null);
   };
+
+  const updateProgress = async (status) => {
+    const user = auth.currentUser;
+    if (user) {
+      const progressRef = doc(
+        db,
+        `users/${user.uid}/course/${course}/chapter/${chapter}/lesson/${lesson}`
+      );
+      await setDoc(progressRef, { status }, { merge: true });
+    }
+  };
+
+  if (!lessonData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="lesson-question">
       <div>
         <h1
-          dangerouslySetInnerHTML={{ __html: Lesson.title }}
+          dangerouslySetInnerHTML={{ __html: lessonData.title }}
           className="lesson-question__title"
         />
         <p
-          dangerouslySetInnerHTML={{ __html: Lesson.definition }}
+          dangerouslySetInnerHTML={{ __html: lessonData.definition }}
           className="lesson-question__definition"
         />
       </div>
       <div>
         <p className="lesson-question__list-title">Key Points :</p>
         <ul className="lesson-question__list">
-          {Lesson.keypoint.map((point, index) => (
+          {lessonData.keypoint.map((point, index) => (
             <li
               key={index}
               dangerouslySetInnerHTML={{ __html: point }}
@@ -111,11 +131,11 @@ export default function LessonQuestions() {
         </ul>
       </div>
       <div
-        dangerouslySetInnerHTML={{ __html: Lesson.example }}
+        dangerouslySetInnerHTML={{ __html: lessonData.example }}
         className="lesson-question__example"
       />
       <p className="lesson-question__question">
-        {Lesson.question.split("\n").map((line, index) => (
+        {lessonData.question.split("\n").map((line, index) => (
           <span key={index} dangerouslySetInnerHTML={{ __html: line }} />
         ))}
       </p>

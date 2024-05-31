@@ -861,11 +861,11 @@ const htmlLevel1Chapters = [
   {
     chapterName: "Chapter 1",
     lessons: [
-      { lessonName: "Lesson 1", questions: htmlLevel1Chapter1Lesson1Questions },
-      { lessonName: "Lesson 2", questions: htmlLevel1Chapter1Lesson2Questions },
-      { lessonName: "Lesson 3", questions: htmlLevel1Chapter1Lesson3Questions },
-      { lessonName: "Lesson 4", questions: htmlLevel1Chapter1Lesson4Questions },
-      { lessonName: "Lesson 5", questions: htmlLevel1Chapter1Lesson5Questions },
+      { lessonName: "lesson 1", questions: htmlLevel1Chapter1Lesson1Questions },
+      { lessonName: "lesson 2", questions: htmlLevel1Chapter1Lesson2Questions },
+      { lessonName: "lesson 3", questions: htmlLevel1Chapter1Lesson3Questions },
+      { lessonName: "lesson 4", questions: htmlLevel1Chapter1Lesson4Questions },
+      { lessonName: "lesson 5", questions: htmlLevel1Chapter1Lesson5Questions },
     ],
   },
 ];
@@ -921,10 +921,10 @@ const reactLevels = [
 
 // Map courses to their respective levels
 const courseLevelsMap = {
-  HTML: htmlLevels,
-  JavaScript: jsLevels,
-  CSS: cssLevels,
-  React: reactLevels,
+  html: htmlLevels,
+  javaScript: jsLevels,
+  css: cssLevels,
+  react: reactLevels,
 };
 
 export async function populateFirestore() {
@@ -933,28 +933,28 @@ export async function populateFirestore() {
       const level = levels[i];
       const levelRef = collection(
         db,
-        "Courses",
+        "course",
         course,
-        "Levels",
-        `Level${i + 1}`,
-        "Chapters"
+        "level",
+        `${i + 1}`,
+        "chapter"
       );
 
       for (let j = 0; j < level.chapters.length; j++) {
         const chapter = level.chapters[j];
-        const chapterRef = doc(levelRef, `Chapter${j + 1}`);
+        const chapterRef = doc(levelRef, `${j + 1}`);
         await setDoc(chapterRef, { chapterName: chapter.chapterName });
 
-        const lessonsRef = collection(chapterRef, "Lessons");
+        const lessonsRef = collection(chapterRef, "lesson");
         for (let k = 0; k < chapter.lessons.length; k++) {
           const lesson = chapter.lessons[k];
-          const lessonRef = doc(lessonsRef, `Lesson${k + 1}`);
+          const lessonRef = doc(lessonsRef, `${k + 1}`);
           await setDoc(lessonRef, { lessonName: lesson.lessonName });
 
-          const questionsRef = collection(lessonRef, "Questions");
+          const questionsRef = collection(lessonRef, "question");
           for (let l = 0; l < lesson.questions.length; l++) {
             const question = lesson.questions[l];
-            const questionRef = doc(questionsRef, `Question${l + 1}`);
+            const questionRef = doc(questionsRef, `${l + 1}`);
             await setDoc(questionRef, question);
           }
         }
