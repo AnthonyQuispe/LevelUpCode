@@ -11,12 +11,14 @@ import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
 import LessonPage from "./pages/LessonPage/LessonPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
   return (
     <UserProvider>
       <main>
         <Routes>
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
