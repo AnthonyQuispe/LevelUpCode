@@ -48,11 +48,11 @@ function SettingPage() {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "preferences":
-        return <Preferences />;
+        return <Preferences userData={userData} />;
       case "profile":
         return <Profile userData={userData} />;
       case "notifications":
-        return <Notifications />;
+        return <Notifications userData={userData} />;
       case "courses":
         return <Courses userData={userData} />;
       default:

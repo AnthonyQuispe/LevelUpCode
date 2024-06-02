@@ -12,10 +12,10 @@ import Javascript from "../../assets/icons/JavascriptIcon.svg";
 import CssIcon from "../../assets/icons/CssIcon.svg";
 
 const courseIcons = {
-  Html: HtmlIcon,
-  CSS: CssIcon,
-  React: ReactIcon,
-  Javascript: Javascript,
+  html: HtmlIcon,
+  css: CssIcon,
+  react: ReactIcon,
+  javascript: Javascript,
 };
 
 export default function SettingCourse() {
@@ -26,7 +26,7 @@ export default function SettingCourse() {
   useEffect(() => {
     const fetchCourses = async () => {
       if (user) {
-        const coursesRef = collection(db, "users", user.uid, "Courses");
+        const coursesRef = collection(db, "users", user.uid, "course");
         const courseSnapshot = await getDocs(coursesRef);
         const courses = [];
         courseSnapshot.forEach((doc) => {
@@ -40,7 +40,7 @@ export default function SettingCourse() {
   }, [user]);
 
   const handleDeleteCourse = async (courseId) => {
-    await deleteDoc(doc(db, "users", user.uid, "Courses", courseId));
+    await deleteDoc(doc(db, "users", user.uid, "course", courseId));
     setCourses(courses.filter((course) => course.id !== courseId));
   };
 

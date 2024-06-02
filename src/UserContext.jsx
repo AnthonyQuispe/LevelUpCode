@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
           if (userDoc.exists()) {
             setUserData(userDoc.data());
             // Fetch user's courses
-            const coursesRef = collection(db, "users", user.uid, "Courses");
+            const coursesRef = collection(db, "users", user.uid, "course");
             const courseSnapshot = await getDocs(coursesRef);
             if (courseSnapshot.empty) {
               navigate("/select/course");

@@ -10,10 +10,10 @@ import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const availableCourses = [
-  { icon: HtmlIcon, text: "Html" },
-  { icon: CssIcon, text: "CSS" },
-  { icon: ReactIcon, text: "React" },
-  { icon: Javascript, text: "Javascript" },
+  { icon: HtmlIcon, text: "html" },
+  { icon: CssIcon, text: "css" },
+  { icon: ReactIcon, text: "react" },
+  { icon: Javascript, text: "javascript" },
 ];
 
 function SelectLanguage() {
@@ -38,7 +38,7 @@ function SelectLanguage() {
         throw new Error("No authenticated user.");
       }
 
-      const courseDocRef = doc(db, "users", user.uid, "Courses", activeCourse);
+      const courseDocRef = doc(db, "users", user.uid, "course", activeCourse);
 
       await setDoc(courseDocRef, {
         courseName: activeCourse,

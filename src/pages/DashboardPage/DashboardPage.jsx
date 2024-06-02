@@ -1,5 +1,7 @@
 import "./DashboardPage.scss";
 import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../UserContext";
 import Nav from "../../components/nav/nav";
 import greenClassIcon from "../../assets/class/GreenClassIcon.svg";
 import pinkClassIcon from "../../assets/class/PinkClassIcon.svg";
@@ -53,6 +55,15 @@ const isCompleted = (status) => {
 };
 
 function DashboardPage() {
+  const { userData } = useContext(UserContext);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (userData) {
+      setUserName(userData.userName || "");
+    }
+  }, [userData]);
+
   const renderCourseIcon = (status, defaultIcon, completedIcon) => {
     return (
       <img
@@ -75,7 +86,7 @@ function DashboardPage() {
                 src={profilePlaceholder}
                 alt="profile Icon"
               />
-              {"Username"}
+              {userName}
             </Link>
             <button className="dashboard__play-button">
               <img
