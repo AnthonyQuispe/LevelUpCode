@@ -1,10 +1,25 @@
-import "./settingPreferences.scss";
-import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
+import "./SettingPreferences.scss";
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { UserContext } from "../../UserContext";
+import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
 import Button from "../button/button";
 import Checkbox from "../checkbox/checkbox";
 
-export default function settingPreferences() {
+export default function SettingPreferences() {
+  const { user, userData, updateUserData } = useContext(UserContext);
+  const [sound, setSound] = useState(userData.soundEnabled);
+
+  const handleSoundChange = (event) => {
+    setSound(event.target.checked);
+  };
+
+  const handleSave = () => {
+    if (user) {
+      updateUserData(user.uid, { soundEnabled: sound });
+    }
+  };
+
   return (
     <div className="setting-preferences">
       <section className="setting-preferences__top-container">
@@ -16,20 +31,16 @@ export default function settingPreferences() {
           />
         </Link>
         <h1 className="setting-preferences__title">Preferences</h1>
-        <h2 className="setting-preferences__sub-title">Preferences </h2>
+        <h2 className="setting-preferences__sub-title">Preferences</h2>
       </section>
       <section className="setting-preferences__container">
         <div className="setting-preferences__button-container">
           <div className="setting-preferences__button">
-            Appearance
-            <Checkbox id="appearance" />
-          </div>
-          <div className="setting-preferences__button">
             Sound Effect
-            <Checkbox id="sound" />
+            <Checkbox id="sound" checked={sound} onChange={handleSoundChange} />
           </div>
         </div>
-        <Button text="Save" className="button-pink" />
+        <Button text="Save" className="button-pink" onClick={handleSave} />
       </section>
     </div>
   );

@@ -33,6 +33,11 @@ export const createUser = async (userName, email, password) => {
         rank: 0,
         courseStreak: 0,
         achievements: [],
+        soundEnabled: true,
+        remindersEmail: true,
+        friendsEmail: true,
+        learderBoardsEmail: true,
+        announcementsEmail: true,
       },
 
       { merge: false }

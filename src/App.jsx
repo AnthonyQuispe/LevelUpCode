@@ -1,5 +1,5 @@
 import "./styles/partials/_global.scss";
-import { React } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -12,11 +12,13 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
 import LessonPage from "./pages/LessonPage/LessonPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import SoundButton from "./components/SoundButton/SoundButton";
 
 function App() {
   return (
     <UserProvider>
       <main>
+        <SoundButton />
         <Routes>
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />

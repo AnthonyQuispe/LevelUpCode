@@ -7,9 +7,9 @@ import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
 import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
 import Courses from "../../components/SettingCourse/SettingCourse";
-import Preferences from "../../components/settingPreferences/settingPreferences";
+import Preferences from "../../components/SettingPreferences/SettingPreferences";
 import Profile from "../../components/SettingProfile/SettingProfile";
-import Notifications from "../../components/settingNotifications/settingNotifications";
+import Notifications from "../../components/SettingNotifications/SettingNotifications";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 function SettingPage() {
@@ -48,13 +48,13 @@ function SettingPage() {
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "preferences":
-        return <Preferences userData={userData} />;
+        return <Preferences />;
       case "profile":
         return <Profile userData={userData} />;
       case "notifications":
-        return <Notifications userData={userData} />;
+        return <Notifications />;
       case "courses":
-        return <Courses userData={userData} />;
+        return <Courses />;
       default:
         return null;
     }

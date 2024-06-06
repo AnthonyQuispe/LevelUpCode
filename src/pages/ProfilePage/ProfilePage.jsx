@@ -1,7 +1,7 @@
 import "./ProfilePage.scss";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../../firebase/FirebaseConfig";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
 import AddFriends from "../../components/addFriends/addFriends";
