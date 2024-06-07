@@ -7,7 +7,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 
 export default function Overview() {
-  const { userData } = useContext(UserContext);
+  const { userData, userAwards } = useContext(UserContext);
   const [course, setCourses] = useState(0);
   const [rank, setRank] = useState(0);
   const [award, setAward] = useState(0);
@@ -17,10 +17,12 @@ export default function Overview() {
     if (userData) {
       setCourses(userData.courses || 0);
       setRank(userData.rank || 0);
-      setAward(userData.award || 0);
-      setStreak(userData.streak || 0);
+      setStreak(userData.dailyStreak || 0);
     }
-  }, [userData]);
+    if (userAwards) {
+      setAward(Object.keys(userAwards).length);
+    }
+  }, [userData, userAwards]);
 
   return (
     <section className="overview">

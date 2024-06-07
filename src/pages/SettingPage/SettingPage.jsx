@@ -30,7 +30,7 @@ function SettingPage() {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Call handleResize initially to set default if screen width <= 1024px
+    handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -142,7 +142,7 @@ function SettingPage() {
                   to="/setting/preferences"
                   className="setting-page__button"
                 >
-                  Preferences{" "}
+                  Preferences
                   <img src={RightArrowIcon} alt="right arrow icon" />
                 </Link>
                 <Link to="/setting/profile" className="setting-page__button">

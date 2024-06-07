@@ -1,6 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "./firebase/FirebaseConfig";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -68,9 +76,24 @@ export const UserProvider = ({ children }) => {
       if (user) {
         setUser(user);
         try {
-          // Fetch user data from Firestore
-          const userDocRef = doc(db, "users", user.uid);
-          const userDoc = await getDoc(userDocRef);
+          let userDataQuery;
+          if (location.pathname.startsWith("/profile/")) {
+            const username = location.pathname.split("/")[2]; // Extract username from the path
+            const userRef = collection(db, "users");
+            const q = query(userRef, where("userName", "==", username));
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+              const userDoc = querySnapshot.docs[0];
+              userDataQuery = doc(db, "users", userDoc.id);
+            } else {
+              console.error("No such document!");
+              setError("User data not found");
+              return;
+            }
+          } else {
+            userDataQuery = doc(db, "users", user.uid);
+          }
+          const userDoc = await getDoc(userDataQuery);
           if (userDoc.exists()) {
             const userData = userDoc.data();
             setUserData(userData);

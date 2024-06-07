@@ -113,13 +113,17 @@
       background-color: transparent;
       height: 50px;
       padding: 5px 10px;
-
       @include Body;
 
       @include Tablet {
         padding: 5px 20px;
         height: 80px;
       }
+
+      &:hover {
+        background-color: $Green;
+      }
+
       &-container {
         width: 100%;
         display: flex;

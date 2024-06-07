@@ -27,7 +27,7 @@ function SignInPage() {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    const emailRegex = /\S+@\S+\.\S/;
+    const emailRegex = /\S+@\S+\.\S+/; // Corrected regex
     if (!emailRegex.test(email)) {
       alert("Please enter a valid email");
       return;

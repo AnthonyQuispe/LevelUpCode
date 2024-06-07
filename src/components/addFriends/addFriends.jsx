@@ -10,7 +10,7 @@ export default function AddFriends() {
           className="add-friends__img"
           src={addFriendIcon}
           alt="Add Friend"
-        />{" "}
+        />
         Add Friends
       </button>
       <button className="add-friends__upload-button">

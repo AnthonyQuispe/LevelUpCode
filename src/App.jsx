@@ -9,6 +9,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ProfilePagePublic from "./pages/ProfilePagePublic/ProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import LessonPage from "./pages/LessonPage/LessonPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:username" element={<ProfilePagePublic />} />
           <Route path="/leaderboard" element={<LeaderBoardPage />} />
           <Route
             path="/course/:course/level/:level/chapter/:chapter/lesson/:lesson/question/:question"

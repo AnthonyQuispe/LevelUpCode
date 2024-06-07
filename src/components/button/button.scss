@@ -20,10 +20,18 @@
   &-green {
     background-color: transparent;
     border: 3px solid $Green;
+
+    &:hover {
+      background-color: $Green;
+    }
   }
 
   &-pink {
     background-color: transparent;
     border: 3px solid $Pink;
+
+    &:hover {
+      background-color: $Pink;
+    }
   }
 }
