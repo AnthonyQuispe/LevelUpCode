@@ -13,12 +13,56 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userCourses, setUserCourses] = useState(null);
+  const [awards, setAwards] = useState([]);
+  const [userAwards, setUserAwards] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth();
 
   useEffect(() => {
+    const checkAndUpdateUserAwards = async (uid, awardsArray, userData) => {
+      try {
+        const userAwardsRef = collection(db, "users", uid, "userAwards");
+        const userAwardsSnapshot = await getDocs(userAwardsRef);
+        const userAwards = {};
+        userAwardsSnapshot.forEach((doc) => {
+          userAwards[doc.id] = doc.data();
+        });
+
+        setUserAwards(userAwards); // Set the user awards in the state
+
+        // Check and add new awards if criteria are met
+        for (const award of awardsArray) {
+          const conditionMet = checkAwardCondition(award, userData);
+          if (conditionMet && !userAwards[award.id]) {
+            await setDoc(doc(userAwardsRef, award.id), {
+              name: award.name,
+              description: award.description,
+              img: award.img,
+            });
+            userAwards[award.id] = {
+              name: award.name,
+              description: award.description,
+              img: award.img,
+            };
+          }
+        }
+        setUserAwards(userAwards); // Update the user awards after checking
+      } catch (err) {
+        console.error("Error updating user awards:", err);
+        setError(err.message);
+      }
+    };
+
+    const checkAwardCondition = (award, userData) => {
+      const userValue = userData[award.conditionType];
+      if (userValue !== undefined) {
+        return userValue >= parseInt(award.conditionValue);
+      }
+      return false;
+    };
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setLoading(true);
       if (user) {
@@ -28,7 +72,9 @@ export const UserProvider = ({ children }) => {
           const userDocRef = doc(db, "users", user.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
-            setUserData(userDoc.data());
+            const userData = userDoc.data();
+            setUserData(userData);
+
             // Fetch user's courses
             const coursesRef = collection(db, "users", user.uid, "course");
             const courseSnapshot = await getDocs(coursesRef);
@@ -41,6 +87,18 @@ export const UserProvider = ({ children }) => {
               });
               setUserCourses(courses);
             }
+
+            // Fetch awards data
+            const awardsRef = collection(db, "awards");
+            const awardsSnapshot = await getDocs(awardsRef);
+            const awardsArray = [];
+            awardsSnapshot.forEach((doc) => {
+              awardsArray.push({ id: doc.id, ...doc.data() });
+            });
+            setAwards(awardsArray);
+
+            // Check and update user awards
+            await checkAndUpdateUserAwards(user.uid, awardsArray, userData);
           } else {
             console.error("No such document!");
             setError("User data not found");
@@ -53,6 +111,7 @@ export const UserProvider = ({ children }) => {
         setUser(null);
         setUserData(null);
         setUserCourses(null);
+        setUserAwards(null);
         if (
           location.pathname !== "/signup" &&
           location.pathname !== "/signin"
@@ -80,7 +139,16 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, userData, loading, error, userCourses, updateUserData }}
+      value={{
+        user,
+        userData,
+        loading,
+        error,
+        userCourses,
+        awards,
+        userAwards,
+        updateUserData,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -98,7 +98,22 @@ export default function LessonQuestions({
         db,
         `users/${user.uid}/course/${course}/chapter/${chapter}/lesson/${lesson}`
       );
-      await setDoc(progressRef, { status }, { merge: true });
+      const currentDate = new Date();
+      await setDoc(
+        progressRef,
+        { status, completionDate: currentDate },
+        { merge: true }
+      );
+
+      if (status === "complete") {
+        const userDocRef = doc(db, "users", user.uid);
+        // Removed unused userData
+        await setDoc(
+          userDocRef,
+          { lastLessonCompletionDate: currentDate },
+          { merge: true }
+        );
+      }
     }
   };
 

@@ -2,7 +2,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
-.achievement {
+.awards {
   &__title {
     @include Label;
   }

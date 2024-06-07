@@ -1,0 +1,55 @@
+.leaderboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000;
+  color: #fff;
+  font-family: "Press Start 2P", cursive; // Pac-Man style font
+  padding: 20px;
+
+  &__title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffd700; // Gold color for the title
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #ffd700; // Gold border
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  &__entry {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: #222;
+    border-radius: 10px;
+
+    &:hover {
+      background: #444;
+    }
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  &__rank,
+  &__name,
+  &__score {
+    margin: 0 10px;
+  }
+}

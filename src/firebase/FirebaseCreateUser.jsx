@@ -32,7 +32,6 @@ export const createUser = async (userName, email, password) => {
         name: "No Name Enter",
         rank: 0,
         courseStreak: 0,
-        achievements: [],
         soundEnabled: true,
         remindersEmail: true,
         friendsEmail: true,
