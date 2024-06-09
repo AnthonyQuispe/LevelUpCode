@@ -1,20 +1,21 @@
-import "./SettingProfile.scss";
-import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
-import profilePlaceholder from "../../assets/placeholder/Profile.png";
-import Button from "../button/button";
-import { isUsernameTaken } from "../../firebase/FirebaseCreateUser";
+import React, { useContext, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
+  getAuth,
   updateEmail,
   updatePassword,
   deleteUser,
-  getAuth,
 } from "firebase/auth";
-import { useContext, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { UserContext } from "../../UserContext";
-import { auth, db } from "../../firebase/FirebaseConfig";
 import { doc, deleteDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
+import profilePlaceholder from "../../assets/placeholder/Profile.png";
+import Button from "../button/button";
+import AlertModal from "../../components/AlertModal/AlertModal";
+import { isUsernameTaken } from "../../firebase/FirebaseCreateUser";
+import { UserContext } from "../../UserContext";
+import { auth, db } from "../../firebase/FirebaseConfig";
+import "./SettingProfile.scss";
 
 export default function SettingProfile({ userData }) {
   const { user, updateUserData } = useContext(UserContext);
@@ -27,6 +28,7 @@ export default function SettingProfile({ userData }) {
   const [success, setSuccess] = useState(null);
   const [avatar, setAvatar] = useState(userData?.avatar || profilePlaceholder);
   const fileInputRef = useRef(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ export default function SettingProfile({ userData }) {
         const isTaken = await isUsernameTaken(userName);
         if (isTaken) {
           setError("Username is already taken.");
+          setIsModalVisible(true);
           return;
         }
       }
@@ -61,8 +64,10 @@ export default function SettingProfile({ userData }) {
       }
 
       setSuccess("Profile updated successfully!");
+      setIsModalVisible(true);
     } catch (err) {
-      setError("Failed to update profile: " + err.message);
+      setError(`Failed to update profile: ${err.message}`);
+      setIsModalVisible(true);
     }
   };
 
@@ -81,13 +86,12 @@ export default function SettingProfile({ userData }) {
 
       if (currentUser) {
         await deleteUser(currentUser);
-
         await deleteDoc(doc(db, "users", user.uid));
-
         window.location.href = "/signup";
       }
     } catch (err) {
       setError("Failed to delete account: " + err.message);
+      setIsModalVisible(true);
     }
   };
 
@@ -102,12 +106,19 @@ export default function SettingProfile({ userData }) {
 
       const downloadURL = await getDownloadURL(storageRef);
       setAvatar(downloadURL);
-
       await updateUserData(user.uid, { avatar: downloadURL });
     } catch (err) {
       setError("Failed to upload avatar: " + err.message);
+      setIsModalVisible(true);
     }
   };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setError(null);
+    setSuccess(null);
+  };
+
   return (
     <div className="setting-profile">
       <section className="setting-profile__top-container">
@@ -191,8 +202,11 @@ export default function SettingProfile({ userData }) {
           </div>
           <Button text="Save" className="button-pink" />
         </form>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
+        <AlertModal
+          isVisible={isModalVisible}
+          message={error || success}
+          onClose={closeModal}
+        />
         <button
           className="setting-profile__button"
           onClick={handleDeleteAccount}

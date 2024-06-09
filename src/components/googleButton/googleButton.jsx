@@ -1,4 +1,3 @@
-// GoogleButton.jsx
 import React from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db } from "../../firebase/FirebaseConfig";
@@ -19,7 +18,7 @@ const GoogleButton = () => {
 
       if (!userSnapshot.exists()) {
         await setDoc(userRef, {
-          userName: user.displayName,
+          userName: user.email,
           email: user.email,
           avatar: user.photoURL,
           joinDate: serverTimestamp(),

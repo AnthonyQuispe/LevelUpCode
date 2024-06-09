@@ -144,3 +144,32 @@
     width: 100%;
   }
 }
+
+.setting-profile__modal {
+  display: flex;
+  position: absolute;
+  width: 80%;
+  max-width: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid $Pink;
+  padding: 20px;
+  background-color: $Light-Purple;
+  border-radius: 10px;
+
+  &-text {
+    @include Sub-Title;
+  }
+
+  &-button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+
+    &-img {
+      width: 100%;
+    }
+  }
+}

@@ -30,6 +30,10 @@
     height: 100%;
     border: none;
     border-right: 3px solid $Green;
+    &:hover {
+      background-color: $Green;
+    }
+
     @include Label;
 
     &:last-child {

@@ -15,7 +15,7 @@ import LoadingModal from "../../components/LoadingModal/LoadingModal";
 function SettingPage() {
   const location = useLocation();
   const [activeComponent, setActiveComponent] = useState(null);
-  const { userData, loading, error } = useContext(UserContext);
+  const { userData, loading } = useContext(UserContext);
 
   useEffect(() => {
     const path = location.pathname.split("/").pop();
@@ -61,7 +61,6 @@ function SettingPage() {
   };
 
   if (loading) return <LoadingModal />;
-  if (error) return <p>Error: {error}</p>;
 
   if (renderActiveComponent() === null) {
     return (

@@ -2,7 +2,7 @@ import "./ProfilePage.scss";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
-import AddFriends from "../../components/addFriends/addFriends";
+import FollowButton from "../../components/followButton/followButton";
 import UserAwards from "../../components/UserAwards/UserAwards";
 import FriendList from "../../components/friendList/friendList";
 import Overview from "../../components/overview/overview";
@@ -80,12 +80,12 @@ function ProfilePage() {
                 <p>Followers </p>
               </div>
             </div>
-            {windowWidth <= 1024 && <AddFriends />}
+            {windowWidth <= 1024 && <FollowButton />}
             <Overview />
             <UserAwards />
           </div>
           <div className="profile-page__friends-container">
-            {windowWidth >= 1024 && <AddFriends />}
+            {windowWidth >= 1024 && <FollowButton />}
             <FriendList />
           </div>
         </div>

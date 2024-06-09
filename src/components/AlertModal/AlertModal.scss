@@ -1,0 +1,32 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.alert-modal {
+  display: flex;
+  position: absolute;
+  width: 80%;
+  max-width: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid $Pink;
+  padding: 20px;
+  background-color: $Light-Purple;
+  border-radius: 10px;
+
+  &__text {
+    @include Sub-Title;
+  }
+
+  &__button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+
+    &-img {
+      width: 100%;
+    }
+  }
+}

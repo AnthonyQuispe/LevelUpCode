@@ -37,6 +37,8 @@ function ProfilePage() {
     }
   }, [userData]);
 
+  useEffect(() => {}, [userData, userName]);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -57,7 +59,6 @@ function ProfilePage() {
             src={avatar}
             alt="Profile"
           />
-
           <p className="profile-page__name">{name}</p>
         </div>
         <div className="profile-page__bottom-container">
@@ -73,19 +74,23 @@ function ProfilePage() {
               </div>
               <div className="profile-page__count-following">
                 <p> {following}</p>
-                <p>Following </p>
+                <p>Following</p>
               </div>
               <div className="profile-page__count-follower">
                 <p>{follower}</p>
-                <p>Followers </p>
+                <p>Followers</p>
               </div>
             </div>
-            {windowWidth <= 1024 && <AddFriends />}
+            {windowWidth <= 1024 && userName && (
+              <AddFriends userName={userName} />
+            )}
             <Overview />
             <UserAwards />
           </div>
           <div className="profile-page__friends-container">
-            {windowWidth >= 1024 && <AddFriends />}
+            {windowWidth >= 1024 && userName && (
+              <AddFriends userName={userName} />
+            )}
             <FriendList />
           </div>
         </div>
@@ -93,4 +98,5 @@ function ProfilePage() {
     </div>
   );
 }
+
 export default ProfilePage;

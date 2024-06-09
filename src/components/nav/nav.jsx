@@ -1,7 +1,7 @@
 import "./nav.scss";
 import { Link } from "react-router-dom";
 import profileIcon from "../../assets/icons/ProfileIcon.svg";
-import glossaryIcon from "../../assets/icons/GlossaryIcon.svg";
+import leaderboardIcon from "../../assets/icons/LeaderboardIcon.png";
 import homeIcon from "../../assets/icons/HomeIcon.svg";
 import settingIcon from "../../assets/icons/SettingIcon.svg";
 
@@ -17,7 +17,11 @@ export default function Nav() {
         <p className="nav__text">Home </p>
       </Link>
       <Link className="nav__button" to="/leaderboard">
-        <img className="nav__icons" src={glossaryIcon} alt="Glossary Icon" />
+        <img
+          className="nav__icons"
+          src={leaderboardIcon}
+          alt="Leaderboard Icon"
+        />
         <p className="nav__text">Leaderboard </p>
       </Link>
       <Link className="nav__button" to="/setting">
