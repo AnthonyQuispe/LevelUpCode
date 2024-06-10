@@ -62,4 +62,26 @@
       height: 80px;
     }
   }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  &__name {
+    @include Sub-Title;
+    display: flex;
+
+    @include Tablet {
+      height: 80px;
+    }
+  }
+
+  &__picture {
+    width: 50px;
+    height: 50px;
+  }
 }

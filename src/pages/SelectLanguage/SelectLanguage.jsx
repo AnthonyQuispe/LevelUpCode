@@ -8,6 +8,7 @@ import { useState } from "react";
 import { auth, db } from "../../firebase/FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import AlertModal from "../../components/AlertModal/AlertModal";
 
 const availableCourses = [
   { icon: HtmlIcon, text: "html" },
@@ -20,6 +21,9 @@ function SelectLanguage() {
   const [activeCourse, setActiveCourse] = useState("");
   const navigate = useNavigate();
 
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const handleCourseClick = (course) => {
     setActiveCourse(course);
   };
@@ -28,14 +32,17 @@ function SelectLanguage() {
     event.preventDefault();
 
     if (!activeCourse) {
-      alert("Please select a course.");
+      setAlertMessage("Please select a course.");
+      setAlertVisible(true);
       return;
     }
 
     try {
       const user = auth.currentUser;
       if (!user) {
-        throw new Error("No authenticated user.");
+        setAlertMessage("No authenticated user.");
+        setAlertVisible(true);
+        return;
       }
 
       const courseDocRef = doc(db, "users", user.uid, "course", activeCourse);
@@ -44,17 +51,21 @@ function SelectLanguage() {
         courseName: activeCourse,
         startedAt: new Date(),
       });
-
-      alert("Course added successfully.");
       navigate("/"); // Navigate to the home page
     } catch (error) {
-      console.error("Error adding course:", error);
-      alert("Failed to add course. Please try again.");
+      setAlertMessage("Failed to add course. Please try again.", error);
+      setAlertVisible(true);
+      return;
     }
   };
 
   return (
     <main className="select-language">
+      <AlertModal
+        isVisible={alertVisible}
+        message={alertMessage}
+        onClose={() => setAlertVisible(false)}
+      />
       <h1 className="select-language__title">Choose Your Language</h1>
       <h2 className="select-language__subtitle">
         You’ll be able to change this later

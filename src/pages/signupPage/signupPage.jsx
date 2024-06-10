@@ -1,16 +1,19 @@
 import "./SignUpPage.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Logo from "../../assets/logo/LevelUp.svg";
 import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import GoogleButton from "../../components/googleButton/googleButton";
 import { createUser, isUsernameTaken } from "../../firebase/FirebaseCreateUser";
+import AlertModal from "../../components/AlertModal/AlertModal";
 
 function SignUpPage() {
   const navigate = useNavigate();
   const auth = getAuth();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,36 +33,49 @@ function SignUpPage() {
     const password = event.target.password.value;
 
     if (!userName) {
-      alert("Please enter your username.");
+      setAlertMessage("Please enter your username.");
+      setAlertVisible(true);
       return;
     }
     const usernameTaken = await isUsernameTaken(userName);
     if (usernameTaken) {
-      alert("Username is already taken. Please choose another one.");
+      setAlertMessage("Username is already taken. Please choose another one.");
+      setAlertVisible(true);
       return;
     }
 
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
+      setAlertMessage("Please enter a valid email address.");
+      setAlertVisible(true);
       return;
     }
     if (!password || password.length < 6) {
-      alert("Please enter a valid password thats at least 6 characters long ");
+      setAlertMessage(
+        "Please enter a valid password that's at least 6 characters long."
+      );
+      setAlertVisible(true);
       return;
     }
 
     try {
       await createUser(userName, email, password);
-      alert("Account created successfully!");
+      setAlertMessage("Account created successfully!");
+      setAlertVisible(true);
       navigate("/");
     } catch (error) {
-      alert("Account creation failed please try again");
+      setAlertMessage("Account creation failed. Please try again.");
+      setAlertVisible(true);
     }
   };
 
   return (
     <main className="signup-page">
+      <AlertModal
+        isVisible={alertVisible}
+        message={alertMessage}
+        onClose={() => setAlertVisible(false)}
+      />
       <div className="signup-page__left-container">
         <img className="signup-page__logo" src={Logo} alt="Logo" />
         <p className="signup-page__subtitle">Begin Your Coding Journey!</p>

@@ -14,6 +14,8 @@
   padding: 20px;
   background-color: $Light-Purple;
   border-radius: 10px;
+  align-items: center;
+  justify-content: space-evenly;
 
   &__text {
     @include Sub-Title;

@@ -1,5 +1,5 @@
 import "./SignInPage.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Logo from "../../assets/logo/LevelUp.svg";
@@ -7,10 +7,13 @@ import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import GoogleButton from "../../components/googleButton/googleButton";
 import { loginUser } from "../../firebase/FirebaseLogin";
+import AlertModal from "../../components/AlertModal/AlertModal";
 
 function SignInPage() {
   const navigate = useNavigate();
   const auth = getAuth();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -27,29 +30,55 @@ function SignInPage() {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    const emailRegex = /\S+@\S+\.\S+/; // Corrected regex
+    const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email");
+      setAlertMessage("Please enter a valid email.");
+      setAlertVisible(true);
       return;
     }
 
     if (!password) {
-      alert("Please enter your Password.");
+      setAlertMessage("Please enter your password.");
+      setAlertVisible(true);
       return;
     }
 
     try {
-      // eslint-disable-next-line
-      const user = await loginUser(email, password);
-      console.log("Login Succesfully");
+      await loginUser(email, password);
       navigate("/");
     } catch (error) {
-      console.log("Error logging in");
+      let errorMessage = "Error logging in.";
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage = "Invalid email address.";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "User account is disabled.";
+          break;
+        case "auth/user-not-found":
+          errorMessage = "No user found with this email.";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Incorrect password.";
+          break;
+        case "auth/invalid-credential":
+          errorMessage = "Incorrect password or Email.";
+          break;
+        default:
+          errorMessage = `Error logging in: ${error.message}`;
+      }
+      setAlertMessage(errorMessage);
+      setAlertVisible(true);
     }
   };
 
   return (
     <main className="signin-page">
+      <AlertModal
+        isVisible={alertVisible}
+        message={alertMessage}
+        onClose={() => setAlertVisible(false)}
+      />
       <div className="signin-page__left-container">
         <img className="signin-page__logo" src={Logo} alt="Logo" />
         <p className="signin-page__subtitle">Begin Your Coding Journey!</p>
@@ -85,9 +114,9 @@ function SignInPage() {
             <Link to="/signup" className="signin-page__link">
               Sign up
             </Link>
-            <GoogleButton />
           </div>
         </form>
+        <GoogleButton />
       </div>
     </main>
   );

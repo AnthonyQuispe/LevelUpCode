@@ -12,13 +12,15 @@ const GoogleButton = () => {
       const result = await signInWithPopup(auth, provider);
       const { user } = result;
 
+      const username = user.email.split("@")[0];
+
       // Check if user already exists in Firestore
       const userRef = doc(db, "users", user.uid);
       const userSnapshot = await getDoc(userRef);
 
       if (!userSnapshot.exists()) {
         await setDoc(userRef, {
-          userName: user.email,
+          userName: username,
           email: user.email,
           avatar: user.photoURL,
           joinDate: serverTimestamp(),
