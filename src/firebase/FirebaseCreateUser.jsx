@@ -37,6 +37,8 @@ export const createUser = async (userName, email, password) => {
         friendsEmail: true,
         learderBoardsEmail: true,
         announcementsEmail: true,
+        followingCount: 0,
+        followerCount: 0,
       },
 
       { merge: false }

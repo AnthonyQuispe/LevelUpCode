@@ -62,8 +62,8 @@ function ProfilePage() {
       setName(userData.name || "");
       setUserName(userData.userName || "");
       setCourses(userData.courses || 0);
-      setFollowing(userData.following || 0);
-      setFollower(userData.follower || 0);
+      setFollowing(userData.followingCount || 0);
+      setFollower(userData.followerCount || 0);
       setJoinDate(userData.joinDate ? formatDate(userData.joinDate) : "");
       setAvatar(userData.avatar || ProfilePlaceholder);
     } else {

@@ -60,33 +60,35 @@ function SignInPage() {
         </p>
         <Button className="signin-page__learn-button" text={"Learn More"} />
       </div>
-      <form className="signin-page__form" onSubmit={handleLoginSubmit}>
-        <Input
-          placeholder="Email"
-          type="email"
-          name="email"
-          id="email"
-          autoComplete="current-email"
-        />
-        <Input
-          placeholder="Password"
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="current-password"
-        />
-        <Button text={"Sign In"} />
-        <Link to="/forgot" className="signin-page__link-text">
-          Forgot Password?
-        </Link>
-        <div className="signin-page__link-container">
-          <p className="signin-page__link-text">Don’t have an account?</p>
-          <Link to="/signup" className="signin-page__link">
-            Sign up
+      <div className="signin-page__form-container">
+        <form className="signin-page__form" onSubmit={handleLoginSubmit}>
+          <Input
+            placeholder="Email"
+            type="email"
+            name="email"
+            id="email"
+            autoComplete="current-email"
+          />
+          <Input
+            placeholder="Password"
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button text={"Sign In"} />
+          <Link to="/forgot" className="signin-page__link-text">
+            Forgot Password?
           </Link>
-          <GoogleButton />
-        </div>
-      </form>
+          <div className="signin-page__link-container">
+            <p className="signin-page__link-text">Don’t have an account?</p>
+            <Link to="/signup" className="signin-page__link">
+              Sign up
+            </Link>
+            <GoogleButton />
+          </div>
+        </form>
+      </div>
     </main>
   );
 }

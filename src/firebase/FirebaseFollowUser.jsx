@@ -17,6 +17,11 @@ export const followUser = async (currentUserId, targetUserId) => {
   await setDoc(followerRef, { followedAt: new Date() }, { merge: true }); // Create or update follower entry
   await updateDoc(userRef, {
     followerCount: increment(1),
+  });
+
+  // Update following count in current user's document
+  const currentUserRef = doc(db, "users", currentUserId);
+  await updateDoc(currentUserRef, {
     followingCount: increment(1),
   });
 };
@@ -31,6 +36,11 @@ export const unfollowUser = async (currentUserId, targetUserId) => {
   await deleteDoc(followerRef); // Delete follower entry
   await updateDoc(userRef, {
     followerCount: increment(-1),
+  });
+
+  // Update following count in current user's document
+  const currentUserRef = doc(db, "users", currentUserId);
+  await updateDoc(currentUserRef, {
     followingCount: increment(-1),
   });
 };

@@ -70,29 +70,31 @@ function SignUpPage() {
         </p>
         <Button className="signup-page__learn-button" text={"Learn More"} />
       </div>
-      <form className="signup-page__form" onSubmit={handleFormSubmit}>
-        <Input
-          placeholder="Username"
-          type="text"
-          name="userName"
-          id="userName"
-          autoComplete="username"
-        />
-        <Input
-          placeholder="Email"
-          type="email"
-          name="email"
-          id="email"
-          autoComplete="current-email"
-        />
-        <Input
-          placeholder="Password"
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="current-password"
-        />
-        <Button text={"Sign Up"} />
+      <div className="signup-page__form-container">
+        <form className="signup-page__form" onSubmit={handleFormSubmit}>
+          <Input
+            placeholder="Username"
+            type="text"
+            name="userName"
+            id="userName"
+            autoComplete="username"
+          />
+          <Input
+            placeholder="Email"
+            type="email"
+            name="email"
+            id="email"
+            autoComplete="current-email"
+          />
+          <Input
+            placeholder="Password"
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button text={"Sign Up"} />
+        </form>
         <div className="signup-page__link-container">
           <p className="signup-page__link-text">Already have an account?</p>
           <Link to="/signin" className="signup-page__link">
@@ -100,7 +102,7 @@ function SignUpPage() {
           </Link>
           <GoogleButton />
         </div>
-      </form>
+      </div>
     </main>
   );
 }
