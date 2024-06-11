@@ -5,11 +5,7 @@
 .sound {
   position: absolute;
   top: 1%;
-  right: 5%;
-
-  @include Tablet {
-    right: 2%;
-  }
+  right: 1%;
 
   &__button {
     height: 30px;

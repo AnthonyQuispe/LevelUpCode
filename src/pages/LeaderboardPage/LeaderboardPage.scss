@@ -1,55 +1,82 @@
-.leaderboard-page {
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.leaderboard {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #000;
-  color: #fff;
-  font-family: "Press Start 2P", cursive; // Pac-Man style font
-  padding: 20px;
+  gap: 20px;
+
+  @include Desktop {
+    height: 100dvh;
+  }
+  &-page {
+    background-image: url("../../assets/background/GamingMobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100dvh;
+    padding: 30px 20px 110px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow-y: scroll;
+  }
+  &__icon {
+    height: 100px;
+    width: 100px;
+  }
 
   &__title {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #ffd700; // Gold color for the title
+    @include Title;
   }
 
-  &__container {
-    width: 100%;
-    max-width: 600px;
-    border: 2px solid #ffd700; // Gold border
-    padding: 10px;
-    border-radius: 10px;
+  &__position {
+    @include Body;
   }
 
-  &__entry {
+  &__list {
     display: flex;
-    align-items: center;
-    margin: 10px 0;
-    padding: 10px;
-    background: #222;
-    border-radius: 10px;
+    flex-direction: column;
+    width: 100%;
 
-    &:hover {
-      background: #444;
+    &-item {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
-  &__icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-  }
-
-  &__details {
+  &__profile {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 1.2em;
+    align-items: center;
+    gap: 20px;
+
+    &-img {
+      height: 30px;
+      width: 30px;
+    }
   }
 
-  &__rank,
-  &__name,
-  &__score {
-    margin: 0 10px;
+  &__name {
+    @include Body;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__xp {
+    @include Body;
+    color: $Pink;
+
+    &-amount {
+      @include Body;
+    }
   }
 }

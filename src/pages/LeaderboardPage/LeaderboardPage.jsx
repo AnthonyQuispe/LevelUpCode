@@ -1,43 +1,39 @@
-import { useEffect, useState } from "react";
 import "./LeaderboardPage.scss";
-import PacmanIcon from "../../assets/logo/LevelUpMasscot.svg"; // Placeholder for the Pac-Man icon
+import Nav from "../../components/nav/nav";
+import LeadboardIcon from "../../assets/icons/LeaderboardIcon.svg";
+import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
 
-// Mock Data for the leaderboard
-const leaderboardData = [
-  { rank: 1, name: "PlayerOne", score: 1500 },
-  { rank: 2, name: "PlayerTwo", score: 1300 },
-  { rank: 3, name: "PlayerThree", score: 1100 },
-  { rank: 4, name: "PlayerFour", score: 900 },
-  { rank: 5, name: "PlayerFive", score: 700 },
-];
-
-export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = useState([]);
-
-  useEffect(() => {
-    // Here you would fetch the leaderboard data from your server or database
-    setLeaderboard(leaderboardData);
-  }, []);
-
+function LeaderboardPage() {
   return (
-    <section className="leaderboard-page">
-      <h1 className="leaderboard-page__title">Pac-Man Leaderboard</h1>
-      <div className="leaderboard-page__container">
-        {leaderboard.map((player) => (
-          <div key={player.rank} className="leaderboard-page__entry">
-            <img
-              src={PacmanIcon}
-              alt="Pacman icon"
-              className="leaderboard-page__icon"
-            />
-            <div className="leaderboard-page__details">
-              <p className="leaderboard-page__rank">#{player.rank}</p>
-              <p className="leaderboard-page__name">{player.name}</p>
-              <p className="leaderboard-page__score">{player.score} pts</p>
+    <div className="leaderboard-page">
+      <Nav />
+      <div className="leaderboard">
+        <img
+          className="leaderboard__icon"
+          src={LeadboardIcon}
+          alt="leaderboard Trophy"
+        />
+        <h1 className="leaderboard__title">Leaderboard</h1>
+        <ol className="leaderboard__list">
+          <li className="leaderboard__list-item">
+            <div className="leaderboard__profile">
+              <p className="leaderboard__position">1</p>
+              <img
+                className="leaderboard__profile-img"
+                src={ProfilePlaceholder}
+                alt="ProfilePlaceholder"
+              />
+              <p className="leaderboard__name">Anthony</p>
             </div>
-          </div>
-        ))}
+            <div className="leaderboard__stats">
+              <p className="leaderboard__xp-amount">10</p>
+              <p className="leaderboard__xp">Xp</p>
+            </div>
+          </li>
+        </ol>
       </div>
-    </section>
+    </div>
   );
 }
+
+export default LeaderboardPage;
