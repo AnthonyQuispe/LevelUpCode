@@ -34,4 +34,13 @@
       background-color: $Pink;
     }
   }
+
+  &-friend {
+    width: 50px;
+
+    @include Tablet {
+      height: 80px;
+      max-width: 80px;
+    }
+  }
 }
