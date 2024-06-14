@@ -1,4 +1,4 @@
-import "./SettingCourse.scss";
+import "./MyCourses.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { db } from "../../firebase/FirebaseConfig";
@@ -18,7 +18,7 @@ const courseIcons = {
   javascript: Javascript,
 };
 
-export default function SettingCourse() {
+export default function MyCourses() {
   const { user } = useContext(UserContext);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,38 +49,38 @@ export default function SettingCourse() {
   }
 
   return (
-    <div className="setting-courses">
-      <section className="setting-courses__top-container">
-        <Link to="/setting" className="setting-courses__link-back">
+    <div className="my-courses">
+      <section className="my-courses__top-container">
+        <Link to="/setting" className="my-courses__link-back">
           <img
             src={LeftArrowIcon}
             alt="left arrow icon"
-            className="setting-courses__link-img"
+            className="my-courses__link-img"
           />
         </Link>
-        <h1 className="setting-courses__title">Active Courses</h1>
-        <h2 className="setting-courses__sub-title">Active Courses </h2>
+        <h1 className="my-courses__title">Active Courses</h1>
+        <h2 className="my-courses__sub-title">Active Courses</h2>
       </section>
-      <section className="setting-courses__container">
-        <div className="setting-courses__button-container">
+      <section className="my-courses__container">
+        <div className="my-courses__button-container">
           {courses.map((course, index) => (
-            <div key={index} className="setting-courses__button">
-              <div className="setting-courses__button-left">
+            <div key={index} className="my-courses__button">
+              <div className="my-courses__button-left">
                 <img
                   src={courseIcons[course.courseName]}
                   alt={`Icon for ${course.courseName} course`}
-                  className="setting-courses__icons"
+                  className="my-courses__icons"
                 />
                 {course.courseName}
               </div>
               <button
-                className="setting-courses__button-minus"
+                className="my-courses__button-minus"
                 onClick={() => handleDeleteCourse(course.id)}
               >
                 <img
                   src={DeleteIcon}
                   alt="Delete Icon"
-                  className="setting-courses__icons"
+                  className="my-courses__icons"
                 />
               </button>
             </div>

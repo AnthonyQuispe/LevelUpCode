@@ -59,12 +59,11 @@ function ProfilePage() {
             src={avatar}
             alt="Profile"
           />
-          <p className="profile-page__name">{name}</p>
+          <p className="profile-page__name">{userName}</p>
         </div>
         <div className="profile-page__bottom-container">
           <div className="profile-page__bottom-container-left">
             <div className="profile-page__user-details">
-              <p className="profile-page__username">{userName}</p>
               <p className="profile-page__date">Joined {joinDate}</p>
             </div>
             <div className="profile-page__count">

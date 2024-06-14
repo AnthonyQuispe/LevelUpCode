@@ -6,7 +6,7 @@ import Nav from "../../components/nav/nav";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
 import Button from "../../components/button/button";
 import { Link, useLocation } from "react-router-dom";
-import Courses from "../../components/SettingCourse/SettingCourse";
+import Courses from "../../components/MyCourses/MyCourses";
 import Preferences from "../../components/SettingPreferences/SettingPreferences";
 import Profile from "../../components/SettingProfile/SettingProfile";
 import Notifications from "../../components/SettingNotifications/SettingNotifications";
@@ -95,7 +95,7 @@ function SettingPage() {
                   to="/setting/courses"
                   className="setting-page__button setting-page__button--last"
                 >
-                  Courses <img src={RightArrowIcon} alt="right arrow icon" />
+                  My Courses <img src={RightArrowIcon} alt="right arrow icon" />
                 </Link>
               </div>
             </div>
@@ -158,7 +158,7 @@ function SettingPage() {
                   to="/setting/courses"
                   className="setting-page__button setting-page__button--last"
                 >
-                  Courses <img src={RightArrowIcon} alt="right arrow icon" />
+                  My Courses <img src={RightArrowIcon} alt="right arrow icon" />
                 </Link>
               </div>
             </div>
