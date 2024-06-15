@@ -1,41 +1,33 @@
-import "./lessonQuestions.scss";
+import "./QuestQuestions.scss";
 import { useState, useEffect, useRef } from "react";
 import Button from "../button/button";
 import closeButton from "../../assets/icons/CloseIcon.png";
 import { db, auth } from "../../firebase/FirebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export default function LessonQuestions({
-  course,
-  chapter,
-  lesson,
-  question,
-  level,
-}) {
-  const [lessonData, setLessonData] = useState(null);
+export default function QuestQuestions({ course, quest, question, level }) {
+  const [questData, setQuestData] = useState(null);
   const [userCode, setUserCode] = useState("");
   const [result, setResult] = useState(null);
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    const fetchLessonData = async () => {
-      const docPath = `course/${course}/level/${level}/chapter/${chapter}/lesson/${lesson}/question/${question}`;
-
+    const fetchQuestData = async () => {
+      const docPath = `courses/${course}/levels/${level}/quests/${quest}/questions/${question}`;
       const docRef = doc(db, docPath);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-
-        setLessonData(data);
-        setUserCode(data.initialCode.trim());
+        setQuestData(data);
+        setUserCode(data.initialCode ? data.initialCode.trim() : "");
       } else {
         console.log("No such document!");
       }
     };
 
-    fetchLessonData();
-  }, [course, chapter, lesson, question, level]);
+    fetchQuestData();
+  }, [course, quest, question, level]);
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -53,10 +45,10 @@ export default function LessonQuestions({
   };
 
   const checkCode = async () => {
-    if (userCode.trim() === lessonData.correctCode.trim()) {
+    if (userCode.trim() === questData.correctCode.trim()) {
       setResult(
-        <div className="lesson-question__modal">
-          <p className="lesson-question__question lesson-question__question--correct">
+        <div className="quest-question__modal">
+          <p className="quest-question__question quest-question__question--correct">
             Correct! Well done.
           </p>
         </div>
@@ -64,21 +56,21 @@ export default function LessonQuestions({
       await updateProgress("complete");
     } else {
       setResult(
-        <div className="lesson-question__modal">
-          <p className="lesson-question__question lesson-question__question--incorrect">
+        <div className="quest-question__modal">
+          <p className="quest-question__question quest-question__question--incorrect">
             Incorrect! <br />
-            {lessonData.question.split("\n").map((line, index) => (
+            {questData.question.split("\n").map((line, index) => (
               <span key={index} dangerouslySetInnerHTML={{ __html: line }} />
             ))}
           </p>
           <button
-            className="lesson-question__modal-button"
+            className="quest-question__modal-button"
             onClick={closeResult}
           >
             <img
               src={closeButton}
               alt="close button"
-              className="lesson-question__modal-button-img"
+              className="quest-question__modal-button-img"
             />
           </button>
         </div>
@@ -96,7 +88,7 @@ export default function LessonQuestions({
     if (user) {
       const progressRef = doc(
         db,
-        `users/${user.uid}/course/${course}/chapter/${chapter}/lesson/${lesson}`
+        `users/${user.uid}/courses/${course}/quests/${quest}/questions/${question}`
       );
       const currentDate = new Date();
       await setDoc(
@@ -107,56 +99,55 @@ export default function LessonQuestions({
 
       if (status === "complete") {
         const userDocRef = doc(db, "users", user.uid);
-        // Removed unused userData
         await setDoc(
           userDocRef,
-          { lastLessonCompletionDate: currentDate },
+          { lastQuestCompletionDate: currentDate },
           { merge: true }
         );
       }
     }
   };
 
-  if (!lessonData) {
+  if (!questData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <section className="lesson-question">
+    <section className="quest-question">
       <div>
         <h1
-          dangerouslySetInnerHTML={{ __html: lessonData.title }}
-          className="lesson-question__title"
+          dangerouslySetInnerHTML={{ __html: questData.title || "" }}
+          className="quest-question__title"
         />
         <p
-          dangerouslySetInnerHTML={{ __html: lessonData.definition }}
-          className="lesson-question__definition"
+          dangerouslySetInnerHTML={{ __html: questData.definition || "" }}
+          className="quest-question__definition"
         />
       </div>
       <div>
-        <p className="lesson-question__list-title">Key Points :</p>
-        <ul className="lesson-question__list">
-          {lessonData.keypoint.map((point, index) => (
+        <p className="quest-question__list-title">Key Points :</p>
+        <ul className="quest-question__list">
+          {(questData.keypoint || []).map((point, index) => (
             <li
               key={index}
               dangerouslySetInnerHTML={{ __html: point }}
-              className="lesson-question__list-keys"
+              className="quest-question__list-keys"
             />
           ))}
         </ul>
       </div>
       <div
-        dangerouslySetInnerHTML={{ __html: lessonData.example }}
-        className="lesson-question__example"
+        dangerouslySetInnerHTML={{ __html: questData.example || "" }}
+        className="quest-question__example"
       />
-      <p className="lesson-question__question">
-        {lessonData.question.split("\n").map((line, index) => (
+      <p className="quest-question__question">
+        {(questData.question || "").split("\n").map((line, index) => (
           <span key={index} dangerouslySetInnerHTML={{ __html: line }} />
         ))}
       </p>
-      <div className="lesson-question__interactive">
+      <div className="quest-question__interactive">
         <textarea
-          className="lesson-question__textarea"
+          className="quest-question__textarea"
           value={userCode}
           onChange={handleChange}
           ref={textareaRef}
@@ -164,7 +155,7 @@ export default function LessonQuestions({
         <Button
           onClick={checkCode}
           text={"Check Your Code"}
-          className="lesson-question__button"
+          className="quest-question__button"
         />
         {result !== null && <div>{result}</div>}
       </div>

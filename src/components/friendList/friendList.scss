@@ -74,6 +74,7 @@
   &__name {
     @include Sub-Title;
     display: flex;
+    align-items: center;
 
     @include Tablet {
       height: 80px;
@@ -81,6 +82,7 @@
   }
 
   &__picture {
+    border-radius: 50%;
     width: 50px;
     height: 50px;
   }

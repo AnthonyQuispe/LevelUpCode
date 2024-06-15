@@ -1,29 +1,28 @@
-import "./LessonPage.scss";
-import LessonNav from "../../components/lessonNav/lessonNav";
+import "./QuestPage.scss";
+import QuestNav from "../../components/QuestNav/QuestNav";
 import Nav from "../../components/nav/nav";
-import LessonQuestions from "../../components/lessonQuestions/lessonQuestions";
+import QuestQuestions from "../../components/QuestQuestions/QuestQuestions";
 import LevelupAI from "../../components/levelupAi/levelupAi";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function LessonPage() {
+function QuestPage() {
   const [AiChat, setAiChat] = useState(false);
-  const { course, level, chapter, lesson, question } = useParams();
+  const { course, level, quest, question } = useParams();
 
   const openAiChat = () => {
     setAiChat(!AiChat);
   };
 
   return (
-    <div className="lesson">
+    <div className="quest">
       <Nav />
-      <div className="lesson-page">
-        <LessonNav openAiChat={openAiChat} />
-        <LessonQuestions
+      <div className="quest-page">
+        <QuestNav openAiChat={openAiChat} />
+        <QuestQuestions
           course={course}
           level={level}
-          chapter={chapter}
-          lesson={lesson}
+          quest={quest}
           question={question}
         />
         {AiChat && <LevelupAI openAiChat={openAiChat} />}
@@ -32,4 +31,4 @@ function LessonPage() {
   );
 }
 
-export default LessonPage;
+export default QuestPage;

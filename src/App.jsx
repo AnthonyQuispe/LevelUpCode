@@ -11,7 +11,7 @@ import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProfilePagePublic from "./pages/ProfilePagePublic/ProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
-import LessonPage from "./pages/LessonPage/LessonPage";
+import QuestPage from "./pages/QuestPage/QuestPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import SoundButton from "./components/SoundButton/SoundButton";
 
@@ -33,8 +33,8 @@ function App() {
           <Route path="/profile/:username" element={<ProfilePagePublic />} />
           <Route path="/leaderboard" element={<LeaderBoardPage />} />
           <Route
-            path="/course/:course/level/:level/chapter/:chapter/lesson/:lesson/question/:question"
-            element={<LessonPage />}
+            path="/course/:course/level/:level/quest/:quest/question/:question"
+            element={<QuestPage />}
             exact
           />
         </Routes>

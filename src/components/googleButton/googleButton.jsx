@@ -34,6 +34,7 @@ const GoogleButton = () => {
           friendsEmail: true,
           learderBoardsEmail: true,
           announcementsEmail: true,
+          favCourse: "",
         });
       }
     } catch (error) {

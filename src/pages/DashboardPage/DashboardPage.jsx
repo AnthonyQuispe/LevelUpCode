@@ -16,38 +16,27 @@ import profilePlaceholder from "../../assets/placeholder/Profile.png";
 let CourseTracker = {
   Title: "HTML",
   Level: "Level 1 : Beginner HTML",
-  HTML: "In-Progress",
-  Section1: {
-    Chapter1: "Completed",
-    Chapter2: "New",
-    Chapter3: "New",
-    Chapter4: "New",
-    Chapter5: "New",
-  },
-  Section2: {
-    Chapter1: "New",
-    Chapter2: "New",
-    Chapter3: "New",
-    Chapter4: "New",
-    Chapter5: "New",
-  },
-  Section3: {
-    Chapter1: "New",
-    Chapter2: "New",
-    Chapter3: "New",
-    Chapter4: "New",
-    Chapter5: "New",
-  },
-  Section4: {
-    Chapter1: "New",
-    Chapter2: "New",
-    Chapter3: "New",
-    Chapter4: "New",
-    Chapter5: "New",
-  },
-  Section5: {
-    FinalChapter: "New",
-  },
+  Quest1: "Completed",
+  Quest2: "New",
+  Quest3: "New",
+  Quest4: "New",
+  Quest5: "New",
+  Quest6: "New",
+  Quest7: "New",
+  Quest8: "New",
+  Quest9: "New",
+  Quest10: "New",
+  Quest11: "New",
+  Quest12: "New",
+  Quest13: "New",
+  Quest14: "New",
+  Quest15: "New",
+  Quest16: "New",
+  Quest17: "New",
+  Quest18: "New",
+  Quest19: "New",
+  Quest20: "New",
+  FinalQuest: "New",
 };
 
 const isCompleted = (status) => {
@@ -110,28 +99,28 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--first">
               <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
-                  CourseTracker.Section1.Chapter1,
+                  CourseTracker.Quest1,
                   purpleClassIcon,
                   pinkClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section1.Chapter2,
+                  CourseTracker.Quest1,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section1.Chapter3,
+                  CourseTracker.Quest3,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section1.Chapter4,
+                  CourseTracker.Quest4,
                   emptyClassIcon,
                   xClassIcon
                 )}
@@ -140,7 +129,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--second">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section1.Chapter5,
+                  CourseTracker.Quest5,
                   emptyClassIcon,
                   circleClassIcon
                 )}
@@ -149,28 +138,28 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--third">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section2.Chapter4,
+                  CourseTracker.Quest6,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section2.Chapter3,
+                  CourseTracker.Quest7,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section2.Chapter2,
+                  CourseTracker.Quest8,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
-                  CourseTracker.Section2.Chapter1,
+                  CourseTracker.Quest9,
                   purpleClassIcon,
                   greenClassIcon
                 )}
@@ -179,7 +168,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--fourth">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section2.Chapter5,
+                  CourseTracker.Quest10,
                   emptyClassIcon,
                   circleClassIcon
                 )}
@@ -188,28 +177,28 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--fifth">
               <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
-                  CourseTracker.Section3.Chapter1,
+                  CourseTracker.Quest11,
                   purpleClassIcon,
                   pinkClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section3.Chapter2,
+                  CourseTracker.Quest12,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section3.Chapter3,
+                  CourseTracker.Quest13,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section3.Chapter4,
+                  CourseTracker.Quest14,
                   emptyClassIcon,
                   circleClassIcon
                 )}
@@ -218,7 +207,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--sixth">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section3.Chapter5,
+                  CourseTracker.Quest15,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
@@ -227,28 +216,28 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--seventh">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section4.Chapter4,
+                  CourseTracker.Quest16,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section4.Chapter3,
+                  CourseTracker.Quest17,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section4.Chapter2,
+                  CourseTracker.Quest18,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
               <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
-                  CourseTracker.Section4.Chapter1,
+                  CourseTracker.Quest19,
                   purpleClassIcon,
                   greenClassIcon
                 )}
@@ -257,7 +246,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--eighth">
               <Link className="dashboard__course">
                 {renderCourseIcon(
-                  CourseTracker.Section4.Chapter5,
+                  CourseTracker.Quest20,
                   emptyClassIcon,
                   xClassIcon
                 )}
@@ -266,7 +255,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--ninth">
               <Link className="dashboard__course dashboard__course--big">
                 {renderCourseIcon(
-                  CourseTracker.Section5.FinalChapter,
+                  CourseTracker.FinalQuest,
                   purpleClassIcon,
                   pinkClassIcon
                 )}

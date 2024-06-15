@@ -58,7 +58,7 @@ export default function AddFriends({ userName }) {
 
   const handleSearch = async () => {
     console.log("Search initiated");
-    if (searchQuery.length > 2) {
+    if (searchQuery.length > 3) {
       const userRef = collection(db, "users");
       const q = query(
         userRef,
@@ -86,19 +86,30 @@ export default function AddFriends({ userName }) {
 
       // Set no results message if no users found
       if (results.length === 0) {
-        setNoResultsMessage("No users found with that username.");
+        setNoResultsMessage(
+          <p className="find-friend-modal__alerts">
+            "No users found with that username."
+          </p>
+        );
       } else {
-        setNoResultsMessage(""); // Clear the message if users are found
+        setNoResultsMessage(
+          <p className="find-friend-modal__alerts">
+            No users found with that username.
+          </p>
+        );
       }
     } else {
       setSearchResults([]);
       setFollowingStatus({});
-      setNoResultsMessage("Please enter at least 3 characters."); // Message for too short search queries
+      setNoResultsMessage(
+        <p className="find-friend-modal__alerts">
+          Please enter at least 3 characters.
+        </p>
+      );
     }
   };
 
   const handleKeyPress = (event) => {
-    console.log(`Key pressed: ${event.key}`); // Add logging to check key press
     if (event.key === "Enter") {
       handleSearch();
     }

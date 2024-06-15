@@ -1,7 +1,7 @@
 import { db } from "./firebase/FirebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
 
-const htmlLevel1Chapter1Lesson1Questions = [
+const htmlLevel1Quest1Questions = [
   {
     title: "What's an &lt;h1&gt; Element?",
     definition: "The &lt;h1&gt; element defines the main heading of a webpage.",
@@ -127,7 +127,7 @@ const htmlLevel1Chapter1Lesson1Questions = [
   },
 ];
 
-const htmlLevel1Chapter1Lesson2Questions = [
+const htmlLevel1Quest2Questions = [
   {
     title: "What's the purpose of the <img> element?",
     definition:
@@ -313,7 +313,7 @@ const htmlLevel1Chapter1Lesson2Questions = [
   },
 ];
 
-const htmlLevel1Chapter1Lesson3Questions = [
+const htmlLevel1Quest3Questions = [
   {
     title: "Explain the purpose of the <img> element in HTML.",
     definition: "The <img> element embeds images into an HTML document.",
@@ -496,7 +496,7 @@ const htmlLevel1Chapter1Lesson3Questions = [
   },
 ];
 
-const htmlLevel1Chapter1Lesson4Questions = [
+const htmlLevel1Quest4Questions = [
   // Question 1
   {
     title: "Explain the purpose of the <form> element in HTML.",
@@ -674,7 +674,7 @@ const htmlLevel1Chapter1Lesson4Questions = [
   },
 ];
 
-const htmlLevel1Chapter1Lesson5Questions = [
+const htmlLevel1Quest5Questions = [
   {
     title: "What is the purpose of the <img> element in HTML?",
     definition: "The <img> element embeds an image into an HTML document.",
@@ -842,121 +842,48 @@ const htmlLevel1Chapter1Lesson5Questions = [
   </html>`,
   },
 ];
-
-// Repeat the structure for JavaScript, CSS, and React
-const jsLessons = [
-  // Define 5 lessons for JavaScript
-];
-
-const cssLessons = [
-  // Define 5 lessons for CSS
-];
-
-const reactLessons = [
-  // Define 5 lessons for React
-];
-
-// Define chapters for each level
-const htmlLevel1Chapters = [
-  {
-    chapterName: "Chapter 1",
-    lessons: [
-      { lessonName: "lesson 1", questions: htmlLevel1Chapter1Lesson1Questions },
-      { lessonName: "lesson 2", questions: htmlLevel1Chapter1Lesson2Questions },
-      { lessonName: "lesson 3", questions: htmlLevel1Chapter1Lesson3Questions },
-      { lessonName: "lesson 4", questions: htmlLevel1Chapter1Lesson4Questions },
-      { lessonName: "lesson 5", questions: htmlLevel1Chapter1Lesson5Questions },
-    ],
-  },
-];
-
-const jsChapters = [
-  { chapterName: "Chapter 1", lessons: jsLessons },
-  { chapterName: "Chapter 2", lessons: jsLessons },
-  { chapterName: "Chapter 3", lessons: jsLessons },
-  { chapterName: "Chapter 4", lessons: jsLessons },
-  { chapterName: "Chapter 5", lessons: jsLessons },
-];
-
-const cssChapters = [
-  { chapterName: "Chapter 1", lessons: cssLessons },
-  { chapterName: "Chapter 2", lessons: cssLessons },
-  { chapterName: "Chapter 3", lessons: cssLessons },
-  { chapterName: "Chapter 4", lessons: cssLessons },
-  { chapterName: "Chapter 5", lessons: cssLessons },
-];
-
-const reactChapters = [
-  { chapterName: "Chapter 1", lessons: reactLessons },
-  { chapterName: "Chapter 2", lessons: reactLessons },
-  { chapterName: "Chapter 3", lessons: reactLessons },
-  { chapterName: "Chapter 4", lessons: reactLessons },
-  { chapterName: "Chapter 5", lessons: reactLessons },
+// Define quests for each level
+const htmlLevel1Quests = [
+  { QuestName: "Quest 1", questions: htmlLevel1Quest1Questions },
+  { QuestName: "Quest 2", questions: htmlLevel1Quest2Questions },
+  { QuestName: "Quest 3", questions: htmlLevel1Quest3Questions },
+  { QuestName: "Quest 4", questions: htmlLevel1Quest4Questions },
+  { QuestName: "Quest 5", questions: htmlLevel1Quest5Questions },
 ];
 
 // Define levels for each course
 const htmlLevels = [
-  { levelName: "Beginner HTML", chapters: htmlLevel1Chapters },
-  { levelName: "Intermediate HTML", chapters: htmlLevel1Chapters },
-  { levelName: "Advanced HTML", chapters: htmlLevel1Chapters },
-];
-
-const jsLevels = [
-  { levelName: "Beginner JavaScript", chapters: jsChapters },
-  { levelName: "Intermediate JavaScript", chapters: jsChapters },
-  { levelName: "Advanced JavaScript", chapters: jsChapters },
-];
-
-const cssLevels = [
-  { levelName: "Beginner CSS", chapters: cssChapters },
-  { levelName: "Intermediate CSS", chapters: cssChapters },
-  { levelName: "Advanced CSS", chapters: cssChapters },
-];
-
-const reactLevels = [
-  { levelName: "Beginner React", chapters: reactChapters },
-  { levelName: "Intermediate React", chapters: reactChapters },
-  { levelName: "Advanced React", chapters: reactChapters },
+  { levelName: "Beginner HTML", quests: htmlLevel1Quests },
+  { levelName: "Intermediate HTML", quests: htmlLevel1Quests },
+  { levelName: "Advanced HTML", quests: htmlLevel1Quests },
 ];
 
 // Map courses to their respective levels
 const courseLevelsMap = {
   html: htmlLevels,
-  javaScript: jsLevels,
-  css: cssLevels,
-  react: reactLevels,
 };
 
 export async function populateFirestore() {
   for (const [course, levels] of Object.entries(courseLevelsMap)) {
+    const courseRef = doc(db, "courses", course); // Adjusted path to ensure odd segments
+    await setDoc(courseRef, { courseName: course });
+
     for (let i = 0; i < levels.length; i++) {
       const level = levels[i];
-      const levelRef = collection(
-        db,
-        "course",
-        course,
-        "level",
-        `${i + 1}`,
-        "chapter"
-      );
+      const levelRef = doc(courseRef, "levels", `${i + 1}`); // Adjusted path to ensure odd segments
+      await setDoc(levelRef, { levelName: level.levelName });
 
-      for (let j = 0; j < level.chapters.length; j++) {
-        const chapter = level.chapters[j];
-        const chapterRef = doc(levelRef, `${j + 1}`);
-        await setDoc(chapterRef, { chapterName: chapter.chapterName });
+      const questsRef = collection(levelRef, "quests"); // Collection reference with even segments
+      for (let j = 0; j < level.quests.length; j++) {
+        const quest = level.quests[j];
+        const questRef = doc(questsRef, `${j + 1}`); // Adjusted path to ensure odd segments
+        await setDoc(questRef, { QuestName: quest.QuestName });
 
-        const lessonsRef = collection(chapterRef, "lesson");
-        for (let k = 0; k < chapter.lessons.length; k++) {
-          const lesson = chapter.lessons[k];
-          const lessonRef = doc(lessonsRef, `${k + 1}`);
-          await setDoc(lessonRef, { lessonName: lesson.lessonName });
-
-          const questionsRef = collection(lessonRef, "question");
-          for (let l = 0; l < lesson.questions.length; l++) {
-            const question = lesson.questions[l];
-            const questionRef = doc(questionsRef, `${l + 1}`);
-            await setDoc(questionRef, question);
-          }
+        const questionsRef = collection(questRef, "questions"); // Collection reference with even segments
+        for (let k = 0; k < quest.questions.length; k++) {
+          const question = quest.questions[k];
+          const questionRef = doc(questionsRef, `${k + 1}`); // Adjusted path to ensure odd segments
+          await setDoc(questionRef, question);
         }
       }
     }

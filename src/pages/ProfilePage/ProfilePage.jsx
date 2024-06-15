@@ -7,6 +7,7 @@ import UserAwards from "../../components/UserAwards/UserAwards";
 import FriendList from "../../components/friendList/friendList";
 import Overview from "../../components/overview/overview";
 import Nav from "../../components/nav/nav";
+import { Link } from "react-router-dom";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp.seconds * 1000);
@@ -54,11 +55,13 @@ function ProfilePage() {
       <Nav />
       <div className="profile-page">
         <div className="profile-page__top-container">
-          <img
-            className="profile-page__image-profile"
-            src={avatar}
-            alt="Profile"
-          />
+          <Link to={"/setting/profile"}>
+            <img
+              className="profile-page__image-profile"
+              src={avatar}
+              alt="Profile"
+            />
+          </Link>
           <p className="profile-page__name">{userName}</p>
         </div>
         <div className="profile-page__bottom-container">

@@ -39,6 +39,7 @@ export const createUser = async (userName, email, password) => {
         announcementsEmail: true,
         followingCount: 0,
         followerCount: 0,
+        favCourse: "",
       },
 
       { merge: false }

@@ -2,7 +2,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
-.lesson {
+.quest {
   @include Desktop {
     display: flex;
     width: 100%;
