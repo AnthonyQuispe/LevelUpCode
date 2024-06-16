@@ -5,7 +5,13 @@ import closeButton from "../../assets/icons/CloseIcon.png";
 import { db, auth } from "../../firebase/FirebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export default function QuestQuestions({ course, quest, question, level }) {
+export default function QuestQuestions({
+  course,
+  quest,
+  question,
+  level,
+  onQuestionCompletion,
+}) {
   const [questData, setQuestData] = useState(null);
   const [userCode, setUserCode] = useState("");
   const [result, setResult] = useState(null);
@@ -13,7 +19,7 @@ export default function QuestQuestions({ course, quest, question, level }) {
 
   useEffect(() => {
     const fetchQuestData = async () => {
-      const docPath = `courses/${course}/levels/${level}/quests/${quest}/questions/${question}`;
+      const docPath = `course/${course}/levels/${level}/quests/${quest}/questions/${question}`;
       const docRef = doc(db, docPath);
       const docSnap = await getDoc(docRef);
 
@@ -54,6 +60,12 @@ export default function QuestQuestions({ course, quest, question, level }) {
         </div>
       );
       await updateProgress("complete");
+
+      // Delay for 2 seconds before closing the result and moving to the next question
+      setTimeout(() => {
+        setResult(null); // Close the result modal
+        onQuestionCompletion(); // Proceed to the next question
+      }, 2000);
     } else {
       setResult(
         <div className="quest-question__modal">
@@ -88,7 +100,7 @@ export default function QuestQuestions({ course, quest, question, level }) {
     if (user) {
       const progressRef = doc(
         db,
-        `users/${user.uid}/courses/${course}/quests/${quest}/questions/${question}`
+        `users/${user.uid}/course/${course}/quests/${quest}/questions/${question}`
       );
       const currentDate = new Date();
       await setDoc(
@@ -97,11 +109,15 @@ export default function QuestQuestions({ course, quest, question, level }) {
         { merge: true }
       );
 
-      if (status === "complete") {
-        const userDocRef = doc(db, "users", user.uid);
+      // Check if this is the fifth question and it's completed correctly
+      if (status === "complete" && parseInt(question) === 5) {
+        const questRef = doc(
+          db,
+          `users/${user.uid}/course/${course}/quests/${quest}`
+        );
         await setDoc(
-          userDocRef,
-          { lastQuestCompletionDate: currentDate },
+          questRef,
+          { status: "complete", completionDate: currentDate },
           { merge: true }
         );
       }

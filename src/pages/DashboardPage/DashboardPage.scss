@@ -91,17 +91,21 @@
 
   &__title {
     @include Title;
-    width: 100%;
-    background-color: $Light-Purple;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    border-radius: 10px;
-    height: 50px;
+    &-container {
+      border: none;
+      background-color: $Light-Purple;
+      border-radius: 10px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      height: 50px;
 
-    @include Tablet {
-      height: 80px;
+      @include Tablet {
+        height: 80px;
+      }
     }
   }
 
@@ -117,17 +121,25 @@
     width: 100%;
   }
 
-  &__level-name {
+  &__level-select {
     border: 3px solid $Green;
     background-color: transparent;
-    width: 200px;
     height: 50px;
     border-radius: 10px;
-    @include Label;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+    padding: 0 10px;
+
+    @include Body;
 
     @include Tablet {
       height: 80px;
-      width: 250px;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 

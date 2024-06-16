@@ -853,9 +853,9 @@ const htmlLevel1Quests = [
 
 // Define levels for each course
 const htmlLevels = [
-  { levelName: "Beginner HTML", quests: htmlLevel1Quests },
-  { levelName: "Intermediate HTML", quests: htmlLevel1Quests },
-  { levelName: "Advanced HTML", quests: htmlLevel1Quests },
+  { levelName: "Novice", quests: htmlLevel1Quests },
+  { levelName: "Intermediate", quests: htmlLevel1Quests },
+  { levelName: "Veteran", quests: htmlLevel1Quests },
 ];
 
 // Map courses to their respective levels
@@ -865,7 +865,7 @@ const courseLevelsMap = {
 
 export async function populateFirestore() {
   for (const [course, levels] of Object.entries(courseLevelsMap)) {
-    const courseRef = doc(db, "courses", course); // Adjusted path to ensure odd segments
+    const courseRef = doc(db, "course", course); // Adjusted path to ensure odd segments
     await setDoc(courseRef, { courseName: course });
 
     for (let i = 0; i < levels.length; i++) {

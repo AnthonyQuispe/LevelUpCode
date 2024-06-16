@@ -14,7 +14,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export const UserContext = createContext();
 
-// Create a provider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -23,6 +22,7 @@ export const UserProvider = ({ children }) => {
   const [userCourses, setUserCourses] = useState(null);
   const [awards, setAwards] = useState([]);
   const [userAwards, setUserAwards] = useState(null);
+  const [courseTracker, setCourseTracker] = useState({}); // New state to track course progress
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,9 +38,8 @@ export const UserProvider = ({ children }) => {
           userAwards[doc.id] = doc.data();
         });
 
-        setUserAwards(userAwards); // Set the user awards in the state
+        setUserAwards(userAwards);
 
-        // Check and add new awards if criteria are met
         for (const award of awardsArray) {
           const conditionMet = checkAwardCondition(award, userData);
           if (conditionMet && !userAwards[award.id]) {
@@ -56,7 +55,7 @@ export const UserProvider = ({ children }) => {
             };
           }
         }
-        setUserAwards(userAwards); // Update the user awards after checking
+        setUserAwards(userAwards);
       } catch (err) {
         console.error("Error updating user awards:", err);
         setError(err.message);
@@ -71,6 +70,24 @@ export const UserProvider = ({ children }) => {
       return false;
     };
 
+    const fetchCourseProgress = async (uid, course) => {
+      try {
+        const courseRef = collection(
+          db,
+          `users/${uid}/course/${course}/quests`
+        );
+        const querySnapshot = await getDocs(courseRef);
+        const courseProgress = {};
+        querySnapshot.forEach((doc) => {
+          courseProgress[doc.id] = doc.data().status === "complete";
+        });
+        setCourseTracker(courseProgress);
+      } catch (err) {
+        console.error("Error fetching course progress:", err);
+        setError(err.message);
+      }
+    };
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setLoading(true);
       if (user) {
@@ -78,7 +95,7 @@ export const UserProvider = ({ children }) => {
         try {
           let userDataQuery;
           if (location.pathname.startsWith("/profile/")) {
-            const username = location.pathname.split("/")[2]; // Extract username from the path
+            const username = location.pathname.split("/")[2];
             const userRef = collection(db, "users");
             const q = query(userRef, where("userName", "==", username));
             const querySnapshot = await getDocs(q);
@@ -98,7 +115,6 @@ export const UserProvider = ({ children }) => {
             const userData = userDoc.data();
             setUserData(userData);
 
-            // Fetch user's courses
             const coursesRef = collection(db, "users", user.uid, "course");
             const courseSnapshot = await getDocs(coursesRef);
             if (courseSnapshot.empty) {
@@ -109,19 +125,20 @@ export const UserProvider = ({ children }) => {
                 courses[doc.id] = doc.data();
               });
               setUserCourses(courses);
+
+              // Fetch and update course progress
+              await fetchCourseProgress(user.uid, userData.currentCourse);
+
+              const awardsRef = collection(db, "awards");
+              const awardsSnapshot = await getDocs(awardsRef);
+              const awardsArray = [];
+              awardsSnapshot.forEach((doc) => {
+                awardsArray.push({ id: doc.id, ...doc.data() });
+              });
+              setAwards(awardsArray);
+
+              await checkAndUpdateUserAwards(user.uid, awardsArray, userData);
             }
-
-            // Fetch awards data
-            const awardsRef = collection(db, "awards");
-            const awardsSnapshot = await getDocs(awardsRef);
-            const awardsArray = [];
-            awardsSnapshot.forEach((doc) => {
-              awardsArray.push({ id: doc.id, ...doc.data() });
-            });
-            setAwards(awardsArray);
-
-            // Check and update user awards
-            await checkAndUpdateUserAwards(user.uid, awardsArray, userData);
           } else {
             console.error("No such document!");
             setError("User data not found");
@@ -148,7 +165,6 @@ export const UserProvider = ({ children }) => {
     return () => unsubscribe();
   }, [auth, navigate, location]);
 
-  // Method to update user data
   const updateUserData = async (uid, newUserData) => {
     try {
       const userDocRef = doc(db, "users", uid);
@@ -171,6 +187,7 @@ export const UserProvider = ({ children }) => {
         awards,
         userAwards,
         updateUserData,
+        courseTracker,
       }}
     >
       {children}

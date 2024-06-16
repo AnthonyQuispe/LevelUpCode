@@ -1,12 +1,12 @@
 import "./SelectLanguage.scss";
 import HtmlIcon from "../../assets/icons/HtmlIcon.svg";
 import ReactIcon from "../../assets/icons/ReactIcon.svg";
-import Javascript from "../../assets/icons/JavascriptIcon.svg";
+import JavascriptIcon from "../../assets/icons/JavascriptIcon.svg";
 import CssIcon from "../../assets/icons/CssIcon.svg";
 import Button from "../../components/button/button";
 import { useState } from "react";
 import { auth, db } from "../../firebase/FirebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, runTransaction } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import AlertModal from "../../components/AlertModal/AlertModal";
 
@@ -14,7 +14,7 @@ const availableCourses = [
   { icon: HtmlIcon, text: "html" },
   { icon: CssIcon, text: "css" },
   { icon: ReactIcon, text: "react" },
-  { icon: Javascript, text: "javascript" },
+  { icon: JavascriptIcon, text: "javascript" },
 ];
 
 function SelectLanguage() {
@@ -45,17 +45,33 @@ function SelectLanguage() {
         return;
       }
 
-      const courseDocRef = doc(db, "users", user.uid, "course", activeCourse);
+      const userDocRef = doc(db, "users", user.uid); // Reference to the user's document
+      const courseDocRef = doc(userDocRef, "course", activeCourse); // Reference to the course within user's document
 
-      await setDoc(courseDocRef, {
-        courseName: activeCourse,
-        startedAt: new Date(),
+      // Start a Firestore transaction to ensure atomic updates
+      await runTransaction(db, async (transaction) => {
+        const userDoc = await transaction.get(userDocRef);
+        const userData = userDoc.data();
+
+        // Update the course details in the user document
+        transaction.update(userDocRef, {
+          currentCourse: activeCourse,
+        });
+
+        // Create or update the course document within the user's courses subcollection
+        transaction.set(courseDocRef, {
+          courseName: activeCourse,
+          startedAt: new Date(),
+        });
+
+        // Additional logic if needed
       });
-      navigate("/"); // Navigate to the home page
+
+      navigate("/"); // Navigate to the home page after successful update
     } catch (error) {
-      setAlertMessage("Failed to add course. Please try again.", error);
+      console.error("Transaction failed: ", error);
+      setAlertMessage("Failed to add course. Please try again.");
       setAlertVisible(true);
-      return;
     }
   };
 
@@ -68,7 +84,7 @@ function SelectLanguage() {
       />
       <h1 className="select-language__title">Choose Your Language</h1>
       <h2 className="select-language__subtitle">
-        You’ll be able to change this later
+        You’ll be able to change this at any time
       </h2>
       <form className="select-language__form" onSubmit={handleFormSubmit}>
         <div className="select-language__courses-container">
