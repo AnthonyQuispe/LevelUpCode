@@ -1,5 +1,5 @@
 import "./DashboardPage.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import Nav from "../../components/nav/nav";
@@ -13,45 +13,35 @@ import emptyClassIcon from "../../assets/class/EmptyClassIcon.svg";
 import playButtonIcon from "../../assets/icons/PlayButtonIcon.svg";
 import profilePlaceholder from "../../assets/placeholder/Profile.png";
 
-let CourseTracker = {
-  Title: "HTML",
-  Level: "Level 1 : Beginner HTML",
-  Quest1: "Completed",
-  Quest2: "New",
-  Quest3: "New",
-  Quest4: "New",
-  Quest5: "New",
-  Quest6: "New",
-  Quest7: "New",
-  Quest8: "New",
-  Quest9: "New",
-  Quest10: "New",
-  Quest11: "New",
-  Quest12: "New",
-  Quest13: "New",
-  Quest14: "New",
-  Quest15: "New",
-  Quest16: "New",
-  Quest17: "New",
-  Quest18: "New",
-  Quest19: "New",
-  Quest20: "New",
-  FinalQuest: "New",
-};
-
 const isCompleted = (status) => {
-  return status === "Completed";
+  return status === "complete" || status === "started";
 };
 
 function DashboardPage() {
-  const { userData } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { userData, courseTracker, updateUserData } = useContext(UserContext);
   const [userName, setUserName] = useState("");
+  const [currentCourse, setCurrentCourse] = useState("");
+  const [currentLevel, setCurrentLevel] = useState(1);
 
   useEffect(() => {
     if (userData) {
       setUserName(userData.userName || "");
+      setCurrentCourse(userData.currentCourse || "");
+      setCurrentLevel(userData.currentLevel || 1);
+      console.log(courseTracker);
     }
-  }, [userData]);
+  }, [userData, courseTracker]);
+
+  const handleLevelChange = async (e) => {
+    const newLevel = parseInt(e.target.value);
+    setCurrentLevel(newLevel);
+    if (userData) {
+      await updateUserData(userData.uid, { currentLevel: newLevel });
+      // Reload course progress for the new level
+      navigate("/"); // Refresh the page to trigger context re-fetch
+    }
+  };
 
   const renderCourseIcon = (status, defaultIcon, completedIcon) => {
     return (
@@ -63,13 +53,17 @@ function DashboardPage() {
     );
   };
 
+  const handleCourseClick = () => {
+    navigate("/select/course");
+  };
+
   return (
     <div className="dashboard">
       <Nav />
       <div className="dashboard__page">
         <div className="dashboard__top">
           <div className="dashboard__top-container">
-            <Link className="dashboard__username">
+            <Link className="dashboard__username" to="/setting/profile">
               <img
                 className="dashboard__profile-icon"
                 src={profilePlaceholder}
@@ -85,177 +79,255 @@ function DashboardPage() {
               />
             </button>
           </div>
-          <div className="dashboard__title-container">
-            <h1 className="dashboard__title">{CourseTracker.Title}</h1>
-          </div>
+          <button
+            className="dashboard__title-container"
+            onClick={handleCourseClick}
+          >
+            <h1 className="dashboard__title">{currentCourse}</h1>
+          </button>
         </div>
         <div className="dashboard__bottom">
           <div className="dashboard__level-container">
-            <button className="dashboard__level-name">
-              {CourseTracker.Level}
-            </button>
+            <select
+              className="dashboard__level-select"
+              value={currentLevel}
+              onChange={handleLevelChange}
+            >
+              <option value={1} className="dashboard__level-option">
+                Novice
+              </option>
+              <option value={2} className="dashboard__level-option">
+                Intermediate
+              </option>
+              <option value={3} className="dashboard__level-option">
+                Veteran
+              </option>
+            </select>
           </div>
           <div className="dashboard__courses">
             <div className="dashboard__course-row dashboard__course-row--first">
-              <Link className="dashboard__course dashboard__course--big">
+              <Link
+                className="dashboard__course dashboard__course--big"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/1/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest1,
+                  courseTracker.Quest1,
                   purpleClassIcon,
                   pinkClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/2/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest1,
+                  courseTracker.Quest2,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/3/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest3,
+                  courseTracker.Quest3,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/4/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest4,
+                  courseTracker.Quest4,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--second">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/5/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest5,
+                  courseTracker.Quest5,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--third">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/6/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest6,
+                  courseTracker.Quest6,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/7/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest7,
+                  courseTracker.Quest7,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/8/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest8,
+                  courseTracker.Quest8,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course dashboard__course--big">
+              <Link
+                className="dashboard__course dashboard__course--big"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/9/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest9,
+                  courseTracker.Quest9,
                   purpleClassIcon,
                   greenClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--fourth">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/10/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest10,
+                  courseTracker.Quest10,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--fifth">
-              <Link className="dashboard__course dashboard__course--big">
+              <Link
+                className="dashboard__course dashboard__course--big"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/11/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest11,
+                  courseTracker.Quest11,
                   purpleClassIcon,
                   pinkClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/12/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest12,
+                  courseTracker.Quest12,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/13/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest13,
+                  courseTracker.Quest13,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/14/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest14,
+                  courseTracker.Quest14,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--sixth">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/15/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest15,
+                  courseTracker.Quest15,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--seventh">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/16/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest16,
+                  courseTracker.Quest16,
                   emptyClassIcon,
                   triangleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/17/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest17,
+                  courseTracker.Quest17,
                   emptyClassIcon,
                   circleClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/18/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest18,
+                  courseTracker.Quest18,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
-              <Link className="dashboard__course dashboard__course--big">
+              <Link
+                className="dashboard__course dashboard__course--big"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/19/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest19,
+                  courseTracker.Quest19,
                   purpleClassIcon,
                   greenClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--eighth">
-              <Link className="dashboard__course">
+              <Link
+                className="dashboard__course"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/20/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.Quest20,
+                  courseTracker.Quest20,
                   emptyClassIcon,
                   xClassIcon
                 )}
               </Link>
             </div>
             <div className="dashboard__course-row dashboard__course-row--ninth">
-              <Link className="dashboard__course dashboard__course--big">
+              <Link
+                className="dashboard__course dashboard__course--big"
+                to={`/course/${currentCourse}/level/${currentLevel}/quest/21/question/1`}
+              >
                 {renderCourseIcon(
-                  CourseTracker.FinalQuest,
+                  courseTracker.FinalQuest,
                   purpleClassIcon,
                   pinkClassIcon
                 )}

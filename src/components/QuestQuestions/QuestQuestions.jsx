@@ -63,8 +63,8 @@ export default function QuestQuestions({
 
       // Delay for 2 seconds before closing the result and moving to the next question
       setTimeout(() => {
-        setResult(null); // Close the result modal
-        onQuestionCompletion(); // Proceed to the next question
+        setResult(null);
+        onQuestionCompletion();
       }, 2000);
     } else {
       setResult(
@@ -100,7 +100,7 @@ export default function QuestQuestions({
     if (user) {
       const progressRef = doc(
         db,
-        `users/${user.uid}/course/${course}/quests/${quest}/questions/${question}`
+        `users/${user.uid}/course/${course}/level/${level}/quests/${quest}/questions/${question}`
       );
       const currentDate = new Date();
       await setDoc(
@@ -113,7 +113,7 @@ export default function QuestQuestions({
       if (status === "complete" && parseInt(question) === 5) {
         const questRef = doc(
           db,
-          `users/${user.uid}/course/${course}/quests/${quest}`
+          `users/${user.uid}/course/${course}/level/${level}/quests/${quest}`
         );
         await setDoc(
           questRef,

@@ -14,6 +14,31 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export const UserContext = createContext();
 
+const initialCourseTracker = {
+  Level: 1,
+  Quest1: "started",
+  Quest2: "new",
+  Quest3: "new",
+  Quest4: "new",
+  Quest5: "new",
+  Quest6: "new",
+  Quest7: "new",
+  Quest8: "new",
+  Quest9: "new",
+  Quest10: "new",
+  Quest11: "new",
+  Quest12: "new",
+  Quest13: "new",
+  Quest14: "new",
+  Quest15: "new",
+  Quest16: "new",
+  Quest17: "new",
+  Quest18: "new",
+  Quest19: "new",
+  Quest20: "new",
+  FinalQuest: "new",
+};
+
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -22,7 +47,7 @@ export const UserProvider = ({ children }) => {
   const [userCourses, setUserCourses] = useState(null);
   const [awards, setAwards] = useState([]);
   const [userAwards, setUserAwards] = useState(null);
-  const [courseTracker, setCourseTracker] = useState({}); // New state to track course progress
+  const [courseTracker, setCourseTracker] = useState(initialCourseTracker);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,17 +95,20 @@ export const UserProvider = ({ children }) => {
       return false;
     };
 
-    const fetchCourseProgress = async (uid, course) => {
+    const fetchCourseProgress = async (uid, course, level) => {
       try {
-        const courseRef = collection(
-          db,
-          `users/${uid}/course/${course}/quests`
-        );
+        const path = `users/${uid}/course/${course}/level/${level}/quests`;
+
+        const courseRef = collection(db, path);
         const querySnapshot = await getDocs(courseRef);
-        const courseProgress = {};
+
+        const courseProgress = { ...initialCourseTracker, Level: level };
         querySnapshot.forEach((doc) => {
-          courseProgress[doc.id] = doc.data().status === "complete";
+          const questId = doc.id;
+          const status = doc.data().status || "new";
+          courseProgress[`Quest${questId}`] = status;
         });
+
         setCourseTracker(courseProgress);
       } catch (err) {
         console.error("Error fetching course progress:", err);
@@ -127,7 +155,12 @@ export const UserProvider = ({ children }) => {
               setUserCourses(courses);
 
               // Fetch and update course progress
-              await fetchCourseProgress(user.uid, userData.currentCourse);
+              const currentLevel = userData.currentLevel || 1;
+              await fetchCourseProgress(
+                user.uid,
+                userData.currentCourse,
+                currentLevel
+              );
 
               const awardsRef = collection(db, "awards");
               const awardsSnapshot = await getDocs(awardsRef);

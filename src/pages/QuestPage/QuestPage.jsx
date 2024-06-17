@@ -5,7 +5,7 @@ import QuestQuestions from "../../components/QuestQuestions/QuestQuestions";
 import LevelupAI from "../../components/levelupAi/levelupAi";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase/FirebaseConfig";
 
 function QuestPage() {
@@ -22,7 +22,7 @@ function QuestPage() {
     if (currentQuestionNumber < 5) {
       // Navigate to the next question
       navigate(
-        `/course/${course}/level/${level}/quest/${quest}/question/${
+        `/course/${course}/level/${level}/quests/${quest}/questions/${
           currentQuestionNumber + 1
         }`
       );
@@ -32,7 +32,7 @@ function QuestPage() {
       if (user) {
         const questRef = doc(
           db,
-          `users/${user.uid}/course/${course}/quests/${quest}`
+          `users/${user.uid}/course/${course}/level/${level}/quests/${quest}`
         );
         const currentDate = new Date();
         await setDoc(
@@ -41,7 +41,7 @@ function QuestPage() {
           { merge: true }
         );
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/");
         }, 2000); // Redirect after 2 seconds
       }
     }
