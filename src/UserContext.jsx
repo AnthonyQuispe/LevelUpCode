@@ -155,11 +155,11 @@ export const UserProvider = ({ children }) => {
               setUserCourses(courses);
 
               // Fetch and update course progress
-              const currentLevel = userData.currentLevel || 1;
+              const courseLevel = userData.courseLevel || 1;
               await fetchCourseProgress(
                 user.uid,
                 userData.currentCourse,
-                currentLevel
+                courseLevel
               );
 
               const awardsRef = collection(db, "awards");

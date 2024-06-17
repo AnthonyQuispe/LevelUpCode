@@ -17,30 +17,30 @@ const isCompleted = (status) => {
   return status === "complete" || status === "started";
 };
 
+const difficultyNames = {
+  1: "Novice",
+  2: "Intermediate",
+  3: "Veteran",
+};
+
 function DashboardPage() {
   const navigate = useNavigate();
-  const { userData, courseTracker, updateUserData } = useContext(UserContext);
+  const { userData, courseTracker } = useContext(UserContext);
   const [userName, setUserName] = useState("");
   const [currentCourse, setCurrentCourse] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [courseLevel, setCourseLevel] = useState(1);
 
   useEffect(() => {
     if (userData) {
       setUserName(userData.userName || "");
       setCurrentCourse(userData.currentCourse || "");
-      setCurrentLevel(userData.currentLevel || 1);
+      setCourseLevel(userData.courseLevel || 1);
       console.log(courseTracker);
     }
   }, [userData, courseTracker]);
 
-  const handleLevelChange = async (e) => {
-    const newLevel = parseInt(e.target.value);
-    setCurrentLevel(newLevel);
-    if (userData) {
-      await updateUserData(userData.uid, { currentLevel: newLevel });
-      // Reload course progress for the new level
-      navigate("/"); // Refresh the page to trigger context re-fetch
-    }
+  const handleLevelClick = async (e) => {
+    navigate("/select/difficulty");
   };
 
   const renderCourseIcon = (status, defaultIcon, completedIcon) => {
@@ -88,27 +88,18 @@ function DashboardPage() {
         </div>
         <div className="dashboard__bottom">
           <div className="dashboard__level-container">
-            <select
+            <button
               className="dashboard__level-select"
-              value={currentLevel}
-              onChange={handleLevelChange}
+              onClick={handleLevelClick}
             >
-              <option value={1} className="dashboard__level-option">
-                Novice
-              </option>
-              <option value={2} className="dashboard__level-option">
-                Intermediate
-              </option>
-              <option value={3} className="dashboard__level-option">
-                Veteran
-              </option>
-            </select>
+              {difficultyNames[courseLevel]}
+            </button>
           </div>
           <div className="dashboard__courses">
             <div className="dashboard__course-row dashboard__course-row--first">
               <Link
                 className="dashboard__course dashboard__course--big"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/1/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/1/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest1,
@@ -118,7 +109,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/2/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/2/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest2,
@@ -128,7 +119,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/3/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/3/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest3,
@@ -138,7 +129,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/4/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/4/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest4,
@@ -150,7 +141,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--second">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/5/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/5/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest5,
@@ -162,7 +153,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--third">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/6/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/6/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest6,
@@ -172,7 +163,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/7/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/7/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest7,
@@ -182,7 +173,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/8/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/8/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest8,
@@ -192,7 +183,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course dashboard__course--big"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/9/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/9/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest9,
@@ -204,7 +195,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--fourth">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/10/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/10/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest10,
@@ -216,7 +207,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--fifth">
               <Link
                 className="dashboard__course dashboard__course--big"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/11/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/11/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest11,
@@ -226,7 +217,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/12/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/12/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest12,
@@ -236,7 +227,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/13/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/13/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest13,
@@ -246,7 +237,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/14/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/14/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest14,
@@ -258,7 +249,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--sixth">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/15/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/15/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest15,
@@ -270,7 +261,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--seventh">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/16/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/16/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest16,
@@ -280,7 +271,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/17/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/17/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest17,
@@ -290,7 +281,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/18/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/18/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest18,
@@ -300,7 +291,7 @@ function DashboardPage() {
               </Link>
               <Link
                 className="dashboard__course dashboard__course--big"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/19/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/19/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest19,
@@ -312,7 +303,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--eighth">
               <Link
                 className="dashboard__course"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/20/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/20/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.Quest20,
@@ -324,7 +315,7 @@ function DashboardPage() {
             <div className="dashboard__course-row dashboard__course-row--ninth">
               <Link
                 className="dashboard__course dashboard__course--big"
-                to={`/course/${currentCourse}/level/${currentLevel}/quest/21/question/1`}
+                to={`/course/${currentCourse}/level/${courseLevel}/quest/21/question/1`}
               >
                 {renderCourseIcon(
                   courseTracker.FinalQuest,

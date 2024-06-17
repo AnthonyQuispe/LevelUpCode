@@ -8,6 +8,7 @@ import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage"
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
+import SelectDifficulty from "./pages/SelectDifficulty/SelectDifficulty";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ProfilePagePublic from "./pages/ProfilePagePublic/ProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
+          <Route path="/select/difficulty" element={<SelectDifficulty />} />
           <Route path="/" element={<DashboardPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
