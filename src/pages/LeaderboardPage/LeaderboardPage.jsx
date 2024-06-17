@@ -24,7 +24,7 @@ function LeaderboardPage() {
   const fetchLeaderboard = useCallback(async () => {
     try {
       const leaderboardRef = collection(db, "leaderboard");
-      const q = query(leaderboardRef, orderBy("Rank"), limit(20));
+      const q = query(leaderboardRef, orderBy("rank"), limit(20));
       const querySnapshot = await getDocs(q);
 
       const newEntries = querySnapshot.docs.map((doc) => {
@@ -47,9 +47,9 @@ function LeaderboardPage() {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          console.log("Current user data:", userData); // Debug log
+          console.log("Current user data:", userData);
           setCurrentUser(userData);
-          setCurrentUserRank(userData.Rank);
+          setCurrentUserRank(userData.rank);
         }
       }
     } catch (error) {
@@ -80,7 +80,7 @@ function LeaderboardPage() {
             {leaderboard.map((user, index) => (
               <li key={index} className="leaderboard__list-item">
                 <div className="leaderboard__profile">
-                  <p className="leaderboard__position">{user.Rank}</p>
+                  <p className="leaderboard__position">{user.rank}</p>
                   <img
                     className="leaderboard__profile-img"
                     src={user.avatar ? user.avatar : ProfilePlaceholder}

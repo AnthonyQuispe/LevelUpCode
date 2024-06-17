@@ -26,7 +26,7 @@ const GoogleButton = () => {
           joinDate: serverTimestamp(),
           name: user.displayName || "No Name Enter",
           rank: 0,
-          courseStreak: 0,
+          QuestCompleted: 0,
           followingCount: 0,
           followerCount: 0,
           soundEnabled: true,

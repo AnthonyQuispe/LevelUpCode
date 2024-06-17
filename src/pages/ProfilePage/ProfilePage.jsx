@@ -18,7 +18,6 @@ const formatDate = (timestamp) => {
 function ProfilePage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { userData } = useContext(UserContext);
-  const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [following, setFollowing] = useState("");
   const [follower, setFollower] = useState("");
@@ -28,7 +27,6 @@ function ProfilePage() {
 
   useEffect(() => {
     if (userData) {
-      setName(userData.name || "");
       setUserName(userData.userName || "");
       setCourses(userData.courses || 0);
       setFollowing(userData.followingCount || 0);

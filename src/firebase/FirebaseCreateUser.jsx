@@ -31,7 +31,7 @@ export const createUser = async (userName, email, password) => {
         joinDate: serverTimestamp(),
         name: "No Name Enter",
         rank: 0,
-        courseStreak: 0,
+        QuestCompleted: 0,
         soundEnabled: true,
         remindersEmail: true,
         friendsEmail: true,

@@ -30,7 +30,7 @@ const formatDate = (timestamp) => {
 function ProfilePage() {
   const { username } = useParams(); // Get the username from the URL
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const { userData, loading } = useContext(UserContext);
+  const { loading } = useContext(UserContext);
   const [profileUserData, setProfileUserData] = useState(null);
   const auth = getAuth();
   const currentUser = auth.currentUser;

@@ -1,6 +1,6 @@
 import "./overview.scss";
 import FireIcon from "../../assets/icons/FireIcon.svg";
-import CourseIcon from "../../assets/icons/CoursesIcon.svg";
+import QuestIcon from "../../assets/icons/CoursesIcon.svg";
 import CrownIcon from "../../assets/icons/CrownIcon.svg";
 import AwardIcon from "../../assets/icons/AwardIcon.svg";
 import { useContext, useState, useEffect } from "react";
@@ -8,14 +8,15 @@ import { UserContext } from "../../UserContext";
 
 export default function Overview() {
   const { userData, userAwards } = useContext(UserContext);
-  const [course, setCourses] = useState(0);
+  const [quest, setQuest] = useState(0);
+
   const [rank, setRank] = useState(0);
   const [award, setAward] = useState(0);
   const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     if (userData) {
-      setCourses(userData.courses || 0);
+      setQuest(userData.quest || 0);
       setRank(userData.rank || 0);
       setStreak(userData.dailyStreak || 0);
     }
@@ -36,10 +37,10 @@ export default function Overview() {
           </div>
         </div>
         <div className="overview__container">
-          <img src={CourseIcon} alt="Course icon" className="overview__img" />
+          <img src={QuestIcon} alt="Course icon" className="overview__img" />
           <div className="overview__text-container">
-            <p className="overview__count">{course}</p>
-            <p className="overview__decription">Courses</p>
+            <p className="overview__count">{quest}</p>
+            <p className="overview__decription">Quest</p>
           </div>
         </div>
       </div>
