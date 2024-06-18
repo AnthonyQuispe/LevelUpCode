@@ -16,7 +16,7 @@ export default function Overview() {
 
   useEffect(() => {
     if (userData) {
-      setQuest(userData.quest || 0);
+      setQuest(userData.QuestCompleted || 0);
       setRank(userData.rank || 0);
       setStreak(userData.dailyStreak || 0);
     }

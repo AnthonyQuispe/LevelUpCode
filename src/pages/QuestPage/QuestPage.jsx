@@ -14,12 +14,22 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db, auth } from "../../firebase/FirebaseConfig";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import { useState } from "react";
 
 function QuestPage() {
   const { course, level, quest, question } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const updateLeaderboard = async (userId, newXp, username, avatar) => {
+  const updateLeaderboardAndUserRank = async (
+    userId,
+    newXp,
+    username,
+    avatar
+  ) => {
+    setLoading(true); // Set loading to true before async operation
+
     const leaderboardRef = doc(db, `leaderboard/${userId}`);
     await setDoc(
       leaderboardRef,
@@ -34,15 +44,22 @@ function QuestPage() {
     );
     const leaderboardSnapshot = await getDocs(leaderboardQuery);
 
-    let rank = 1;
+    let rank = 0;
     for (const docSnapshot of leaderboardSnapshot.docs) {
       await updateDoc(doc(db, `leaderboard/${docSnapshot.id}`), {
         rank: rank++,
       });
     }
+
+    const userRef = doc(db, `users/${userId}`);
+    await updateDoc(userRef, { rank: rank });
+
+    setLoading(false);
   };
 
   const handleQuestionCompletion = async () => {
+    setLoading(true);
+
     const currentQuestionNumber = parseInt(question);
     if (currentQuestionNumber < 5) {
       navigate(
@@ -86,18 +103,25 @@ function QuestPage() {
           });
           console.log("User XP and QuestCompleted updated");
 
-          // Update leaderboard
-          await updateLeaderboard(
+          // Update leaderboard and user rank
+          await updateLeaderboardAndUserRank(
             user.uid,
             newXp,
             userData.userName,
             userData.avatar
           );
+
+          // Handle course streak
+          await handleCourseStreak(
+            user.uid,
+            currentDate,
+            userData.lastCompletionDate
+          );
         } else {
           const newXp = 10;
           const newQuestCompleted = 1;
-          const userName = user.userName || "Unknown User";
-          const avatar = user.avatar || "";
+          const userName = user.displayName || "Unknown User";
+          const avatar = user.photoURL || "";
 
           await setDoc(
             userRef,
@@ -106,15 +130,14 @@ function QuestPage() {
               QuestCompleted: newQuestCompleted,
               userName: userName,
               avatar: avatar,
+              courseStreak: 1,
+              lastCompletionDate: currentDate,
             },
             { merge: true }
           );
-          console.log(
-            "User document created with initial Xp and QuestCompleted"
-          );
 
-          // Update leaderboard
-          await updateLeaderboard(user.uid, newXp, userName, avatar);
+          // Update leaderboard and user rank
+          await updateLeaderboardAndUserRank(user.uid, newXp, userName, avatar);
         }
 
         await setDoc(
@@ -125,10 +148,43 @@ function QuestPage() {
         console.log("Quest marked as complete");
 
         setTimeout(() => {
+          setLoading(false); // Set loading to false before navigation
           navigate("/");
         }, 2000);
       }
     }
+  };
+
+  const handleCourseStreak = async (
+    userId,
+    currentDate,
+    lastCompletionDate
+  ) => {
+    const userRef = doc(db, `users/${userId}`);
+    const userDoc = await getDoc(userRef);
+    const userData = userDoc.data();
+    let courseStreak = userData.courseStreak || 0;
+
+    if (!lastCompletionDate) {
+      // No previous completion date, first completion of the streak
+      courseStreak = 1;
+    } else {
+      const diffInMs = currentDate - lastCompletionDate.toDate();
+      const diffInHours = diffInMs / (1000 * 60 * 60);
+
+      if (diffInHours >= 24) {
+        // More than 24 hours since last completion, reset streak to 1
+        courseStreak = 1;
+      } else {
+        // Less than 24 hours since last completion, increment streak
+        courseStreak += 1;
+      }
+    }
+
+    await updateDoc(userRef, {
+      courseStreak: courseStreak,
+      lastCompletionDate: currentDate,
+    });
   };
 
   return (
@@ -143,6 +199,7 @@ function QuestPage() {
           question={question}
           onQuestionCompletion={handleQuestionCompletion}
         />
+        {loading && <LoadingModal />}
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ export default function Input({
   type,
   value,
   onChange,
-  onKeyPress,
   placeholder,
+  name,
 }) {
   return (
     <input
@@ -14,8 +14,8 @@ export default function Input({
       type={type}
       value={value}
       onChange={onChange}
-      onKeyPress={onKeyPress}
       placeholder={placeholder}
+      name={name}
     />
   );
 }
