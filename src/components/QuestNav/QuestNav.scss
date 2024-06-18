@@ -5,20 +5,17 @@
 .quest-nav {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+
   max-width: 500px;
 
   &__img {
     width: 100%;
     height: auto;
     transform: scaleX(-1);
-
-    &--ai {
-      border-radius: 100%;
-    }
   }
 
   &__progress-bar {
+    margin: 0 auto;
     min-width: 150px;
     min-height: 25px;
     width: 54%;

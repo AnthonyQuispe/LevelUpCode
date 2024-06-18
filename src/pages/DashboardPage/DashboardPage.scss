@@ -207,3 +207,12 @@
     }
   }
 }
+
+.dashboard__coming-soon {
+  display: flex;
+  justify-content: center;
+
+  &-text {
+    @include Body;
+  }
+}

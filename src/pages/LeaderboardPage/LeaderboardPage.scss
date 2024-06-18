@@ -45,12 +45,14 @@
 
   &__position {
     @include Body;
+    width: 10px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 10px;
 
     &-item {
       width: 100%;

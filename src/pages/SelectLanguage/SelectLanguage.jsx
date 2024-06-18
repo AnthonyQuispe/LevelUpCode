@@ -45,8 +45,8 @@ function SelectLanguage() {
         return;
       }
 
-      const userDocRef = doc(db, "users", user.uid); // Reference to the user's document
-      const courseDocRef = doc(userDocRef, "course", activeCourse); // Reference to the course within user's document
+      const userDocRef = doc(db, "users", user.uid);
+      const courseDocRef = doc(userDocRef, "course", activeCourse);
 
       // Start a Firestore transaction to ensure atomic updates
       await runTransaction(db, async (transaction) => {
