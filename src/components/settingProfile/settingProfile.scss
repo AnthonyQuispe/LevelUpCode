@@ -7,11 +7,6 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  overflow-y: scroll;
-
-  @include Desktop {
-    overflow-y: unset;
-  }
 
   &__top-container {
     width: 100%;
@@ -87,8 +82,9 @@
   &__form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 320px;
+    max-width: 350px;
     gap: 20px;
 
     @include Tablet {

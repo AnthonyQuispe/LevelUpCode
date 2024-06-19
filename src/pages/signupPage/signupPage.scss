@@ -115,7 +115,7 @@
   }
 
   &__link {
-    @include Body;
+    @include Links;
     color: $Pink;
     margin-bottom: 20px;
 
@@ -127,7 +127,7 @@
     }
 
     &-text {
-      @include Body;
+      @include Links;
     }
   }
 }

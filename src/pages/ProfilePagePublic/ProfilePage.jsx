@@ -1,4 +1,4 @@
-import "./ProfilePage.scss";
+import "../ProfilePage/ProfilePage.scss";
 import { useContext, useState, useEffect, useCallback } from "react";
 import { UserContext } from "../../UserContext";
 import { getAuth } from "firebase/auth";

@@ -30,128 +30,122 @@ function QuestPage() {
   ) => {
     setLoading(true); // Set loading to true before async operation
 
-    const leaderboardRef = doc(db, `leaderboard/${userId}`);
-    await setDoc(
-      leaderboardRef,
-      { Xp: newXp, username: username, avatar: avatar },
-      { merge: true }
-    );
+    try {
+      const leaderboardRef = doc(db, `leaderboard/${userId}`);
+      await setDoc(
+        leaderboardRef,
+        { Xp: newXp, username: username, avatar: avatar },
+        { merge: true }
+      );
 
-    const leaderboardCollectionRef = collection(db, "leaderboard");
-    const leaderboardQuery = query(
-      leaderboardCollectionRef,
-      orderBy("Xp", "desc")
-    );
-    const leaderboardSnapshot = await getDocs(leaderboardQuery);
+      const leaderboardCollectionRef = collection(db, "leaderboard");
+      const leaderboardQuery = query(
+        leaderboardCollectionRef,
+        orderBy("Xp", "desc")
+      );
+      const leaderboardSnapshot = await getDocs(leaderboardQuery);
 
-    let rank = 0;
-    for (const docSnapshot of leaderboardSnapshot.docs) {
-      await updateDoc(doc(db, `leaderboard/${docSnapshot.id}`), {
-        rank: rank++,
-      });
+      let rank = 0;
+      for (const docSnapshot of leaderboardSnapshot.docs) {
+        await updateDoc(doc(db, `leaderboard/${docSnapshot.id}`), {
+          rank: rank++,
+        });
+      }
+
+      const userRef = doc(db, `users/${userId}`);
+      await updateDoc(userRef, { rank: rank });
+    } catch (error) {
+      console.error("Error updating leaderboard and user rank: ", error);
+    } finally {
+      setLoading(false);
     }
-
-    const userRef = doc(db, `users/${userId}`);
-    await updateDoc(userRef, { rank: rank });
-
-    setLoading(false);
   };
 
   const handleQuestionCompletion = async () => {
     setLoading(true);
 
-    const currentQuestionNumber = parseInt(question);
-    if (currentQuestionNumber < 5) {
-      navigate(
-        `/course/${course}/level/${level}/quest/${quest}/question/${
-          currentQuestionNumber + 1
-        }`
-      );
-    } else {
-      const user = auth.currentUser;
-      if (user) {
-        const questRef = doc(
-          db,
-          `users/${user.uid}/course/${course}/level/${level}/quests/${quest}`
+    try {
+      const currentQuestionNumber = parseInt(question);
+      if (currentQuestionNumber < 5) {
+        navigate(
+          `/course/${course}/level/${level}/quest/${quest}/question/${
+            currentQuestionNumber + 1
+          }`
         );
-        const userRef = doc(db, `users/${user.uid}`);
-        const currentDate = new Date();
-
-        console.log("Quest Ref Path:", questRef.path);
-        console.log("User Ref Path:", userRef.path);
-
-        const questDoc = await getDoc(questRef);
-        console.log("Quest Document:", questDoc.data());
-
-        const userDoc = await getDoc(userRef);
-        console.log("User Document:", userDoc.data());
-
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          const newXp = (userData.Xp || 0) + 10;
-          const newQuestCompleted = (userData.QuestCompleted || 0) + 1;
-          console.log(
-            "New Xp:",
-            newXp,
-            "New QuestCompleted:",
-            newQuestCompleted
+      } else {
+        const user = auth.currentUser;
+        if (user) {
+          const questRef = doc(
+            db,
+            `users/${user.uid}/course/${course}/level/${level}/quests/${quest}`
           );
+          const userRef = doc(db, `users/${user.uid}`);
+          const currentDate = new Date();
 
-          await updateDoc(userRef, {
-            Xp: newXp,
-            QuestCompleted: newQuestCompleted,
-          });
-          console.log("User XP and QuestCompleted updated");
+          const userDoc = await getDoc(userRef);
 
-          // Update leaderboard and user rank
-          await updateLeaderboardAndUserRank(
-            user.uid,
-            newXp,
-            userData.userName,
-            userData.avatar
-          );
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const newXp = (userData.Xp || 0) + 10;
+            const newQuestCompleted = (userData.QuestCompleted || 0) + 1;
 
-          // Handle course streak
-          await handleCourseStreak(
-            user.uid,
-            currentDate,
-            userData.lastCompletionDate
-          );
-        } else {
-          const newXp = 10;
-          const newQuestCompleted = 1;
-          const userName = user.displayName || "Unknown User";
-          const avatar = user.photoURL || "";
-
-          await setDoc(
-            userRef,
-            {
+            await updateDoc(userRef, {
               Xp: newXp,
               QuestCompleted: newQuestCompleted,
-              userName: userName,
-              avatar: avatar,
-              courseStreak: 1,
-              lastCompletionDate: currentDate,
-            },
+            });
+
+            await updateLeaderboardAndUserRank(
+              user.uid,
+              newXp,
+              userData.userName,
+              userData.avatar
+            );
+            await handleCourseStreak(
+              user.uid,
+              currentDate,
+              userData.lastCompletionDate
+            );
+          } else {
+            const newXp = 10;
+            const newQuestCompleted = 1;
+            const userName = user.displayName || "Unknown User";
+            const avatar = user.photoURL || "";
+
+            await setDoc(
+              userRef,
+              {
+                Xp: newXp,
+                QuestCompleted: newQuestCompleted,
+                userName: userName,
+                avatar: avatar,
+                courseStreak: 1,
+                lastCompletionDate: currentDate,
+              },
+              { merge: true }
+            );
+
+            await updateLeaderboardAndUserRank(
+              user.uid,
+              newXp,
+              userName,
+              avatar
+            );
+          }
+
+          await setDoc(
+            questRef,
+            { status: "complete", completionDate: currentDate },
             { merge: true }
           );
-
-          // Update leaderboard and user rank
-          await updateLeaderboardAndUserRank(user.uid, newXp, userName, avatar);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
         }
-
-        await setDoc(
-          questRef,
-          { status: "complete", completionDate: currentDate },
-          { merge: true }
-        );
-        console.log("Quest marked as complete");
-
-        setTimeout(() => {
-          setLoading(false); // Set loading to false before navigation
-          navigate("/");
-        }, 2000);
       }
+    } catch (error) {
+      console.error("Error completing question: ", error);
+    } finally {
+      setLoading(false); // Ensure loading is set to false in the end
     }
   };
 
@@ -166,17 +160,14 @@ function QuestPage() {
     let courseStreak = userData.courseStreak || 0;
 
     if (!lastCompletionDate) {
-      // No previous completion date, first completion of the streak
       courseStreak = 1;
     } else {
       const diffInMs = currentDate - lastCompletionDate.toDate();
       const diffInHours = diffInMs / (1000 * 60 * 60);
 
       if (diffInHours >= 24) {
-        // More than 24 hours since last completion, reset streak to 1
         courseStreak = 1;
       } else {
-        // Less than 24 hours since last completion, increment streak
         courseStreak += 1;
       }
     }

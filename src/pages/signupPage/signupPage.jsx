@@ -77,7 +77,7 @@ function SignUpPage() {
       />
       <div className="signup-page__left-container">
         <img className="signup-page__logo" src={Logo} alt="Logo" />
-        <p className="signup-page__subtitle">Begin Your Coding Journey!</p>
+        <p className="signup-page__subtitle">Craft Your Account! </p>
         <p className="signup-page__text">
           Whether you're a novice or a seasoned enthusiast, our app provides an
           immersive learning experience designed to demystify coding languages

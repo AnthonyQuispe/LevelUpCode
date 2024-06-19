@@ -8,16 +8,10 @@
   border-radius: 10px;
   border: solid 3px White;
   background-color: transparent;
-  color: white;
   padding: 10px;
   @include Body;
 
-  @include Tablet {
-    height: 80px;
-  }
-
   &::placeholder {
-    color: white;
     @include Body;
   }
 

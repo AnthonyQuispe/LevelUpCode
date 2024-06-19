@@ -19,19 +19,21 @@
   }
 }
 
-@mixin Body {
+@mixin Links {
   font-family: "Abaddon";
   font-size: 1rem;
   color: white;
+}
 
-  @include Tablet {
-    font-size: 1.25rem;
-  }
+@mixin Body {
+  font-family: "Abaddon";
+  font-size: 1.25rem;
+  color: white;
 }
 
 @mixin Sub-Title {
   font-family: "Laconic";
-  font-size: 1.25rem;
+  font-size: 1.625rem;
   color: white;
 
   @include Tablet {
@@ -52,7 +54,7 @@
 
 @mixin Label {
   font-family: "Abaddon";
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: white;
 
   @include Tablet() {
