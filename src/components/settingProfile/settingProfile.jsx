@@ -10,7 +10,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
 import profilePlaceholder from "../../assets/placeholder/Profile.png";
-import Button from "../button/button";
+import Button from "../Button/Button";
 import AlertModal from "../../components/AlertModal/AlertModal";
 import { isUsernameTaken } from "../../firebase/FirebaseCreateUser";
 import { UserContext } from "../../UserContext";

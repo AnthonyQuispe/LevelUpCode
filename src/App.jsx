@@ -10,7 +10,7 @@ import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
 import SelectDifficulty from "./pages/SelectDifficulty/SelectDifficulty";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import ProfilePagePublic from "./pages/ProfilePagePublic/ProfilePage";
+import PublicProfilePage from "./pages/PublicProfilePage/PublicProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import QuestPage from "./pages/QuestPage/QuestPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
@@ -32,7 +32,7 @@ function App() {
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/:username" element={<ProfilePagePublic />} />
+          <Route path="/profile/:username" element={<PublicProfilePage />} />
           <Route path="/leaderboard" element={<LeaderBoardPage />} />
           <Route
             path="/course/:course/level/:level/quest/:quest/question/:question"

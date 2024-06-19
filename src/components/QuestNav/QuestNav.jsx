@@ -1,3 +1,4 @@
+import React from "react";
 import "./QuestNav.scss";
 import closeIcon from "../../assets/icons/CloseIcon.png";
 import { Link } from "react-router-dom";

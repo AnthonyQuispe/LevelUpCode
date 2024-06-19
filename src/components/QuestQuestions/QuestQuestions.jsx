@@ -1,6 +1,6 @@
+import React, { useState, useEffect, useRef } from "react";
 import "./QuestQuestions.scss";
-import { useState, useEffect, useRef } from "react";
-import Button from "../button/button";
+import Button from "../Button/Button";
 import closeButton from "../../assets/icons/CloseIcon.png";
 import { db, auth } from "../../firebase/FirebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";

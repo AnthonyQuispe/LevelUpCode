@@ -1,6 +1,6 @@
+import React, { useEffect, useState, useContext } from "react";
 import "./MyCourses.scss";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
 import { db } from "../../firebase/FirebaseConfig";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { UserContext } from "../../UserContext";

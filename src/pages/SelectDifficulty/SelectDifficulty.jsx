@@ -1,5 +1,5 @@
 import "./SelectDifficulty.scss";
-import Button from "../../components/button/button";
+import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { auth, db } from "../../firebase/FirebaseConfig";
 import { doc, runTransaction } from "firebase/firestore";

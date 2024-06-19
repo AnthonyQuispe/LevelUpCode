@@ -1,6 +1,6 @@
 import "./QuestPage.scss";
 import QuestNav from "../../components/QuestNav/QuestNav";
-import Nav from "../../components/nav/nav";
+import Nav from "../../components/Nav/Nav";
 import QuestQuestions from "../../components/QuestQuestions/QuestQuestions";
 import { useParams, useNavigate } from "react-router-dom";
 import {

@@ -1,3 +1,4 @@
+import React from "react";
 import "./LoadingModal.scss";
 import levelupAi from "../../assets/logo/LevelupAi.png";
 

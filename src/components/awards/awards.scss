@@ -13,10 +13,6 @@
     align-items: center;
     gap: 10px;
     height: 50px;
-
-    @include Tablet {
-      height: 80px;
-    }
   }
 
   &__containers {

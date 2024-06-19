@@ -1,5 +1,6 @@
-import "./followButton.scss";
-import Button from "../button/button";
+import React from "react";
+import "./FollowButton.scss";
+import Button from "../Button/Button";
 import PropTypes from "prop-types";
 
 export default function FollowButton({ isFollowing, onFollow, onUnfollow }) {

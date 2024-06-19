@@ -1,5 +1,5 @@
 import React from "react";
-import "./checkbox.scss";
+import "./CheckBox.scss";
 
 export default function Checkbox({ id, checked, onChange }) {
   return (

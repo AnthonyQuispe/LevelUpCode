@@ -1,5 +1,5 @@
 import "./LeaderboardPage.scss";
-import Nav from "../../components/nav/nav";
+import Nav from "../../components/Nav/Nav";
 import LeadboardIcon from "../../assets/icons/LeaderboardIcon.svg";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
 import { auth, db } from "../../firebase/FirebaseConfig";

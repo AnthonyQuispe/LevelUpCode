@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Logo from "../../assets/logo/LevelUp.svg";
-import Input from "../../components/input/input";
-import Button from "../../components/button/button";
-import GoogleButton from "../../components/googleButton/googleButton";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import GoogleButton from "../../components/GoogleButton/GoogleButton";
 import { loginUser } from "../../firebase/FirebaseLogin";
 import AlertModal from "../../components/AlertModal/AlertModal";
 

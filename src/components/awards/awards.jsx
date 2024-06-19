@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../UserContext";
-import "./awards.scss";
 import { Link } from "react-router-dom";
+import "./awards.scss";
 import rightIcon from "../../assets/icons/RightArrowIcon.svg";
 
 export default function Awards() {

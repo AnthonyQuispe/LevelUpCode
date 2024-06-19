@@ -16,7 +16,7 @@ export const UserContext = createContext();
 
 const initialCourseTracker = {
   Level: 1,
-  Quest1: "started",
+  Quest1: "new",
   Quest2: "new",
   Quest3: "new",
   Quest4: "new",
@@ -209,6 +209,37 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const updateCourseTracker = async (questNumber, status) => {
+    if (!user) return;
+
+    const updatedTracker = {
+      ...courseTracker,
+      [`Quest${questNumber}`]: status,
+    };
+
+    // Unlock the next lesson if the current one is completed
+    if (
+      status === "complete" &&
+      questNumber < Object.keys(updatedTracker).length
+    ) {
+      updatedTracker[`Quest${questNumber + 1}`] = "new";
+    }
+
+    try {
+      const path = `users/${user.uid}/course/${userData.currentCourse}/level/${courseTracker.Level}/quests`;
+      await setDoc(doc(db, path, `Quest${questNumber}`), { status });
+      if (updatedTracker[`Quest${questNumber + 1}`] === "new") {
+        await setDoc(doc(db, path, `Quest${questNumber + 1}`), {
+          status: "new",
+        });
+      }
+      setCourseTracker(updatedTracker);
+    } catch (error) {
+      console.error("Error updating course tracker:", error);
+      setError(error.message);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -221,6 +252,7 @@ export const UserProvider = ({ children }) => {
         userAwards,
         updateUserData,
         courseTracker,
+        updateCourseTracker,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ import HtmlIcon from "../../assets/icons/HtmlIcon.svg";
 import ReactIcon from "../../assets/icons/ReactIcon.svg";
 import JavascriptIcon from "../../assets/icons/JavascriptIcon.svg";
 import CssIcon from "../../assets/icons/CssIcon.svg";
-import Button from "../../components/button/button";
+import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { auth, db } from "../../firebase/FirebaseConfig";
 import { doc, runTransaction } from "firebase/firestore";

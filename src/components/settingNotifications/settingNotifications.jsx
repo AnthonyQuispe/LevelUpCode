@@ -1,10 +1,10 @@
+import React, { useState, useContext } from "react";
 import "./SettingNotifications.scss";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon.svg";
-import Button from "../button/button";
-import Checkbox from "../checkbox/checkbox";
+import Button from "../Button/Button";
+import Checkbox from "../CheckBox/CheckBox";
 
 export default function SettingNotifications() {
   const { user, userData, updateUserData } = useContext(UserContext);

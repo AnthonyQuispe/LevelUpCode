@@ -1,8 +1,8 @@
 import React from "react";
+import "./GoogleButton.scss";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db } from "../../firebase/FirebaseConfig";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
-import "./googleButton.scss";
 import GoogleIcon from "../../assets/icons/GoogleIcon.svg";
 
 const GoogleButton = () => {

@@ -1,4 +1,4 @@
-import { useRef, useState, useContext, useEffect } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import Sound from "../../assets/sounds/Soundtrack.mp3";
 import muteIcon from "../../assets/icons/MuteIcon.png";

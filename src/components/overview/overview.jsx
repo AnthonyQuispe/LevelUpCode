@@ -1,9 +1,9 @@
-import "./overview.scss";
+import React, { useContext, useState, useEffect } from "react";
+import "./Overview.scss";
 import FireIcon from "../../assets/icons/FireIcon.svg";
 import QuestIcon from "../../assets/icons/CoursesIcon.svg";
 import CrownIcon from "../../assets/icons/CrownIcon.svg";
 import AwardIcon from "../../assets/icons/AwardIcon.svg";
-import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 
 export default function Overview() {

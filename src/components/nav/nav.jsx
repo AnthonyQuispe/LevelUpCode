@@ -1,4 +1,5 @@
-import "./nav.scss";
+import React from "react";
+import "./Nav.scss";
 import { Link } from "react-router-dom";
 import profileIcon from "../../assets/icons/ProfileIcon.svg";
 import leaderboardIcon from "../../assets/icons/LeaderboardIcon.png";

@@ -2,11 +2,11 @@ import "./ProfilePage.scss";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
-import AddFriends from "../../components/addFriends/addFriends";
+import AddFriends from "../../components/AddFriend/AddFriend";
 import UserAwards from "../../components/UserAwards/UserAwards";
-import FriendList from "../../components/friendList/friendList";
-import Overview from "../../components/overview/overview";
-import Nav from "../../components/nav/nav";
+import FriendList from "../../components/FriendList/FriendList";
+import Overview from "../../components/OverView/Overview";
+import Nav from "../../components/Nav/Nav";
 import { Link } from "react-router-dom";
 
 const formatDate = (timestamp) => {
@@ -23,7 +23,7 @@ function ProfilePage() {
   const [follower, setFollower] = useState("");
   const [joinDate, setJoinDate] = useState("");
   const [courses, setCourses] = useState("");
-  const [avatar, setAvatar] = useState(userData?.avatar || ProfilePlaceholder);
+  const [avatar, setAvatar] = useState(ProfilePlaceholder);
 
   useEffect(() => {
     if (userData) {
@@ -58,6 +58,10 @@ function ProfilePage() {
               className="profile-page__image-profile"
               src={avatar}
               alt="Profile"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = ProfilePlaceholder;
+              }}
             />
           </Link>
           <p className="profile-page__name">{userName}</p>

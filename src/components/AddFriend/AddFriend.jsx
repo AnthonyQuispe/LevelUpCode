@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./addFriends.scss";
+import "./AddFriend.scss";
 import addFriendIcon from "../../assets/icons/AddFriendIcon.svg";
 import uploadIcon from "../../assets/icons/UploadIcon.svg";
 import AlertModal from "../AlertModal/AlertModal";
-import Input from "../input/input";
-import Button from "../button/button";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
 import closeIcon from "../../assets/icons/CloseIcon.png";
 import { db, auth } from "../../firebase/FirebaseConfig";
 import {

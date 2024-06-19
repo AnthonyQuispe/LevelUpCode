@@ -1,6 +1,6 @@
 import React from "react";
 import { populateFirestore } from "../../populateFirestore";
-import Button from "../../components/button/button"; // Adjust the path as necessary
+import Button from "../../components/Button/Button";
 
 export default function AdminPage() {
   const handlePopulateClick = async () => {

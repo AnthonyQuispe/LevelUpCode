@@ -1,4 +1,4 @@
-import "./friendList.scss";
+import "./FriendList.scss";
 import placeholder from "../../assets/placeholder/Profile.png";
 import { useState, useEffect } from "react";
 import { db, auth } from "../../firebase/FirebaseConfig";

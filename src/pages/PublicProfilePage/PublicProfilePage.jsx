@@ -3,11 +3,11 @@ import { useContext, useState, useEffect, useCallback } from "react";
 import { UserContext } from "../../UserContext";
 import { getAuth } from "firebase/auth";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
-import FollowButton from "../../components/followButton/followButton";
+import FollowButton from "../../components/FollowButton/FollowButton";
 import UserAwards from "../../components/UserAwards/UserAwards";
-import FriendList from "../../components/friendList/friendList";
-import Overview from "../../components/overview/overview";
-import Nav from "../../components/nav/nav";
+import FriendList from "../../components/FriendList/FriendList";
+import Overview from "../../components/OverView/Overview";
+import Nav from "../../components/Nav/Nav";
 import { followUser, unfollowUser } from "../../firebase/FirebaseFollowUser";
 import AlertModal from "../../components/AlertModal/AlertModal";
 import { useParams } from "react-router-dom";
@@ -27,7 +27,7 @@ const formatDate = (timestamp) => {
   return date.toLocaleDateString(undefined, options);
 };
 
-function ProfilePage() {
+function PublicProfilePage() {
   const { username } = useParams(); // Get the username from the URL
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { loading } = useContext(UserContext);
@@ -209,4 +209,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default PublicProfilePage;
