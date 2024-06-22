@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import SignInPage from "./pages/SignInPage/SignInPage";
+import LogInPage from "./pages/LogInPage/LogInPage";
 import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/login" element={<LogInPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
           <Route path="/select/difficulty" element={<SelectDifficulty />} />

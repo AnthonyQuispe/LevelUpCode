@@ -148,7 +148,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    // padding: 0 20px;
   }
 
   &__course {
@@ -158,6 +157,9 @@
     height: auto;
     max-width: 50px;
     max-height: 50px;
+    border: none;
+    border-style: none;
+    background: transparent;
 
     @include Tablet {
       width: 50px;

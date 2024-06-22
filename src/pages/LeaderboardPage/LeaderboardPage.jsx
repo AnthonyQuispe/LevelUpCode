@@ -13,6 +13,7 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore";
+import { Link } from "react-router-dom";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 function LeaderboardPage() {
@@ -81,18 +82,20 @@ function LeaderboardPage() {
               <li key={index} className="leaderboard__list-item">
                 <div className="leaderboard__profile">
                   <p className="leaderboard__position">{user.rank}</p>
-                  <img
-                    className="leaderboard__profile-img"
-                    src={user.avatar ? user.avatar : ProfilePlaceholder}
-                    alt={user.username}
-                    onError={(e) => {
-                      console.error(
-                        `Error loading avatar for ${user.username}:`,
-                        e
-                      );
-                      e.target.src = ProfilePlaceholder;
-                    }}
-                  />
+                  <Link to={`/profile/${user.username}`}>
+                    <img
+                      className="leaderboard__profile-img"
+                      src={user.avatar ? user.avatar : ProfilePlaceholder}
+                      alt={user.username}
+                      onError={(e) => {
+                        console.error(
+                          `Error loading avatar for ${user.username}:`,
+                          e
+                        );
+                        e.target.src = ProfilePlaceholder;
+                      }}
+                    />
+                  </Link>
                   <p className="leaderboard__name">{user.username}</p>
                 </div>
                 <div className="leaderboard__stats">

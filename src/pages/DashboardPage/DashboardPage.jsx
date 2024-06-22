@@ -42,6 +42,10 @@ function DashboardPage() {
     navigate("/select/difficulty");
   };
 
+  const handleCourseSelection = async (e) => {
+    navigate("/select/course");
+  };
+
   const renderCourseIcon = (status, defaultIcon, completedIcon) => {
     if (isCompleted(status)) {
       return (
@@ -63,11 +67,32 @@ function DashboardPage() {
   };
 
   const handleCourseClick = (questNumber) => {
-    if (courseTracker[`Quest${questNumber}`] !== "new") {
+    if (
+      courseTracker[`Quest${questNumber - 1}`] === "complete" ||
+      questNumber === 1
+    ) {
       navigate(
         `/course/${currentCourse}/level/${courseLevel}/quest/${questNumber}/question/1`
       );
     }
+  };
+
+  const handlePlayButtonClick = () => {
+    const lastIncompleteQuest = findLastIncompleteQuest();
+    if (lastIncompleteQuest !== -1) {
+      navigate(
+        `/course/${currentCourse}/level/${courseLevel}/quest/${lastIncompleteQuest}/question/1`
+      );
+    }
+  };
+
+  const findLastIncompleteQuest = () => {
+    for (let i = 1; i <= 21; i++) {
+      if (!isCompleted(courseTracker[`Quest${i}`])) {
+        return i;
+      }
+    }
+    return -1; // All quests are complete
   };
 
   return (
@@ -84,7 +109,10 @@ function DashboardPage() {
               />
               {userName}
             </Link>
-            <button className="dashboard__play-button">
+            <button
+              className="dashboard__play-button"
+              onClick={handlePlayButtonClick}
+            >
               <img
                 className="dashboard__play-button-icon"
                 src={playButtonIcon}
@@ -94,7 +122,7 @@ function DashboardPage() {
           </div>
           <button
             className="dashboard__title-container"
-            onClick={handleCourseClick}
+            onClick={handleCourseSelection}
           >
             <h1 className="dashboard__title">{currentCourse}</h1>
           </button>
@@ -116,274 +144,274 @@ function DashboardPage() {
             ) : (
               <>
                 <div className="dashboard__course-row dashboard__course-row--first">
-                  <Link
+                  <button
                     className={`dashboard__course dashboard__course--big ${
                       courseTracker.Quest1 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/1/question/1`}
+                    onClick={() => handleCourseClick(1)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest1,
-                      purpleClassIcon,
+                      pinkClassIcon,
                       pinkClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest2 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/2/question/1`}
+                    onClick={() => handleCourseClick(2)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest2,
                       emptyClassIcon,
                       circleClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest3 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/3/question/1`}
+                    onClick={() => handleCourseClick(3)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest3,
                       emptyClassIcon,
                       triangleClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest4 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/4/question/1`}
+                    onClick={() => handleCourseClick(4)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest4,
                       emptyClassIcon,
                       xClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--second">
-                  <Link
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest5 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/5/question/1`}
+                    onClick={() => handleCourseClick(5)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest5,
                       emptyClassIcon,
                       circleClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--third">
-                  <Link
+                  <button
                     className={`dashboard__course ${
-                      courseTracker.Quest6 !== "new" ? "" : "disabled"
+                      courseTracker.Quest9 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/6/question/1`}
+                    onClick={() => handleCourseClick(9)}
                   >
                     {renderCourseIcon(
-                      courseTracker.Quest6,
+                      courseTracker.Quest9,
                       emptyClassIcon,
                       xClassIcon
                     )}
-                  </Link>
-                  <Link
-                    className={`dashboard__course ${
-                      courseTracker.Quest7 !== "new" ? "" : "disabled"
-                    }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/7/question/1`}
-                  >
-                    {renderCourseIcon(
-                      courseTracker.Quest7,
-                      emptyClassIcon,
-                      triangleClassIcon
-                    )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest8 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/8/question/1`}
+                    onClick={() => handleCourseClick(8)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest8,
                       emptyClassIcon,
-                      circleClassIcon
+                      triangleClassIcon
                     )}
-                  </Link>
-                  <Link
-                    className={`dashboard__course dashboard__course--big ${
-                      courseTracker.Quest9 !== "new" ? "" : "disabled"
+                  </button>
+                  <button
+                    className={`dashboard__course ${
+                      courseTracker.Quest7 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/9/question/1`}
+                    onClick={() => handleCourseClick(7)}
                   >
                     {renderCourseIcon(
-                      courseTracker.Quest9,
+                      courseTracker.Quest7,
+                      emptyClassIcon,
+                      circleClassIcon
+                    )}
+                  </button>
+                  <button
+                    className={`dashboard__course dashboard__course--big ${
+                      courseTracker.Quest6 !== "new" ? "" : "disabled"
+                    }`}
+                    onClick={() => handleCourseClick(6)}
+                  >
+                    {renderCourseIcon(
+                      courseTracker.Quest6,
                       purpleClassIcon,
                       greenClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--fourth">
-                  <Link
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest10 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/10/question/1`}
+                    onClick={() => handleCourseClick(10)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest10,
                       emptyClassIcon,
                       circleClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--fifth">
-                  <Link
+                  <button
                     className={`dashboard__course dashboard__course--big ${
                       courseTracker.Quest11 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/11/question/1`}
+                    onClick={() => handleCourseClick(11)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest11,
                       purpleClassIcon,
                       pinkClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest12 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/12/question/1`}
+                    onClick={() => handleCourseClick(12)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest12,
                       emptyClassIcon,
                       circleClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest13 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/13/question/1`}
+                    onClick={() => handleCourseClick(13)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest13,
                       emptyClassIcon,
                       triangleClassIcon
                     )}
-                  </Link>
-                  <Link
-                    className={`dashboard__course ${
+                  </button>
+                  <button
+                    className={`dashboard__course  ${
                       courseTracker.Quest14 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/14/question/1`}
+                    onClick={() => handleCourseClick(14)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest14,
                       emptyClassIcon,
                       xClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--sixth">
-                  <Link
-                    className={`dashboard__course ${
+                  <button
+                    className={`dashboard__course  ${
                       courseTracker.Quest15 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/15/question/1`}
+                    onClick={() => handleCourseClick(15)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest15,
                       emptyClassIcon,
                       triangleClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--seventh">
-                  <Link
-                    className={`dashboard__course ${
+                  <button
+                    className={`dashboard__course  ${
                       courseTracker.Quest19 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/19/question/1`}
+                    onClick={() => handleCourseClick(19)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest19,
                       emptyClassIcon,
                       greenClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest18 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/18/question/1`}
+                    onClick={() => handleCourseClick(18)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest18,
                       emptyClassIcon,
                       xClassIcon
                     )}
-                  </Link>
-                  <Link
-                    className={`dashboard__course ${
+                  </button>
+                  <button
+                    className={`dashboard__course  ${
                       courseTracker.Quest17 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/17/question/1`}
+                    onClick={() => handleCourseClick(17)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest17,
                       emptyClassIcon,
                       circleClassIcon
                     )}
-                  </Link>
-                  <Link
+                  </button>
+                  <button
                     className={`dashboard__course dashboard__course--big ${
                       courseTracker.Quest16 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/16/question/1`}
+                    onClick={() => handleCourseClick(16)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest16,
                       purpleClassIcon,
                       triangleClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--eighth">
-                  <Link
+                  <button
                     className={`dashboard__course ${
                       courseTracker.Quest20 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/20/question/1`}
+                    onClick={() => handleCourseClick(20)}
                   >
                     {renderCourseIcon(
                       courseTracker.Quest20,
                       emptyClassIcon,
                       xClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
                 <div className="dashboard__course-row dashboard__course-row--ninth">
-                  <Link
+                  <button
                     className={`dashboard__course dashboard__course--big ${
                       courseTracker.Quest21 !== "new" ? "" : "disabled"
                     }`}
-                    to={`/course/${currentCourse}/level/${courseLevel}/quest/21/question/1`}
+                    onClick={() => handleCourseClick(21)}
                   >
                     {renderCourseIcon(
                       courseTracker.FinalQuest,
                       purpleClassIcon,
                       pinkClassIcon
                     )}
-                  </Link>
+                  </button>
                 </div>
               </>
             )}

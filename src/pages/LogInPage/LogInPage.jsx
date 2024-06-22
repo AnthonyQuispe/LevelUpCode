@@ -1,15 +1,16 @@
-import "./SignInPage.scss";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { loginUser } from "../../firebase/FirebaseLogin";
+
+import "./LogInPage.scss";
 import Logo from "../../assets/logo/LevelUp.svg";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import GoogleButton from "../../components/GoogleButton/GoogleButton";
-import { loginUser } from "../../firebase/FirebaseLogin";
 import AlertModal from "../../components/AlertModal/AlertModal";
 
-function SignInPage() {
+function LogInPage() {
   const navigate = useNavigate();
   const auth = getAuth();
   const [alertVisible, setAlertVisible] = useState(false);
@@ -73,24 +74,24 @@ function SignInPage() {
   };
 
   return (
-    <main className="signin-page">
+    <main className="login-page">
       <AlertModal
         isVisible={alertVisible}
         message={alertMessage}
         onClose={() => setAlertVisible(false)}
       />
-      <div className="signin-page__left-container">
-        <img className="signin-page__logo" src={Logo} alt="Logo" />
-        <p className="signin-page__subtitle">Begin Your Coding Journey!</p>
-        <p className="signin-page__text">
+      <div className="login-page__left-container">
+        <img className="login-page__logo" src={Logo} alt="Logo" />
+        <p className="login-page__subtitle">Begin Your Coding Journey!</p>
+        <p className="login-page__text">
           Whether you're a novice or a seasoned enthusiast, our app provides an
           immersive learning experience designed to demystify coding languages
           and empower you to create anything you can imagine.
         </p>
-        <Button className="signin-page__learn-button" text={"Learn More"} />
+        <Button className="login-page__learn-button" text={"Learn More"} />
       </div>
-      <div className="signin-page__form-container">
-        <form className="signin-page__form" onSubmit={handleLoginSubmit}>
+      <div className="login-page__form-container">
+        <form className="login-page__form" onSubmit={handleLoginSubmit}>
           <Input
             placeholder="Email"
             type="email"
@@ -105,13 +106,13 @@ function SignInPage() {
             id="password"
             autoComplete="current-password"
           />
-          <Button text={"Sign In"} />
-          <Link to="/forgot" className="signin-page__link-text">
+          <Button text={"Log In"} />
+          <Link to="/forgot" className="login-page__link-text">
             Forgot Password?
           </Link>
-          <div className="signin-page__link-container">
-            <p className="signin-page__link-text">Don’t have an account?</p>
-            <Link to="/signup" className="signin-page__link">
+          <div className="login-page__link-container">
+            <p className="login-page__link-text">Don’t have an account?</p>
+            <Link to="/signup" className="login-page__link">
               Sign up
             </Link>
           </div>
@@ -122,4 +123,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default LogInPage;

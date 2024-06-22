@@ -112,8 +112,8 @@ function SignUpPage() {
         </form>
         <div className="signup-page__link-container">
           <p className="signup-page__link-text">Already have an account?</p>
-          <Link to="/signin" className="signup-page__link">
-            Sign in
+          <Link to="/login" className="signup-page__link">
+            Log In
           </Link>
           <GoogleButton />
         </div>
