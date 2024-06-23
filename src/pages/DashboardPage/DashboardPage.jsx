@@ -152,7 +152,7 @@ function DashboardPage() {
                   >
                     {renderCourseIcon(
                       courseTracker.Quest1,
-                      pinkClassIcon,
+                      purpleClassIcon,
                       pinkClassIcon
                     )}
                   </button>

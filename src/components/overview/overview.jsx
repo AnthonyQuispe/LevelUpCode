@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./Overview.scss";
-import FireIcon from "../../assets/icons/FireIcon.svg";
 import QuestIcon from "../../assets/icons/CoursesIcon.svg";
 import CrownIcon from "../../assets/icons/CrownIcon.svg";
 import AwardIcon from "../../assets/icons/AwardIcon.svg";
+import XpIcon from "../../assets/icons/XpIcon.png";
 import { UserContext } from "../../UserContext";
 
 export default function Overview() {
@@ -12,13 +12,14 @@ export default function Overview() {
 
   const [rank, setRank] = useState(0);
   const [award, setAward] = useState(0);
-  const [streak, setStreak] = useState(0);
+  const [xp, setXp] = useState(0);
 
   useEffect(() => {
     if (userData) {
       setQuest(userData.QuestCompleted || 0);
       setRank(userData.rank || 0);
-      setStreak(userData.dailyStreak || 0);
+
+      setXp(userData.Xp || 0);
     }
     if (userAwards) {
       setAward(Object.keys(userAwards).length);
@@ -30,10 +31,10 @@ export default function Overview() {
       <h2 className="overview__title">Overview</h2>
       <div className="overview__container-top">
         <div className="overview__container">
-          <img src={FireIcon} alt="Fire icon" className="overview__img" />
+          <img src={XpIcon} alt="Fire icon" className="overview__img" />
           <div className="overview__text-container">
-            <p className="overview__count">{streak}</p>
-            <p className="overview__decription">Streak</p>
+            <p className="overview__count">{xp}</p>
+            <p className="overview__decription">Xp</p>
           </div>
         </div>
         <div className="overview__container">

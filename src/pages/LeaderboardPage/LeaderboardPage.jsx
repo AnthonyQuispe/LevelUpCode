@@ -48,7 +48,6 @@ function LeaderboardPage() {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          console.log("Current user data:", userData);
           setCurrentUser(userData);
           setCurrentUserRank(userData.rank);
         }

@@ -165,10 +165,6 @@ function PublicProfilePage() {
               <p className="profile-page__date">Joined {joinDate}</p>
             </div>
             <div className="profile-page__count">
-              <div className="profile-page__count-courses">
-                <p>{courses}</p>
-                <p>Courses</p>
-              </div>
               <div className="profile-page__count-following">
                 <p>{following}</p>
                 <p>Following</p>
