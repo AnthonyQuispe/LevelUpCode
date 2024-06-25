@@ -8,6 +8,7 @@ export default function Input({
   onChange,
   placeholder,
   name,
+  onKeyPress,
 }) {
   return (
     <input
@@ -17,6 +18,7 @@ export default function Input({
       onChange={onChange}
       placeholder={placeholder}
       name={name}
+      onKeyPress={onKeyPress}
     />
   );
 }

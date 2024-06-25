@@ -181,6 +181,7 @@ export default function AddFriends({ userName }) {
               onChange={handleSearchChange}
               onKeyPress={handleKeyPress}
               placeholder="Enter friend's username"
+              autocomplete="off"
             />
             <button
               className="find-friend-modal__close"
