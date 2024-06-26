@@ -124,6 +124,17 @@ export default function QuestQuestions({
     }
   };
 
+  // Function to generate line numbers based on the number of lines in 'userCode'
+  const generateLineNumbers = () => {
+    const lines = userCode.split("\n");
+    return lines.map((line, index) => (
+      <span key={index}>
+        {index + 1}
+        <br />
+      </span>
+    ));
+  };
+
   if (!questData) {
     return <div>Loading...</div>;
   }
@@ -162,19 +173,20 @@ export default function QuestQuestions({
         ))}
       </p>
       <div className="quest-question__interactive">
+        <div className="quest-question__lines">{generateLineNumbers()}</div>
         <textarea
           className="quest-question__textarea"
           value={userCode}
           onChange={handleChange}
           ref={textareaRef}
         />
-        <Button
-          onClick={checkCode}
-          text={"Check Your Code"}
-          className="quest-question__button"
-        />
         {result !== null && <div>{result}</div>}
       </div>
+      <Button
+        onClick={checkCode}
+        text={"Check Your Code"}
+        className="quest-question__button"
+      />
     </section>
   );
 }

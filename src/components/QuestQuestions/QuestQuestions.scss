@@ -5,6 +5,7 @@
 .quest-question {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   width: 100%;
   max-width: 500px;
@@ -22,7 +23,7 @@
   }
 
   &__list {
-    padding: 0 12px;
+    padding: 0 0 0 20px;
 
     &-title {
       @include Label;
@@ -69,12 +70,10 @@
   }
 
   &__textarea {
-    width: 100%;
     @include Body;
-    border-radius: 10px;
-    border: 3px solid $Green;
-    background-color: $Purple;
-    padding: 10px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
     resize: none;
     overflow: hidden;
 
@@ -92,7 +91,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 500px; // Optional: Set a maximum width for the modal
+    max-width: 500px;
     height: 100px;
     background-color: $Purple;
     border-radius: 10px;
@@ -109,5 +108,29 @@
         height: 16px;
       }
     }
+  }
+
+  &__interactive {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    font-family: "Abaddon";
+    font-size: 1.25rem;
+    color: white;
+    border-radius: 10px;
+    border: 3px solid $Green;
+    background-color: $Purple;
+    padding: 10px;
+    resize: none;
+    overflow: hidden;
+  }
+  &__lines {
+    @include Body;
+    color: White;
+    text-align: right;
+    user-select: none;
+    flex-shrink: 0;
+    padding-right: 10px;
   }
 }
