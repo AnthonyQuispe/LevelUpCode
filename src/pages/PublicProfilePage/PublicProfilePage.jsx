@@ -40,7 +40,6 @@ function PublicProfilePage() {
   const [following, setFollowing] = useState("");
   const [follower, setFollower] = useState("");
   const [joinDate, setJoinDate] = useState("");
-  const [courses, setCourses] = useState("");
   const [avatar, setAvatar] = useState(ProfilePlaceholder);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -58,10 +57,8 @@ function PublicProfilePage() {
       const userData = userDoc.data();
       userData.id = userDoc.id; // Add user ID to the userData
       setProfileUserData(userData);
-
       setName(userData.name || "");
       setUserName(userData.userName || "");
-      setCourses(userData.courses || 0);
       setFollowing(userData.followingCount || 0);
       setFollower(userData.followerCount || 0);
       setJoinDate(userData.joinDate ? formatDate(userData.joinDate) : "");

@@ -22,13 +22,11 @@ function ProfilePage() {
   const [following, setFollowing] = useState("");
   const [follower, setFollower] = useState("");
   const [joinDate, setJoinDate] = useState("");
-  const [courses, setCourses] = useState("");
   const [avatar, setAvatar] = useState(ProfilePlaceholder);
 
   useEffect(() => {
     if (userData) {
       setUserName(userData.userName || "");
-      setCourses(userData.courses || 0);
       setFollowing(userData.followingCount || 0);
       setFollower(userData.followerCount || 0);
       setJoinDate(userData.joinDate ? formatDate(userData.joinDate) : "");

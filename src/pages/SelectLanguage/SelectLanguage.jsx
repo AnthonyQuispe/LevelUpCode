@@ -51,6 +51,7 @@ function SelectLanguage() {
       // Start a Firestore transaction to ensure atomic updates
       await runTransaction(db, async (transaction) => {
         const userDoc = await transaction.get(userDocRef);
+        // eslint-disable-next-line
         const userData = userDoc.data();
 
         // Update the course details in the user document
