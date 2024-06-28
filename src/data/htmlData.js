@@ -13,28 +13,23 @@ export const htmlLevel1Quest1Questions = [
     question: `Find the &lt;h1&gt; element in the code below:
             Change the text from “Hello World” to “Pac Man”:`,
     initialCode: `
-    <html>
+   <html>
      <body>
       <h1>Hello World</h1>
      </body>
-    </html>`,
+</html>`,
     correctCode: `
-    <html>
-      <body>
-        <h1>Pac Man</h1> 
-      </body>
-    </html>`,
+   <html>
+     <body>
+      <h1>Pac Man</h1>
+     </body>
+</html>`,
   },
   {
     title: "What's an &lt;h2&gt; Element?",
     definition: `
     The &lt;h2&gt; element defines a secondary heading on a webpage.\n
     In HTML, there are six levels of headings, &lt;h1&gt; through &lt;h6&gt;:\n
-    - &lt;h1&gt;: Represents the main heading, used once per page for the title or main topic.\n
-    - &lt;h2&gt;: Represents secondary headings, used for major sections within the document.\n
-    - &lt;h3&gt;: Represents tertiary headings, used for subsections under &lt;h2&gt; headings.\n
-    - &lt;h4&gt;: Represents quaternary headings, used for further subsections.\n
-    - &lt;h5&gt; and &lt;h6&gt;: Represent even smaller subsections and are rarely used.\n\n
     Each heading tag helps create a structured hierarchy, making the content easier to navigate for users and search engines.`,
     keypoint: [
       "Purpose: Represents a secondary heading.",
@@ -46,20 +41,20 @@ export const htmlLevel1Quest1Questions = [
     question: `Find the &lt;h2&gt; element in the code below:
             Change the text from “Subheading” to “Pac-Man Gameplay”:`,
     initialCode: `
-    <html>
+  <html>
       <body>
         <h2>Subheading</h2> 
       </body>
-    </html>`,
+</html>`,
     correctCode: `
-    <html>
+<html>
       <body>
         <h2>Pac-Man Gameplay</h2> 
       </body>
-    </html>`,
+</html>`,
   },
   {
-    title: "Adding a &lt;p&gt; Element with Description",
+    title: "What's an &lt;p&gt; Element?",
     definition: "The &lt;p&gt; element defines a paragraph of text.",
     keypoint: [
       "Purpose: Represents a paragraph.",
@@ -71,17 +66,17 @@ export const htmlLevel1Quest1Questions = [
     question: `Find the &lt;p&gt; element in the code below:
             Change the text from “Default Text” to “Pac-Man is a classic arcade game developed by Namco.”:`,
     initialCode: `
-    <html>
+<html>
       <body>
         <p>Default Text</p> 
       </body>
-    </html>`,
+</html>`,
     correctCode: `
-    <html>
+<html>
       <body>
         <p>Pac-Man is a classic arcade game developed by Namco.</p> 
       </body>
-    </html>`,
+</html>`,
   },
   {
     title: "Creating an &lt;ul&gt; Element",

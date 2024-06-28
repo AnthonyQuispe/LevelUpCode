@@ -141,7 +141,7 @@ export default function QuestQuestions({
 
   return (
     <section className="quest-question">
-      <div>
+      <div className="quest-question-text">
         <h1
           dangerouslySetInnerHTML={{ __html: questData.title || "" }}
           className="quest-question__title"
