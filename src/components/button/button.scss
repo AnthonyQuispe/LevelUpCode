@@ -20,6 +20,11 @@
     max-width: 368px;
   }
 
+  &-white {
+    background-color: $White;
+    color: $Pink;
+  }
+
   &-green {
     background-color: transparent;
     border: 3px solid $Green;

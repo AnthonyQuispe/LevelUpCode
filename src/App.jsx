@@ -2,6 +2,7 @@ import "./styles/partials/_global.scss";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LogInPage from "./pages/LogInPage/LogInPage";
 import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage";
@@ -22,6 +23,7 @@ function App() {
       <main>
         <SoundButton />
         <Routes>
+          <Route path="/landingpage" element={<LandingPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />

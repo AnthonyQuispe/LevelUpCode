@@ -185,7 +185,11 @@ export const UserProvider = ({ children }) => {
         setUserData(null);
         setUserCourses(null);
         setUserAwards(null);
-        if (location.pathname !== "/signup" && location.pathname !== "/login") {
+        if (
+          location.pathname !== "/signup" &&
+          location.pathname !== "/login" &&
+          location.pathname !== "/landingpage"
+        ) {
           navigate("/login");
         }
       }
