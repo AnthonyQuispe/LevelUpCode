@@ -188,7 +188,7 @@ export const UserProvider = ({ children }) => {
         if (
           location.pathname !== "/signup" &&
           location.pathname !== "/login" &&
-          location.pathname !== "/landingpage"
+          location.pathname !== "/"
         ) {
           navigate("/login");
         }

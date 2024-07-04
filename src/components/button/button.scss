@@ -6,7 +6,7 @@
   background-color: $Pink;
   color: white;
   width: 100%;
-  max-width: 320px;
+  max-width: 375px;
   border-radius: 10px;
   height: 50px;
   border: none;
@@ -14,11 +14,6 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
   @include Body;
-
-  @include Tablet {
-    height: 80px;
-    max-width: 368px;
-  }
 
   &-white {
     background-color: $White;

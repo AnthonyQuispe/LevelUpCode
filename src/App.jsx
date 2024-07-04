@@ -23,14 +23,14 @@ function App() {
       <main>
         <SoundButton />
         <Routes>
-          <Route path="/landingpage" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
           <Route path="/select/difficulty" element={<SelectDifficulty />} />
-          <Route path="/" element={<DashboardPage />} />
+          <Route path="/dashoard" element={<DashboardPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} />

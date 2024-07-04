@@ -7,8 +7,9 @@
   width: 100%;
   border-radius: 10px;
   border: solid 3px White;
-  background-color: transparent;
+  background-color: $Dark-Purple;
   padding: 10px;
+
   @include Body;
 
   &::placeholder {
