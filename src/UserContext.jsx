@@ -190,7 +190,7 @@ export const UserProvider = ({ children }) => {
           location.pathname !== "/login" &&
           location.pathname !== "/"
         ) {
-          navigate("/login");
+          navigate("/");
         }
       }
       setLoading(false);

@@ -15,6 +15,17 @@
 
   @include Body;
 
+  &:focus {
+    transform: translate(0, -2px);
+    cursor: pointer;
+    transition: 0.2s;
+    transition-timing-function: linear;
+  }
+
+  &:active {
+    transform: translate(0, 0);
+  }
+
   &-white {
     background-color: $White;
     color: $Pink;
@@ -35,6 +46,10 @@
 
     &:hover {
       background-color: $Pink;
+    }
+
+    &-big {
+      max-width: 375px;
     }
   }
 

@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./AlertModal.scss";
-import XIcon from "../../assets/icons/CloseIcon.png";
+import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
 
 export default function AlertModal({ isVisible, message, onClose }) {
   if (!isVisible) return null;
 
   return (
     <div className="alert-modal">
-      <h3 className="alert-modal__text">{message}</h3>
+      <p className="alert-modal__text">{message}</p>
       <button onClick={onClose} className="alert-modal__button">
-        <img src={XIcon} alt="close" className="alert-modal__button-img" />
+        <img src={DeleteIcon} alt="close" className="alert-modal__button-img" />
       </button>
     </div>
   );

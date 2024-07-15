@@ -5,20 +5,24 @@
 .alert-modal {
   display: flex;
   position: absolute;
-  width: 80%;
-  max-width: 300px;
+  z-index: 10;
+  width: 280px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 3px solid $Pink;
-  padding: 20px;
-  background-color: $Light-Purple;
+  padding: 40px;
+  background-color: $Dark-Purple;
   border-radius: 10px;
   align-items: center;
   justify-content: space-evenly;
 
+  @include Tablet {
+    width: 350px;
+  }
+
   &__text {
-    @include Sub-Title;
+    @include Body;
   }
 
   &__button {
@@ -27,8 +31,14 @@
     background: transparent;
     border: none;
 
+    position: absolute;
+
+    top: 1%;
+    right: 1%;
+
     &-img {
-      width: 100%;
+      height: 30px;
+      width: auto;
     }
   }
 }

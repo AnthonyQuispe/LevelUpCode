@@ -18,4 +18,15 @@
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   @include Body;
   color: #757575;
+
+  &:focus {
+    transform: translate(0, -2px);
+    cursor: pointer;
+    transition: 0.2s;
+    transition-timing-function: linear;
+  }
+
+  &:active {
+    transform: translate(0, 0);
+  }
 }

@@ -5,7 +5,7 @@ import uploadIcon from "../../assets/icons/UploadIcon.svg";
 import AlertModal from "../AlertModal/AlertModal";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import closeIcon from "../../assets/icons/CloseIcon.png";
+import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
 import { db, auth } from "../../firebase/FirebaseConfig";
 import {
   collection,
@@ -189,7 +189,7 @@ export default function AddFriends({ userName }) {
             >
               <img
                 className="find-friend-modal__image"
-                src={closeIcon}
+                src={DeleteIcon}
                 alt="close Icon"
               />
             </button>

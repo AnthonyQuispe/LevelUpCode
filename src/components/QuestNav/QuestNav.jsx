@@ -1,6 +1,6 @@
 import React from "react";
 import "./QuestNav.scss";
-import closeIcon from "../../assets/icons/CloseIcon.png";
+import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
 import { Link, useLocation } from "react-router-dom";
 
 export default function QuestNav() {
@@ -26,7 +26,7 @@ export default function QuestNav() {
   return (
     <nav className="quest-nav">
       <Link className="quest-nav__button" to="/">
-        <img src={closeIcon} alt="Close Icon" className="quest-nav__img" />
+        <img src={DeleteIcon} alt="Close Icon" className="quest-nav__img" />
       </Link>
       <div className="quest-nav__progress-bar">
         <div className={progressBarClass} />

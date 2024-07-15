@@ -65,7 +65,7 @@ function LandingPage() {
             </div>
             <div className="landing-page__container landing-page__container--right">
               <h2 className="landing-page__subtitle">
-                The free, fun, and effective way to learn coding!
+                The free, fun way to level up your code!
               </h2>
               <div className="landing-page__links">
                 <Link className="landing-page__link" to="/signup">

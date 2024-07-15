@@ -28,7 +28,7 @@ function App() {
           <Route path="/terms" element={<TermConditionsPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
           <Route path="/select/difficulty" element={<SelectDifficulty />} />
-          <Route path="/dashoard" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/setting/*" element={<SettingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
