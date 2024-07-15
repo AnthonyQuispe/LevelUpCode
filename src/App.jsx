@@ -15,13 +15,11 @@ import PublicProfilePage from "./pages/PublicProfilePage/PublicProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import QuestPage from "./pages/QuestPage/QuestPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
-import SoundButton from "./components/SoundButton/SoundButton";
 
 function App() {
   return (
     <UserProvider>
       <main>
-        <SoundButton />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<AdminPage />} />

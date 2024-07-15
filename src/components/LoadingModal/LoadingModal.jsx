@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoadingModal.scss";
-import levelupAi from "../../assets/logo/LevelupAi.png";
+import levelupAi from "../../assets/logo/LevelUp.svg";
 
 export default function LoadingModal() {
   return (

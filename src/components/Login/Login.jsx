@@ -22,7 +22,7 @@ export default function Login({ handleLoginPageClick }) {
       <h1 className="login-container__title">Log In</h1>
       <form className="login-container__form">
         <Input placeholder={"Email"} />
-        <Input placeholder={"Password"} />
+        <Input placeholder={"Password"}></Input>
         <Button text={"Log In"} />
       </form>
       <GoogleButton />
@@ -30,6 +30,11 @@ export default function Login({ handleLoginPageClick }) {
         Don't have an account{" "}
         <span className="login-container__link login-container__link--pink">
           Sign Up
+        </span>
+      </Link>
+      <Link className="login-container__link">
+        <span className="login-container__link login-container__link--pink">
+          Forgot Password
         </span>
       </Link>
     </div>
