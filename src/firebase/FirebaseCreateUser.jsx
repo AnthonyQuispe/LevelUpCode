@@ -57,3 +57,11 @@ export const isUsernameTaken = async (username) => {
   const querySnapshot = await getDocs(q);
   return !querySnapshot.empty;
 };
+
+//Function to check if a email is already taken
+export const isEmailTaken = async (email) => {
+  const userRef = collection(db, "users");
+  const q = query(userRef, where("email", "==", email));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty;
+};

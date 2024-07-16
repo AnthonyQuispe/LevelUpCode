@@ -9,7 +9,7 @@ import settingIcon from "../../assets/icons/SettingIcon.svg";
 export default function Nav() {
   return (
     <nav className="nav">
-      <Link className="nav__button" to="/">
+      <Link className="nav__button" to="/dashboard">
         <img className="nav__icons" src={homeIcon} alt="Home Icon" />
         <p className="nav__text">Home </p>
       </Link>

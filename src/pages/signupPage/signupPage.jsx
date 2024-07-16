@@ -2,53 +2,82 @@ import "./SignUpPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Logo from "../../assets/logo/LevelUp.svg";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import GoogleButton from "../../components/GoogleButton/GoogleButton";
-import { createUser, isUsernameTaken } from "../../firebase/FirebaseCreateUser";
+import {
+  createUser,
+  isUsernameTaken,
+  isEmailTaken,
+} from "../../firebase/FirebaseCreateUser";
 import AlertModal from "../../components/AlertModal/AlertModal";
 
-function SignUpPage() {
+export default function SignUpPage() {
   const navigate = useNavigate();
   const auth = getAuth();
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [step, setStep] = useState(1);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/");
+        navigate("/dashboard");
       }
     });
 
     return () => unsubscribe();
   }, [auth, navigate]);
 
-  const handleFormSubmit = async (event) => {
+  const handleEmailFormSubmit = async (event) => {
     event.preventDefault();
-    const userName = event.target.userName.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    const emailInput = event.target.email.value;
 
-    if (!userName) {
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(emailInput)) {
+      setAlertMessage("Please enter a valid email address.");
+      setAlertVisible(true);
+      return;
+    }
+
+    const emailTaken = await isEmailTaken(emailInput);
+    if (emailTaken) {
+      setAlertMessage("Email is already in use.");
+      setAlertVisible(true);
+      return;
+    }
+
+    setEmail(emailInput);
+    setStep(2);
+  };
+
+  const handleUsernameFormSubmit = async (event) => {
+    event.preventDefault();
+    const usernameInput = event.target.username.value;
+
+    if (!usernameInput) {
       setAlertMessage("Please enter your username.");
       setAlertVisible(true);
       return;
     }
-    const usernameTaken = await isUsernameTaken(userName);
+
+    const usernameTaken = await isUsernameTaken(usernameInput);
     if (usernameTaken) {
       setAlertMessage("Username is already taken. Please choose another one.");
       setAlertVisible(true);
       return;
     }
 
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-      setAlertMessage("Please enter a valid email address.");
-      setAlertVisible(true);
-      return;
-    }
+    setUsername(usernameInput);
+    setStep(3);
+  };
+
+  const handlePasswordFormSubmit = async (event) => {
+    event.preventDefault();
+    const password = event.target.password.value;
+    const confirmPassword = event.target.confirmPassword.value;
+
     if (!password || password.length < 6) {
       setAlertMessage(
         "Please enter a valid password that's at least 6 characters long."
@@ -57,11 +86,17 @@ function SignUpPage() {
       return;
     }
 
+    if (password !== confirmPassword) {
+      setAlertMessage("Passwords do not match.");
+      setAlertVisible(true);
+      return;
+    }
+
     try {
-      await createUser(userName, email, password);
+      await createUser(username, email, password);
       setAlertMessage("Account created successfully!");
       setAlertVisible(true);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setAlertMessage("Account creation failed. Please try again.");
       setAlertVisible(true);
@@ -69,57 +104,85 @@ function SignUpPage() {
   };
 
   return (
-    <main className="signup-page">
+    <div className="signup-container">
       <AlertModal
         isVisible={alertVisible}
         message={alertMessage}
         onClose={() => setAlertVisible(false)}
       />
-      <div className="signup-page__left-container">
-        <img className="signup-page__logo" src={Logo} alt="Logo" />
-        <p className="signup-page__subtitle">Craft Your Account! </p>
-        <p className="signup-page__text">
-          Whether you're a novice or a seasoned enthusiast, our app provides an
-          immersive learning experience designed to demystify coding languages
-          and empower you to create anything you can imagine.
-        </p>
-        <Button className="signup-page__learn-button" text={"Learn More"} />
-      </div>
-      <div className="signup-page__form-container">
-        <form className="signup-page__form" onSubmit={handleFormSubmit}>
-          <Input
-            placeholder="Username"
-            type="text"
-            name="userName"
-            id="userName"
-            autoComplete="username"
-          />
-          <Input
-            placeholder="Email"
-            type="email"
-            name="email"
-            id="email"
-            autoComplete="current-email"
-          />
-          <Input
-            placeholder="Password"
-            type="password"
-            name="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <Button text={"Sign Up"} />
-        </form>
-        <div className="signup-page__link-container">
-          <p className="signup-page__link-text">Already have an account?</p>
-          <Link to="/login" className="signup-page__link">
-            Log In
+
+      {step === 1 && (
+        <>
+          <h1 className="signup-container__title">Sign Up</h1>
+          <form
+            className="signup-container__form"
+            onSubmit={handleEmailFormSubmit}
+          >
+            <Input
+              key="email"
+              placeholder="Enter Your Email"
+              type="email"
+              name="email"
+              id="email"
+              autoComplete="current-email"
+            />
+            <Button text={"Next"} className="button-pink-big" />
+          </form>
+          <Link className="signup-container__link" to="/?isLoggingIn=true">
+            Already have an account?{" "}
+            <span className="signup-container__link signup-container__link--pink">
+              Sign In
+            </span>
           </Link>
-          <GoogleButton />
-        </div>
-      </div>
-    </main>
+        </>
+      )}
+
+      {step === 2 && (
+        <>
+          <h1 className="signup-container__title">Create A Username</h1>
+          <form
+            className="signup-container__form"
+            onSubmit={handleUsernameFormSubmit}
+          >
+            <Input
+              key="username"
+              placeholder="Enter Your Username"
+              type="text"
+              name="username"
+              id="username"
+              autoComplete="username"
+            />
+            <Button text={"Next"} className="button-pink-big" />
+          </form>
+        </>
+      )}
+      {step === 3 && (
+        <>
+          <h1 className="signup-container__title">Create A Password</h1>
+          <form
+            className="signup-container__form"
+            onSubmit={handlePasswordFormSubmit}
+          >
+            <Input
+              key="password"
+              placeholder="Enter Password"
+              type="password"
+              name="password"
+              id="password"
+              autoComplete="new-password"
+            />
+            <Input
+              key="confirmPassword"
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              autoComplete="new-password"
+            />
+            <Button text={"Sign Up"} className="button-pink-big" />
+          </form>
+        </>
+      )}
+    </div>
   );
 }
-
-export default SignUpPage;

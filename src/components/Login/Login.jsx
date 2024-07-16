@@ -27,7 +27,7 @@ export default function Login({ handleLoginPageClick }) {
     }
 
     if (!password) {
-      setAlertMessage("Please enter your password.");
+      setAlertMessage("Please Enter Your Password.");
       setAlertVisible(true);
       return;
     }
