@@ -2,7 +2,7 @@ import "./SettingPage.scss";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import { auth } from "../../firebase/FirebaseConfig";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon.svg";
 import Button from "../../components/Button/Button";
 import { Link, useLocation } from "react-router-dom";
@@ -65,7 +65,7 @@ function SettingPage() {
   if (renderActiveComponent() === null) {
     return (
       <div className="setting">
-        <Nav />
+        <DashboardNav />
         <div className="setting-page">
           <section className="setting-page__top-container">
             <h1 className="setting-page__title">Settings</h1>
@@ -127,7 +127,7 @@ function SettingPage() {
 
   return (
     <div className="setting">
-      <Nav />
+      <DashboardNav />
       <div className="setting-page setting-page--alt">
         <section className="setting-page__top-container setting-page__top-container--alt">
           <h1 className="setting-page__title">Settings</h1>

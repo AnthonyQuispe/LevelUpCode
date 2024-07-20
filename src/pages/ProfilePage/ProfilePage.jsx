@@ -6,7 +6,7 @@ import AddFriends from "../../components/AddFriend/AddFriend";
 import UserAwards from "../../components/UserAwards/UserAwards";
 import FriendList from "../../components/FriendList/FriendList";
 import Overview from "../../components/OverView/Overview";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import { Link } from "react-router-dom";
 
 const formatDate = (timestamp) => {
@@ -48,7 +48,7 @@ function ProfilePage() {
 
   return (
     <div className="profile">
-      <Nav />
+      <DashboardNav />
       <div className="profile-page">
         <div className="profile-page__top-container">
           <Link to={"/setting/profile"}>

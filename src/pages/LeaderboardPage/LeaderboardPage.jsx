@@ -1,5 +1,5 @@
 import "./LeaderboardPage.scss";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import LeadboardIcon from "../../assets/icons/LeaderboardIcon.svg";
 import ProfilePlaceholder from "../../assets/placeholder/Profile.png";
 import { auth, db } from "../../firebase/FirebaseConfig";
@@ -64,7 +64,7 @@ function LeaderboardPage() {
 
   return (
     <div className="leaderboard">
-      <Nav />
+      <DashboardNav />
       {loading && <LoadingModal />}
       <div className={`leaderboard-page ${loading ? "hidden" : ""}`}>
         <div className="leaderboard-page__top">

@@ -1,6 +1,6 @@
 import "./QuestPage.scss";
 import QuestNav from "../../components/QuestNav/QuestNav";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import QuestQuestions from "../../components/QuestQuestions/QuestQuestions";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -180,7 +180,7 @@ function QuestPage() {
 
   return (
     <div className="quest">
-      <Nav />
+      <DashboardNav />
       <div className="quest-page">
         <QuestNav />
         <QuestQuestions

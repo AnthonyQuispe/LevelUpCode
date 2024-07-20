@@ -3,26 +3,23 @@
 @use "../../styles/partials/variables" as *;
 
 .termsconditions-page {
-  background-image: url("../../assets/background/GamingMobile.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100dvh;
-  padding: 40px 20px;
+  background-color: $Purple;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 
-  @include Tablet {
-    gap: 40px;
-    background-image: url("../../assets/background/GamingTablet.svg");
+  &__header {
+    padding-top: 80px;
+    width: 100%;
   }
 
-  @include Desktop {
-    background-image: url("../../assets/background/GamingDesktop.svg");
-    padding: 60px 40px;
-    justify-content: space-evenly;
+  &__main {
+    width: 100%;
+    padding: 0 20px;
   }
 
   &__link {
@@ -43,15 +40,17 @@
   }
 
   &__title {
-    @include Title;
+    @include Subtitle;
+    color: White;
+    text-align: left;
+    margin-bottom: 50px;
+  }
+  &__subtitle {
+    @include Heading;
     color: White;
     text-align: left;
   }
-  &__sub-title {
-    @include Sub-Title;
-    color: White;
-    text-align: left;
-  }
+
   &__text {
     @include Body;
     color: White;

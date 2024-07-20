@@ -7,7 +7,7 @@ import FollowButton from "../../components/FollowButton/FollowButton";
 import UserAwards from "../../components/UserAwards/UserAwards";
 import FriendList from "../../components/FriendList/FriendList";
 import Overview from "../../components/OverView/Overview";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import { followUser, unfollowUser } from "../../firebase/FirebaseFollowUser";
 import AlertModal from "../../components/AlertModal/AlertModal";
 import { useParams } from "react-router-dom";
@@ -145,7 +145,7 @@ function PublicProfilePage() {
 
   return (
     <div className="profile">
-      <Nav />
+      <DashboardNav />
       <div className="profile-page">
         <div className="profile-page__top-container">
           <img

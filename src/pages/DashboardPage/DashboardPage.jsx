@@ -2,7 +2,7 @@ import "./DashboardPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../UserContext";
-import Nav from "../../components/Nav/Nav";
+import DashboardNav from "../../components/DashboardNav/DashboardNav";
 import greenClassIcon from "../../assets/class/GreenClassIcon.svg";
 import pinkClassIcon from "../../assets/class/PinkClassIcon.svg";
 import purpleClassIcon from "../../assets/class/PurpleClassIcon.svg";
@@ -97,7 +97,7 @@ function DashboardPage() {
 
   return (
     <div className="dashboard">
-      <Nav />
+      <DashboardNav />
       <div className="dashboard__page">
         <div className="dashboard__top">
           <div className="dashboard__top-container">
