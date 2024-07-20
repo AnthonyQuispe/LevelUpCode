@@ -59,7 +59,7 @@ export default function MyCourses() {
           />
         </Link>
         <h1 className="my-courses__title">Active Courses</h1>
-        <h2 className="my-courses__sub-title">Active Courses</h2>
+        <h2 className="my-courses__subtitle">Active Courses</h2>
       </section>
       <section className="my-courses__container">
         <div className="my-courses__button-container">

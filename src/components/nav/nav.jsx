@@ -1,34 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Nav.scss";
-import { Link } from "react-router-dom";
-import profileIcon from "../../assets/icons/ProfileIcon.svg";
-import leaderboardIcon from "../../assets/icons/LeaderboardIcon.png";
-import homeIcon from "../../assets/icons/HomeIcon.svg";
-import settingIcon from "../../assets/icons/SettingIcon.svg";
+import { Link, useNavigate } from "react-router-dom";
+import LogoText from "../../assets/logo/LevelUpLogoText.svg";
+import HamburgerIcon from "../../assets/icons/BurgerIcon.svg";
+import Button from "../Button/Button";
+
+function MenuButton() {
+  return (
+    <div className="menu">
+      <div className="menu__links-container">
+        <ul className="menu__list">
+          <li className="menu__item">
+            <Link className="menu__link" to={"/?isLoggingIn=true"}>
+              Log in
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link menu__link--alt" to={"/signup"}>
+              Get Started
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link menu__link--alt" to={"/download"}>
+              Download LevelUp Code
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="menu__arrow-container">
+        <div className="menu__arrow" />
+      </div>
+    </div>
+  );
+}
 
 export default function Nav() {
+  const [openMenu, setOpenMenu] = useState(false);
+  const navigate = useNavigate();
+
+  const handleMenuToggle = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  const handleLoginButtonClick = () => {
+    navigate("/?isLoggingIn=true");
+  };
+
+  const handleSignupButtonClick = () => {
+    navigate("/signup");
+  };
+
   return (
     <nav className="nav">
-      <Link className="nav__button" to="/dashboard">
-        <img className="nav__icons" src={homeIcon} alt="Home Icon" />
-        <p className="nav__text">Home </p>
+      <Link to={"/"}>
+        <img className="nav__logo" src={LogoText} alt="Text Logo" />
       </Link>
-      <Link className="nav__button" to="/leaderboard">
-        <img
-          className="nav__icons"
-          src={leaderboardIcon}
-          alt="Leaderboard Icon"
+      <button className="nav__button" onClick={handleMenuToggle}>
+        <img className="nav__button-img" src={HamburgerIcon} alt="Menu Icon" />
+        {openMenu && <MenuButton />}
+      </button>
+      <div className="nav__button-container">
+        <Button
+          text={"Login"}
+          className="button-white"
+          onClick={handleLoginButtonClick}
         />
-        <p className="nav__text">Leaderboard </p>
-      </Link>
-      <Link className="nav__button" to="/setting">
-        <img className="nav__icons" src={settingIcon} alt="Setting Icon" />
-        <p className="nav__text">Setting </p>
-      </Link>
-      <Link className="nav__button" to="/profile">
-        <img className="nav__icons" src={profileIcon} alt="Profile Icon" />
-        <p className="nav__text">Profile </p>
-      </Link>
+        <Button text={"Get Started"} onClick={handleSignupButtonClick} />
+      </div>
     </nav>
   );
 }

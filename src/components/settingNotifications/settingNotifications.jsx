@@ -55,7 +55,7 @@ export default function SettingNotifications() {
           />
         </Link>
         <h1 className="setting-notifications__title">Notifications</h1>
-        <h2 className="setting-notifications__sub-title">Notifications </h2>
+        <h2 className="setting-notifications__subtitle">Notifications </h2>
       </section>
       <section className="setting-notifications__container">
         <div className="setting-notifications__button-container">

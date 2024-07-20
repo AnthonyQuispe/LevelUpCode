@@ -31,12 +31,12 @@
     }
   }
 
-  &__sub-title {
+  &__Subtitle {
     display: none;
 
     @include Desktop {
       display: block;
-      @include Sub-Title;
+      @include Subtitle;
     }
   }
 

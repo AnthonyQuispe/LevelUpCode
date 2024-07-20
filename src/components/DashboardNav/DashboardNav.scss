@@ -1,0 +1,76 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.dashboard-nav {
+  width: 100%;
+  height: 90px;
+  background-color: $Light-Purple;
+  border-top: 3px solid $Pink;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+
+  @include Tablet {
+    gap: 40px;
+  }
+
+  @include Desktop {
+    position: unset;
+    width: 90px;
+    height: 100%;
+    bottom: unset;
+    flex-direction: column;
+    border-top: none;
+    justify-content: unset;
+    border-right: 3px solid $Pink;
+    padding: 60px 20px;
+  }
+
+  @include Desktop-L {
+    width: 235px;
+    padding: 60px 20px;
+
+    align-items: flex-start;
+  }
+
+  &__button {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 100%;
+
+    @include Desktop-L {
+      gap: 20px;
+      width: 100%;
+      justify-content: flex-start;
+      box-shadow: unset;
+    }
+  }
+
+  &__icons {
+    background-color: $Lightest-purple;
+    border-radius: 100%;
+    border: 3px solid $Green;
+    padding: 5px;
+    height: 100%;
+  }
+
+  &__text {
+    display: none;
+
+    @include Desktop-L {
+      display: block;
+      @include Body;
+      text-transform: uppercase;
+    }
+  }
+}

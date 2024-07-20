@@ -3,74 +3,115 @@
 @use "../../styles/partials/variables" as *;
 
 .nav {
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 90px;
-  background-color: $Light-Purple;
-  border-top: 3px solid $Pink;
+  z-index: 2;
+  border-bottom: 2px solid transparent;
+  background: $Light-Purple;
+
+  height: 80px;
   display: flex;
   align-items: center;
-  gap: 20px;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
+  justify-content: space-between;
+  padding: 0 20px;
 
-  @include Tablet {
-    gap: 40px;
-  }
+  cursor: pointer;
 
-  @include Desktop {
-    position: unset;
-    width: 90px;
-    height: 100%;
-    bottom: unset;
-    flex-direction: column;
-    border-top: none;
-    justify-content: unset;
-    border-right: 3px solid $Pink;
-    padding: 60px 20px;
-  }
-
-  @include Desktop-L {
-    width: 235px;
-    padding: 60px 20px;
-
-    align-items: flex-start;
+  &__logo {
+    height: 90%;
+    max-height: 60px;
   }
 
   &__button {
-    height: 50px;
-    width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    position: relative;
 
-    @include Desktop-L {
-      gap: 20px;
+    &-img {
+      height: 100%;
       width: 100%;
-      justify-content: flex-start;
-      box-shadow: unset;
+    }
+
+    @include Desktop {
+      display: none;
+    }
+
+    &-container {
+      display: none;
+
+      @include Desktop {
+        display: flex;
+        width: 300px;
+        gap: 20px;
+      }
+    }
+  }
+}
+
+.menu {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-100%) translateX(40px);
+  z-index: 150;
+  margin-top: 8px;
+
+  &__arrow {
+    background-color: $Purple;
+    border: 2px solid $vibrant-purple;
+    border-radius: 2px;
+    height: 14.14427157px;
+    left: 50%;
+    transform: translateZ(0) rotate(45deg);
+    transform-origin: top left;
+    width: 14.14427157px;
+
+    box-sizing: border-box;
+    position: absolute;
+
+    &-container {
+      box-sizing: border-box;
+      position: absolute;
+
+      height: 10px;
+      overflow: hidden;
+      width: 20px;
+
+      margin: 0 var(--web-ui_popover-border-radius, 15px);
+      top: -8px;
+
+      transform: translateX(-50%);
+
+      left: calc(100% + -40px - var(--web-ui_popover-border-radius, 15px));
     }
   }
 
-  &__icons {
-    background-color: $Lightest-purple;
-    border-radius: 100%;
-    border: 3px solid $Green;
-    padding: 5px;
-    height: 100%;
+  &__links-container {
+    background-color: $Purple;
+    border: 2px solid $vibrant-purple;
+    border-radius: var(--web-ui_popover-border-radius, 15px);
+    box-sizing: border-box;
+    overflow: hidden;
+    transform: translateZ(0);
   }
 
-  &__text {
-    display: none;
+  &__link {
+    display: block;
+    max-width: calc(100vw - 80px);
 
-    @include Desktop-L {
-      display: block;
-      @include Body;
-      text-transform: uppercase;
+    @include Body;
+    font-weight: 700;
+    overflow: hidden;
+    padding: 12px 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &--alt {
+      border-top: 2px solid $vibrant-purple;
     }
   }
 }

@@ -31,7 +31,7 @@ export default function SettingPreferences() {
           />
         </Link>
         <h1 className="setting-preferences__title">Preferences</h1>
-        <h2 className="setting-preferences__sub-title">Preferences</h2>
+        <h2 className="setting-preferences__subtitle">Preferences</h2>
       </section>
       <section className="setting-preferences__container">
         <div className="setting-preferences__button-container">

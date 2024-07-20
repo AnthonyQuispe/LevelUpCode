@@ -40,7 +40,7 @@
 
     @include Desktop {
       display: block;
-      @include Sub-Title;
+      @include Subtitle;
     }
   }
 
@@ -155,7 +155,7 @@
   border-radius: 10px;
 
   &-text {
-    @include Sub-Title;
+    @include Subtitle;
   }
 
   &-button {

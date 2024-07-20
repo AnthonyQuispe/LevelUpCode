@@ -1,0 +1,44 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.landing-nav {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  width: 100%;
+
+  @include Desktop {
+    width: 100%;
+    max-width: 988px;
+    margin: 0 auto;
+    justify-content: flex-start;
+  }
+
+  &-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    border-bottom: 2px solid transparent;
+    background: rgba(12, 8, 49, 0.6);
+    backdrop-filter: blur(10px);
+  }
+
+  &__logo {
+    height: 90%;
+    max-height: 60px;
+  }
+
+  &--alt {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+  }
+
+  &__button-container {
+    width: 150px;
+  }
+}

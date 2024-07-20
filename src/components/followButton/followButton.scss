@@ -18,7 +18,7 @@
     padding: 0 10px;
     width: 100%;
     justify-content: center;
-    @include Sub-Title;
+    @include Subtitle;
 
     @include Tablet {
       height: 80px;
