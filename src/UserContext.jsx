@@ -186,6 +186,7 @@ export const UserProvider = ({ children }) => {
         setUserCourses(null);
         setUserAwards(null);
         if (
+          location.pathname !== "/terms" &&
           location.pathname !== "/signup" &&
           location.pathname !== "/login" &&
           location.pathname !== "/"

@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import SignUpPage from "./pages/SignupPage/SignupPage";
 import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
