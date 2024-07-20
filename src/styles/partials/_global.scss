@@ -6,6 +6,7 @@
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 html,
@@ -13,4 +14,8 @@ body {
   height: auto;
   min-height: 100dvh;
   width: 100vw;
+}
+
+li {
+  list-style: none;
 }
