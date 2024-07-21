@@ -7,10 +7,10 @@ import "./LandingPage.scss";
 import LandingNav from "../../components/LandingNav/LandingNav";
 import LandingFooter from "../../components/LandingFooter/LandingFooter";
 import Logo from "../../assets/logo/LevelUp.svg";
-import FunIcon from "../../assets/gifs/Fun.gif";
-import AiICon from "../../assets/gifs/Ai.gif";
-import MotivatedIcon from "../../assets/gifs/Motivated.gif";
-import Sciense from "../../assets/gifs/Science.gif";
+import FunIcon from "../../assets/gif/Fun.gif";
+import AiICon from "../../assets/gif/Ai.gif";
+import MotivatedIcon from "../../assets/gif/Motivated.gif";
+import Sciense from "../../assets/gif/Science.gif";
 
 function LandingPage() {
   const [loginPage, setLoginPage] = useState(false);
