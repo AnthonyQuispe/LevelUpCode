@@ -5,7 +5,6 @@
 .termsconditions-page {
   background-color: $Purple;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +18,8 @@
 
   &__main {
     width: 100%;
-    padding: 0 20px;
+    max-width: 880px;
+    padding: 0 20px 20px 20px;
   }
 
   &__link {
@@ -41,14 +41,13 @@
 
   &__title {
     @include Subtitle;
-    color: White;
     text-align: left;
     margin-bottom: 50px;
   }
   &__subtitle {
     @include Heading;
     color: White;
-    text-align: left;
+    margin: 0 0 10px;
   }
 
   &__text {
@@ -61,6 +60,28 @@
   }
 
   &__list {
-    margin: 10px 0 0 10px;
+    margin: 0 0 0 20px;
+    list-style: decimal outside none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    &-item {
+      &::marker {
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums;
+        text-transform: none;
+        text-indent: 0 !important;
+        text-align: start !important;
+        text-align-last: start !important;
+        color: White;
+      }
+    }
+
+    &--alt {
+      list-style: circle;
+      margin: 20px 0 0 20px;
+    }
   }
 }
