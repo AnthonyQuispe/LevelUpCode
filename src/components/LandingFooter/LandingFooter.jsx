@@ -37,7 +37,9 @@ export default function LandingFooter() {
           <h3 className="footer__title">Privacy and Terms</h3>
           <ul className="footer__list">
             <li className="footer__item">
-              <Link className="footer__link">Community Guidelines</Link>
+              <Link className="footer__link" to="/guidelines">
+                Community Guidelines
+              </Link>
             </li>
             <li className="footer__item">
               <Link className="footer__link" to={"/terms"}>
@@ -45,7 +47,9 @@ export default function LandingFooter() {
               </Link>
             </li>
             <li className="footer__item">
-              <Link className="footer__link">Privacy</Link>
+              <Link className="footer__link" to={"/privacy"}>
+                Privacy
+              </Link>
             </li>
           </ul>
         </div>

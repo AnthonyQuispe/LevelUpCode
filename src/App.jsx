@@ -5,6 +5,7 @@ import { UserProvider } from "./UserContext";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import SignUpPage from "./pages/SignUpPage/SignupPage";
 import TermConditionsPage from "./pages/TermsConditionsPage/TermsConditionsPage";
+import PrivacyPolicy from "./pages/PrivacyPolicyPage/PrivacyPolicyPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import SelectCoursePage from "./pages/SelectLanguage/SelectLanguage";
@@ -14,6 +15,7 @@ import PublicProfilePage from "./pages/PublicProfilePage/PublicProfilePage";
 import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import QuestPage from "./pages/QuestPage/QuestPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import CommunityGuidelinesPage from "./pages/CommunityGuidelinesPage/CommunityGuidelinesPage";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/guidelines" element={<CommunityGuidelinesPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
           <Route path="/select/difficulty" element={<SelectDifficulty />} />
           <Route path="/dashboard" element={<DashboardPage />} />

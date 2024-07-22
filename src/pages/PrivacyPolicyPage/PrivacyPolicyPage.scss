@@ -1,0 +1,87 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.privacypolicy-page {
+  background-color: $Purple;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  &__header {
+    padding-top: 80px;
+    width: 100%;
+  }
+
+  &__main {
+    width: 100%;
+    max-width: 880px;
+    padding: 0 20px 20px 20px;
+  }
+
+  &__link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__logo {
+    width: 60%;
+    @include Tablet {
+      max-width: 315px;
+    }
+  }
+
+  &__section {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  &__title {
+    @include Subtitle;
+    text-align: left;
+    margin-bottom: 50px;
+  }
+  &__subtitle {
+    @include Heading;
+    color: White;
+    margin: 0 0 10px;
+  }
+
+  &__text {
+    @include Body;
+    color: White;
+  }
+  &__mail {
+    @include Body;
+    color: $Pink;
+  }
+
+  &__list {
+    margin: 0 0 0 20px;
+    list-style: decimal outside none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    &-item {
+      &::marker {
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums;
+        text-transform: none;
+        text-indent: 0 !important;
+        text-align: start !important;
+        text-align-last: start !important;
+        color: White;
+      }
+    }
+
+    &--alt {
+      list-style: circle;
+      margin: 20px 0 0 20px;
+    }
+  }
+}
