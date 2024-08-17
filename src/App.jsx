@@ -16,6 +16,7 @@ import LeaderBoardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import QuestPage from "./pages/QuestPage/QuestPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import CommunityGuidelinesPage from "./pages/CommunityGuidelinesPage/CommunityGuidelinesPage";
+import FAQPage from "./pages/FAQPage/FAQPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/terms" element={<TermConditionsPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/guidelines" element={<CommunityGuidelinesPage />} />
           <Route path="/select/course" element={<SelectCoursePage />} />
           <Route path="/select/difficulty" element={<SelectDifficulty />} />

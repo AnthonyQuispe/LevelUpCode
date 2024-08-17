@@ -1,0 +1,80 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.faq-page {
+  background-color: $Purple;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  &__header {
+    padding-top: 80px;
+    width: 100%;
+  }
+
+  &__main {
+    width: 100%;
+    max-width: 880px;
+    padding: 0 20px 20px 20px;
+  }
+
+  &__title {
+    @include Subtitle;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__section {
+    max-width: 900px;
+    margin: 50px auto;
+
+    border: 2px solid White;
+    border-radius: 16px;
+
+    &-title {
+      @include Heading;
+      color: $vibrant-purple;
+      margin: 0 0 10px;
+    }
+  }
+
+  &__item {
+    padding: 20px;
+    border-bottom: 2px solid $White;
+
+    &:last-of-type {
+      border-bottom: unset;
+    }
+
+    &-top-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-bottom-container {
+      display: none;
+      &--show {
+        display: block;
+      }
+    }
+
+    &-title {
+      @include Body;
+      color: $White;
+      margin: 0 0 10px;
+    }
+
+    &-image {
+      width: 20px;
+      height: 20px;
+    }
+
+    &-content {
+      @include Body;
+    }
+  }
+}

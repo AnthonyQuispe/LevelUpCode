@@ -29,7 +29,9 @@ export default function LandingFooter() {
               <Link className="footer__link">Download</Link>
             </li>
             <li className="footer__item">
-              <Link className="footer__link">LevelUp-Code FAQs</Link>
+              <Link className="footer__link" to="/faq">
+                LevelUp-Code FAQs
+              </Link>
             </li>
           </ul>
         </div>
